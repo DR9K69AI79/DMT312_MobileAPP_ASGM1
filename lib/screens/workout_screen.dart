@@ -1,0 +1,318 @@
+import 'package:flutter/material.dart';
+import '../widgets/glass_card.dart';
+import '../widgets/ring_progress.dart';
+import '../mock_data.dart';
+import '../models/workout_entry.dart';
+import '../widgets/primary_button.dart';
+
+class WorkoutScreen extends StatefulWidget {
+  const WorkoutScreen({super.key});
+
+  @override
+  State<WorkoutScreen> createState() => _WorkoutScreenState();
+}
+
+class _WorkoutScreenState extends State<WorkoutScreen> {
+  final MockData _mockData = MockData();
+  
+  @override
+  void initState() {
+    super.initState();
+    _mockData.addListener(_updateUI);
+  }
+  
+  @override
+  void dispose() {
+    _mockData.removeListener(_updateUI);
+    super.dispose();
+  }
+  
+  void _updateUI() {
+    setState(() {});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('训练计划'),
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // 今日训练状态卡片
+            GlassCard(
+              child: Column(
+                children: [
+                  const Text(
+                    '今日训练状态',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Center(
+                    child: RingProgress(
+                      percent: _mockData.workoutCompletionPercent,
+                      label: '已完成',
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    '已完成 ${_mockData.workoutToday.where((w) => w.isCompleted).length} / ${_mockData.workoutToday.length} 个训练',
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // 训练计划卡片
+            GlassCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        '训练计划',
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      TextButton.icon(
+                        icon: const Icon(Icons.edit),
+                        label: const Text('编辑'),
+                        onPressed: () {
+                          // TODO: 实现训练计划编辑功能
+                        },
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
+                  _buildWorkoutList(),
+                ],
+              ),
+            ),
+            
+            const SizedBox(height: 16),
+            
+            // 快速添加训练卡片
+            GlassCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '快速添加训练',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  SizedBox(
+                    height: 100,
+                    child: _buildQuickAddWorkouts(),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () => _showAddWorkoutDialog(context),
+      ),
+    );
+  }
+  
+  // 构建训练列表
+  Widget _buildWorkoutList() {
+    final workouts = _mockData.workoutToday;
+    
+    if (workouts.isEmpty) {
+      return const Padding(
+        padding: EdgeInsets.symmetric(vertical: 32.0),
+        child: Center(child: Text('今日暂无训练计划')),
+      );
+    }
+    
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: workouts.length,
+      itemBuilder: (context, index) {
+        final workout = workouts[index];
+        return Dismissible(
+          key: Key(workout.name + index.toString()),
+          background: Container(
+            color: Colors.red,
+            alignment: Alignment.centerRight,
+            padding: const EdgeInsets.only(right: 20.0),
+            child: const Icon(
+              Icons.delete,
+              color: Colors.white,
+            ),
+          ),
+          direction: DismissDirection.endToStart,
+          onDismissed: (direction) {
+            setState(() {
+              _mockData.workoutToday.removeAt(index);
+              _mockData.notifyListeners();
+            });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text('已删除 ${workout.name}')),
+            );
+          },
+          child: ListTile(
+            title: Text(workout.name),
+            subtitle: Text('${workout.sets} 组'),
+            trailing: IconButton(
+              icon: workout.isCompleted
+                ? const Icon(Icons.check_circle, color: Colors.green)
+                : const Icon(Icons.circle_outlined),
+              onPressed: () => _mockData.toggleWorkoutCompleted(index),
+            ),
+          ),
+        );
+      },
+    );
+  }
+  
+  // 构建快速添加训练列表
+  Widget _buildQuickAddWorkouts() {
+    final workoutTypes = [
+      {'name': '俯卧撑', 'icon': Icons.fitness_center},
+      {'name': '深蹲', 'icon': Icons.accessibility_new},
+      {'name': '平板支撑', 'icon': Icons.timer},
+      {'name': '卷腹', 'icon': Icons.line_style},
+      {'name': '引体向上', 'icon': Icons.vertical_align_top},
+      {'name': '跑步', 'icon': Icons.directions_run},
+    ];
+    
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      itemCount: workoutTypes.length,
+      itemBuilder: (context, index) {
+        final workout = workoutTypes[index];
+        return Padding(
+          padding: const EdgeInsets.only(right: 16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              InkWell(
+                onTap: () => _quickAddWorkout(workout['name'] as String, 3),
+                child: Container(
+                  width: 60,
+                  height: 60,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.primary,
+                    shape: BoxShape.circle,
+                  ),
+                  child: Icon(
+                    workout['icon'] as IconData,
+                    color: Colors.white,
+                    size: 30,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 8),
+              Text(workout['name'] as String),
+            ],
+          ),
+        );
+      },
+    );
+  }
+  
+  // 快速添加训练
+  void _quickAddWorkout(String name, int sets) {
+    _mockData.addWorkout(name, sets);
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('已添加 $name')),
+    );
+  }
+  
+  // 添加训练对话框
+  void _showAddWorkoutDialog(BuildContext context) {
+    final nameController = TextEditingController();
+    final setsController = TextEditingController(text: '3');
+    
+    showModalBottomSheet<void>(
+      isScrollControlled: true,
+      context: context,
+      builder: (BuildContext context) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+            left: 16.0,
+            right: 16.0,
+            top: 16.0,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Text(
+                '添加训练',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: '训练名称',
+                  prefixIcon: Icon(Icons.fitness_center),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 16),
+              TextField(
+                controller: setsController,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  labelText: '组数',
+                  prefixIcon: Icon(Icons.repeat),
+                  border: OutlineInputBorder(),
+                ),
+              ),
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context),
+                    child: const Text('取消'),
+                  ),
+                  const SizedBox(width: 16),
+                  PrimaryButton(
+                    onPressed: () {
+                      final name = nameController.text.trim();
+                      final sets = int.tryParse(setsController.text) ?? 3;
+                      
+                      if (name.isNotEmpty) {
+                        _mockData.addWorkout(name, sets);
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: const Text('添加'),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
