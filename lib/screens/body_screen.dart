@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/weight_line_chart.dart';
-import '../mock_data.dart';
+import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
 
 class BodyScreen extends StatefulWidget {
@@ -12,21 +12,21 @@ class BodyScreen extends StatefulWidget {
 }
 
 class _BodyScreenState extends State<BodyScreen> {
-  final MockData _mockData = MockData();
+  final DataManager _dataManager = DataManager();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _mockData.addListener(_updateUI);
-    _heightController.text = _mockData.height.toString();
-    _weightController.text = _mockData.currentWeight.toString();
+    _dataManager.addListener(_updateUI);
+    _heightController.text = _dataManager.height.toString();
+    _weightController.text = _dataManager.currentWeight.toString();
   }
 
   @override
   void dispose() {
-    _mockData.removeListener(_updateUI);
+    _dataManager.removeListener(_updateUI);
     _heightController.dispose();
     _weightController.dispose();
     super.dispose();
@@ -72,8 +72,8 @@ class _BodyScreenState extends State<BodyScreen> {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            Text('身高: ${_mockData.height.toStringAsFixed(1)} cm'),
-                            Text('当前体重: ${_mockData.currentWeight.toStringAsFixed(1)} kg'),
+                            Text('身高: ${_dataManager.height.toStringAsFixed(1)} cm'),
+                            Text('当前体重: ${_dataManager.currentWeight.toStringAsFixed(1)} kg'),
                           ],
                         ),
                       ),
@@ -104,23 +104,25 @@ class _BodyScreenState extends State<BodyScreen> {
                   const SizedBox(height: 16),
                   Center(
                     child: Text(
-                      _mockData.bmi.toStringAsFixed(1),
+                      _dataManager.bmi.toStringAsFixed(1),
                       style: TextStyle(
                         fontSize: 48,
                         fontWeight: FontWeight.bold,
-                        color: _getBmiColor(_mockData.bmi),
+                        color: _getBmiColor(_dataManager.bmi),
                       ),
                     ),
                   ),
                   const SizedBox(height: 8),
                   _buildBmiScale(context),
                   const SizedBox(height: 8),
-                  Text(
-                    _getBmiStatusText(_mockData.bmi),
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      color: _getBmiColor(_mockData.bmi),
-                      fontWeight: FontWeight.bold,
+                  Center(
+                    child: Text(
+                      _getBmiStatusText(_dataManager.bmi),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: _getBmiColor(_dataManager.bmi),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -142,7 +144,7 @@ class _BodyScreenState extends State<BodyScreen> {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  WeightLineChart(data: _mockData.weights7d),
+                  WeightLineChart(data: _dataManager.weights7d),
                   const SizedBox(height: 16),
                   _buildWeightStats(),
                 ],
@@ -194,7 +196,7 @@ class _BodyScreenState extends State<BodyScreen> {
         ),
         // 指示器
         Positioned(
-          left: _getBmiPosition(_mockData.bmi) * MediaQuery.of(context).size.width * 0.8,
+          left: _getBmiPosition(_dataManager.bmi) * MediaQuery.of(context).size.width * 0.8,
           child: const Icon(Icons.arrow_drop_down, size: 30),
         ),
       ],
@@ -203,11 +205,11 @@ class _BodyScreenState extends State<BodyScreen> {
 
   // 构建体重统计信息
   Widget _buildWeightStats() {
-    if (_mockData.weights7d.isEmpty) {
+    if (_dataManager.weights7d.isEmpty) {
       return const Center(child: Text('暂无数据'));
     }
 
-    final weights = _mockData.weights7d.map((e) => e.value).toList();
+    final weights = _dataManager.weights7d.map((e) => e.value).toList();
     final avgWeight = weights.reduce((a, b) => a + b) / weights.length;
     final minWeight = weights.reduce((a, b) => a < b ? a : b);
     final maxWeight = weights.reduce((a, b) => a > b ? a : b);
@@ -246,7 +248,7 @@ class _BodyScreenState extends State<BodyScreen> {
 
   // 构建体重历史记录列表
   Widget _buildWeightHistory() {
-    if (_mockData.weights7d.isEmpty) {
+    if (_dataManager.weights7d.isEmpty) {
       return const Padding(
         padding: EdgeInsets.all(16.0),
         child: Center(child: Text('暂无记录')),
@@ -254,7 +256,7 @@ class _BodyScreenState extends State<BodyScreen> {
     }
 
     // 按日期倒序排列
-    final sortedEntries = [..._mockData.weights7d]
+    final sortedEntries = [..._dataManager.weights7d]
       ..sort((a, b) => b.date.compareTo(a.date));
 
     return ListView.builder(
@@ -336,13 +338,13 @@ class _BodyScreenState extends State<BodyScreen> {
               child: const Text('取消'),
             ),
             PrimaryButton(
-              onPressed: () {
+              onPressed: () async {
                 final height = double.tryParse(_heightController.text);
                 final weight = double.tryParse(_weightController.text);
                 
                 if (height != null && weight != null) {
-                  _mockData.height = height;
-                  _mockData.addWeight(weight); // 这会更新currentWeight并通知监听器
+                  await _dataManager.updateHeight(height);
+                  await _dataManager.addWeight(weight);
                 }
                 
                 Navigator.of(context).pop();
@@ -358,7 +360,7 @@ class _BodyScreenState extends State<BodyScreen> {
   // 添加体重记录对话框
   void _showAddWeightDialog(BuildContext context) {
     final controller = TextEditingController(
-      text: _mockData.currentWeight.toString()
+      text: _dataManager.currentWeight.toString()
     );
     
     showDialog<void>(
@@ -380,10 +382,10 @@ class _BodyScreenState extends State<BodyScreen> {
               child: const Text('取消'),
             ),
             PrimaryButton(
-              onPressed: () {
+              onPressed: () async {
                 final value = double.tryParse(controller.text);
                 if (value != null) {
-                  _mockData.addWeight(value);
+                  await _dataManager.addWeight(value);
                 }
                 Navigator.of(context).pop();
               },

@@ -10,11 +10,19 @@ dependencies:
   flutter:
     sdk: flutter
   fl_chart: ^1.0.0
+  # 新增的数据持久化相关依赖
+  shared_preferences: ^2.2.2      # 简单键值对存储
+  path_provider: ^2.1.1           # 获取文件系统路径
+  permission_handler: ^11.0.1     # 处理文件权限（用于导入导出）
+  json_annotation: ^4.9.0         # JSON序列化注解
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  # 新增的开发时依赖
+  json_serializable: ^6.7.1       # JSON序列化代码生成
+  build_runner: ^2.4.7            # 代码生成工具
 
 flutter:
   uses-material-design: true

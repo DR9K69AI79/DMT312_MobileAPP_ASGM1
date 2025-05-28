@@ -5,8 +5,15 @@ import 'screens/body_screen.dart';
 import 'screens/workout_screen.dart';
 import 'screens/nutrition_screen.dart';
 import 'screens/library_screen.dart';
+import 'screens/settings_screen.dart';
+import 'services/data_manager.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  
+  // 初始化数据管理器
+  await DataManager().init();
+  
   runApp(const FitnessMiniApp());
 }
 
@@ -18,12 +25,12 @@ class FitnessMiniApp extends StatelessWidget {
     return MaterialApp(
       title: '健身助手',
       theme: buildAppTheme(),
-      home: const MainScreen(),
-      routes: {
+      home: const MainScreen(),      routes: {
         '/body': (context) => const BodyScreen(),
         '/workout': (context) => const WorkoutScreen(),
         '/nutrition': (context) => const NutritionScreen(),
         '/library': (context) => const LibraryScreen(),
+        '/settings': (context) => const SettingsScreen(),
       },
     );
   }

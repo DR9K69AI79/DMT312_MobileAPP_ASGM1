@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// 主色按钮组件
 class PrimaryButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final Widget child;
 
   const PrimaryButton({

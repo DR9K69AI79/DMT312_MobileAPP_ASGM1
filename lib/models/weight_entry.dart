@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'weight_entry.g.dart';
+
+@JsonSerializable()
 class WeightEntry {
   final DateTime date;
   final double value;
@@ -17,4 +22,8 @@ class WeightEntry {
       value: value ?? this.value,
     );
   }
+
+  // JSON 序列化方法
+  factory WeightEntry.fromJson(Map<String, dynamic> json) => _$WeightEntryFromJson(json);
+  Map<String, dynamic> toJson() => _$WeightEntryToJson(this);
 }

@@ -1,3 +1,8 @@
+import 'package:json_annotation/json_annotation.dart';
+
+part 'workout_entry.g.dart';
+
+@JsonSerializable()
 class WorkoutEntry {
   final DateTime date;
   final String name;
@@ -25,4 +30,8 @@ class WorkoutEntry {
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }
+
+  // JSON 序列化方法
+  factory WorkoutEntry.fromJson(Map<String, dynamic> json) => _$WorkoutEntryFromJson(json);
+  Map<String, dynamic> toJson() => _$WorkoutEntryToJson(this);
 }

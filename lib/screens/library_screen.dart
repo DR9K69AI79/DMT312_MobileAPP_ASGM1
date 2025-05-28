@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
-import '../mock_data.dart';
+import '../services/data_manager.dart';
 import '../models/article.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -11,7 +11,7 @@ class LibraryScreen extends StatefulWidget {
 }
 
 class _LibraryScreenState extends State<LibraryScreen> {
-  final MockData _mockData = MockData();
+  final DataManager _dataManager = DataManager();
   String _selectedCategory = '全部';
   final List<String> _categories = ['全部', '训练', '饮食', '康复'];
   String _searchQuery = '';
@@ -19,7 +19,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
   @override
   Widget build(BuildContext context) {
     // 根据分类和搜索过滤文章
-    final filteredArticles = _mockData.articles.where((article) {
+    final filteredArticles = _dataManager.articles.where((article) {
       final matchesCategory = _selectedCategory == '全部' || 
                              article.category == _selectedCategory;
       final matchesSearch = _searchQuery.isEmpty ||
@@ -101,12 +101,11 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 200,
-                    child: ListView.builder(
+                    height: 200,                    child: ListView.builder(
                       scrollDirection: Axis.horizontal,
-                      itemCount: _mockData.articles.length,
+                      itemCount: _dataManager.articles.length,
                       itemBuilder: (context, index) {
-                        final article = _mockData.articles[index];
+                        final article = _dataManager.articles[index];
                         return _buildFeaturedArticleCard(article);
                       },
                     ),

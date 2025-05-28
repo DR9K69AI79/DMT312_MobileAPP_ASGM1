@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
-import '../mock_data.dart';
+import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
 
 class NutritionScreen extends StatefulWidget {
@@ -11,7 +11,7 @@ class NutritionScreen extends StatefulWidget {
 }
 
 class _NutritionScreenState extends State<NutritionScreen> {
-  final MockData _mockData = MockData();
+  final DataManager _dataManager = DataManager();
   
   // 模拟饮食数据
   final Map<String, List<Map<String, dynamic>>> _meals = {
@@ -34,21 +34,20 @@ class _NutritionScreenState extends State<NutritionScreen> {
   @override
   void initState() {
     super.initState();
-    _mockData.addListener(_updateUI);
+    _dataManager.addListener(_updateUI);
     _updateCaloriesFromMeals();
   }
   
   @override
   void dispose() {
-    _mockData.removeListener(_updateUI);
+    _dataManager.removeListener(_updateUI);
     super.dispose();
   }
   
   void _updateUI() {
     setState(() {});
   }
-  
-  // 从餐食计算总热量
+    // 从餐食计算总热量
   void _updateCaloriesFromMeals() {
     int total = 0;
     for (final meal in _meals.values) {
@@ -56,7 +55,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
         total += item['calories'] as int;
       }
     }
-    _mockData.updateCalorieIntake(total);
+    _dataManager.updateCalorieIntake(total);
   }
 
   @override
@@ -84,14 +83,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   ),
                   const SizedBox(height: 16),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildCalorieItem('摄入', _mockData.calorieIntake, Colors.blue),
-                      _buildCalorieItem('消耗', _mockData.caloriesBurned, Colors.green),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,                    children: [
+                      _buildCalorieItem('摄入', _dataManager.calorieIntake, Colors.blue),
+                      _buildCalorieItem('消耗', _dataManager.caloriesBurned, Colors.green),
                       _buildCalorieItem(
                         '剩余',
-                        _mockData.calorieBalance,
-                        _mockData.calorieBalance > 0 ? Colors.red : Colors.green,
+                        _dataManager.calorieBalance,
+                        _dataManager.calorieBalance > 0 ? Colors.red : Colors.green,
                       ),
                     ],
                   ),
@@ -202,15 +200,14 @@ class _NutritionScreenState extends State<NutritionScreen> {
       ],
     );
   }
-  
-  // 构建热量进度条
+    // 构建热量进度条
   Widget _buildCalorieProgress() {
-    final caloriePercent = _mockData.calorieIntake / _mockData.calorieGoal;
+    final caloriePercent = _dataManager.calorieIntake / _dataManager.calorieGoal;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '每日目标: ${_mockData.calorieGoal} kcal',
+          '每日目标: ${_dataManager.calorieGoal} kcal',
           style: const TextStyle(
             fontSize: 14,
             color: Colors.grey,
@@ -243,12 +240,11 @@ class _NutritionScreenState extends State<NutritionScreen> {
       ],
     );
   }
-  
-  // 构建快速添加按钮
+    // 构建快速添加按钮
   Widget _buildQuickAddButton(String label, int calories) {
     return ElevatedButton(
       onPressed: () {
-        _mockData.updateCalorieIntake(_mockData.calorieIntake + calories);
+        _dataManager.updateCalorieIntake(_dataManager.calorieIntake + calories);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('已添加 $calories kcal')),
         );
@@ -281,11 +277,10 @@ class _NutritionScreenState extends State<NutritionScreen> {
           padding: const EdgeInsets.only(right: 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
-              InkWell(
+            children: [              InkWell(
                 onTap: () {
-                  _mockData.updateCalorieIntake(
-                    _mockData.calorieIntake + (food['calories'] as int)
+                  _dataManager.updateCalorieIntake(
+                    _dataManager.calorieIntake + (food['calories'] as int)
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('已添加 ${food['name']} (${food['calories']} kcal)')),
