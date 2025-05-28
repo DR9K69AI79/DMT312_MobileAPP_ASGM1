@@ -1,25 +1,11 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'data_manager.dart';
+import '../models/workout_entry.dart';
 
 /// 数据导入导出服务
 class ExportService {
-  static const String _exportFileName = 'fitness_app_backup.json';
-
-  /// 检查并请求存储权限
-  Future<bool> _requestStoragePermission() async {
-    if (Platform.isAndroid) {
-      final status = await Permission.storage.status;
-      if (status != PermissionStatus.granted) {
-        final result = await Permission.storage.request();
-        return result == PermissionStatus.granted;
-      }
-      return true;
-    }
-    return true; // iOS 不需要特殊权限
-  }
   /// 导出所有数据到文件
   Future<String> exportData() async {
     final dataManager = DataManager();
@@ -32,7 +18,7 @@ class ExportService {
         'weights': dataManager.weights7d.map((e) => e.toJson()).toList(),
         'workouts': dataManager.workoutToday.map((e) => e.toJson()).toList(),
         'articles': dataManager.articles.map((e) => e.toJson()).toList(),
-        'nutrition': dataManager.nutritionEntries.map((e) => e.toJson()).toList(),
+        'nutrition': dataManager.getNutritionData().values.map((e) => e.toJson()).toList(),
         'userSettings': {
           'calorieIntake': dataManager.calorieIntake,
           'caloriesBurned': dataManager.caloriesBurned,
@@ -123,21 +109,25 @@ class ExportService {
 
       // 导入训练数据
       if (data['workouts'] != null) {
-        final workoutsList = data['workouts'] as List;
-        for (final workoutJson in workoutsList) {
+        final workoutsList = data['workouts'] as List;        for (final workoutJson in workoutsList) {
           final name = workoutJson['name'] as String? ?? '';
           final sets = workoutJson['sets'] as int? ?? 0;
-          await dataManager.addWorkout(name, sets);
+          final date = workoutJson['date'] != null 
+              ? DateTime.parse(workoutJson['date'] as String)
+              : DateTime.now();
+          final isCompleted = workoutJson['isCompleted'] as bool? ?? false;
+          
+          final workout = WorkoutEntry(
+            name: name,
+            sets: sets,
+            date: date,
+            isCompleted: isCompleted,
+          );
+          await dataManager.addWorkout(workout);
         }
-      }
-
-      // 导入营养数据
-      if (data['nutrition'] != null) {
-        final nutritionList = data['nutrition'] as List;
-        for (final nutritionJson in nutritionList) {
-          // 这里需要根据实际的NutritionEntry结构来实现
-          // 暂时跳过，因为还没有相关的添加方法
-        }
+      }      // 导入营养数据
+      if (data['nutrition'] != null) {        // 注意：此处暂不实现导入营养数据的功能
+        // 需要根据新的DailyNutritionEntry结构实现
       }
 
       // 导入用户设置

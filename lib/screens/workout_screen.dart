@@ -3,6 +3,7 @@ import '../widgets/glass_card.dart';
 import '../widgets/ring_progress.dart';
 import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
+import '../models/workout_entry.dart';
 
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({super.key});
@@ -224,9 +225,14 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       },
     );
   }
-    // 快速添加训练
+  // 快速添加训练
   void _quickAddWorkout(String name, int sets) {
-    _dataManager.addWorkout(name, sets);
+    final workout = WorkoutEntry(
+      name: name,
+      sets: sets,
+      date: DateTime.now(),
+    );
+    _dataManager.addWorkout(workout);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('已添加 $name')),
     );
@@ -287,11 +293,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   ),
                   const SizedBox(width: 16),
                   PrimaryButton(
-                    onPressed: () {
-                      final name = nameController.text.trim();
+                    onPressed: () {                      final name = nameController.text.trim();
                       final sets = int.tryParse(setsController.text) ?? 3;
                         if (name.isNotEmpty) {
-                        _dataManager.addWorkout(name, sets);
+                        final workout = WorkoutEntry(
+                          name: name,
+                          sets: sets,
+                          date: DateTime.now(),
+                        );
+                        _dataManager.addWorkout(workout);
                         Navigator.pop(context);
                       }
                     },

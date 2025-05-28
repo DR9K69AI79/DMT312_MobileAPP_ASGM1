@@ -15,20 +15,21 @@ class _BodyScreenState extends State<BodyScreen> {
   final DataManager _dataManager = DataManager();
   final _heightController = TextEditingController();
   final _weightController = TextEditingController();
+  final _bodyFatController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
-    _dataManager.addListener(_updateUI);
-    _heightController.text = _dataManager.height.toString();
-    _weightController.text = _dataManager.currentWeight.toString();
+    _dataManager.addListener(_updateUI);    _heightController.text = _dataManager.height.toString();
+    _weightController.text = (_dataManager.currentWeight ?? 0.0).toString();
+    _bodyFatController.text = (_dataManager.currentBodyFat ?? 0.0).toString();
   }
-
   @override
   void dispose() {
     _dataManager.removeListener(_updateUI);
     _heightController.dispose();
     _weightController.dispose();
+    _bodyFatController.dispose();
     super.dispose();
   }
 
@@ -71,9 +72,8 @@ class _BodyScreenState extends State<BodyScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(height: 8),
-                            Text('身高: ${_dataManager.height.toStringAsFixed(1)} cm'),
-                            Text('当前体重: ${_dataManager.currentWeight.toStringAsFixed(1)} kg'),
+                            const SizedBox(height: 8),                            Text('身高: ${_dataManager.height.toStringAsFixed(1)} cm'),
+                            Text('当前体重: ${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg'),
                           ],
                         ),
                       ),
@@ -126,6 +126,44 @@ class _BodyScreenState extends State<BodyScreen> {
                     ),
                   ),
                 ],
+              ),            ),
+
+            const SizedBox(height: 16),
+
+            // 体脂率卡片
+            GlassCard(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Text(
+                    '体脂率',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 16),                  Center(
+                    child: Text(
+                      '${(_dataManager.currentBodyFat ?? 0.0).toStringAsFixed(1)}%',
+                      style: TextStyle(
+                        fontSize: 48,
+                        fontWeight: FontWeight.bold,
+                        color: _getBodyFatColor(_dataManager.currentBodyFat ?? 0.0),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Center(
+                    child: Text(
+                      _getBodyFatStatusText(_dataManager.currentBodyFat ?? 0.0),
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: _getBodyFatColor(_dataManager.currentBodyFat ?? 0.0),
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
 
@@ -170,12 +208,24 @@ class _BodyScreenState extends State<BodyScreen> {
                 ],
               ),
             ),
-          ],
-        ),
+          ],        ),
       ),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () => _showAddWeightDialog(context),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            heroTag: "body_fat",
+            mini: true,
+            child: const Icon(Icons.fitness_center),
+            onPressed: () => _showAddBodyFatDialog(context),
+          ),
+          const SizedBox(height: 8),
+          FloatingActionButton(
+            heroTag: "weight",
+            child: const Icon(Icons.add),
+            onPressed: () => _showAddWeightDialog(context),
+          ),
+        ],
       ),
     );
   }
@@ -390,6 +440,44 @@ class _BodyScreenState extends State<BodyScreen> {
                 Navigator.of(context).pop();
               },
               child: const Text('保存'),
+            ),          ],
+        );
+      },
+    );
+  }  // 添加体脂记录对话框
+  void _showAddBodyFatDialog(BuildContext context) {
+    final controller = TextEditingController();
+    
+    // 设置初始值
+    controller.text = (_dataManager.currentBodyFat ?? 0.0).toString();
+    
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('记录体脂率'),
+          content: TextField(
+            controller: controller,
+            keyboardType: TextInputType.number,
+            decoration: const InputDecoration(
+              labelText: '体脂率 (%)',
+              suffixText: '%',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: const Text('取消'),
+            ),
+            PrimaryButton(
+              onPressed: () async {
+                final value = double.tryParse(controller.text);
+                if (value != null) {
+                  await _dataManager.addBodyFat(value);
+                }
+                Navigator.of(context).pop();
+              },
+              child: const Text('保存'),
             ),
           ],
         );
@@ -411,7 +499,6 @@ class _BodyScreenState extends State<BodyScreen> {
     if (bmi > 35) return 1.0;
     return (bmi - 15) / 20; // 15-35范围映射到0-1
   }
-
   // 获取BMI状态文字
   String _getBmiStatusText(double bmi) {
     if (bmi < 18.5) return '体重过轻';
@@ -419,5 +506,21 @@ class _BodyScreenState extends State<BodyScreen> {
     if (bmi < 28) return '超重';
     if (bmi < 35) return '肥胖';
     return '严重肥胖';
+  }
+
+  // 获取体脂率颜色
+  Color _getBodyFatColor(double bodyFat) {
+    if (bodyFat < 10) return Colors.blue; // 过低
+    if (bodyFat < 15) return Colors.green; // 理想
+    if (bodyFat < 20) return Colors.orange; // 偏高
+    return Colors.red; // 过高
+  }
+
+  // 获取体脂率状态文字
+  String _getBodyFatStatusText(double bodyFat) {
+    if (bodyFat < 10) return '体脂过低';
+    if (bodyFat < 15) return '体脂理想';
+    if (bodyFat < 20) return '体脂偏高';
+    return '体脂过高';
   }
 }

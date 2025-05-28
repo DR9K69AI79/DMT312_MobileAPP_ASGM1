@@ -57,9 +57,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text('今日体重', style: TextStyle(fontSize: 18)),
-                      Text(
-                        '${_dataManager.currentWeight.toStringAsFixed(1)} kg',
+                      const Text('今日体重', style: TextStyle(fontSize: 18)),                      Text(
+                        '${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
