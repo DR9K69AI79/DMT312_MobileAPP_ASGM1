@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
+import '../widgets/calorie_balance_chart.dart';
 import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
 import '../models/nutrition_entry.dart';
@@ -104,7 +105,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     child: _buildCommonFoodsList(),
                   ),
                 ],
-              ),
+              ),            ),
+            
+            const SizedBox(height: 16),
+            
+            // 热量盈亏图表
+            const CalorieBalanceChart(
+              showTimeSelector: true,
             ),
             
             const SizedBox(height: 16),

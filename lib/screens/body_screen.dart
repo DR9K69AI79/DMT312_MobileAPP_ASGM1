@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
-import '../widgets/weight_line_chart.dart';
+import '../widgets/weight_chart.dart';
 import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
 
@@ -20,10 +20,12 @@ class _BodyScreenState extends State<BodyScreen> {
   @override
   void initState() {
     super.initState();
-    _dataManager.addListener(_updateUI);    _heightController.text = _dataManager.height.toString();
+    _dataManager.addListener(_updateUI);
+    _heightController.text = _dataManager.height.toString();
     _weightController.text = (_dataManager.currentWeight ?? 0.0).toString();
     _bodyFatController.text = (_dataManager.currentBodyFat ?? 0.0).toString();
   }
+
   @override
   void dispose() {
     _dataManager.removeListener(_updateUI);
@@ -72,7 +74,8 @@ class _BodyScreenState extends State<BodyScreen> {
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
-                            const SizedBox(height: 8),                            Text('身高: ${_dataManager.height.toStringAsFixed(1)} cm'),
+                            const SizedBox(height: 8),
+                            Text('身高: ${_dataManager.height.toStringAsFixed(1)} cm'),
                             Text('当前体重: ${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg'),
                           ],
                         ),
@@ -126,7 +129,8 @@ class _BodyScreenState extends State<BodyScreen> {
                     ),
                   ),
                 ],
-              ),            ),
+              ),
+            ),
 
             const SizedBox(height: 16),
 
@@ -142,7 +146,8 @@ class _BodyScreenState extends State<BodyScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),                  Center(
+                  const SizedBox(height: 16),
+                  Center(
                     child: Text(
                       '${(_dataManager.currentBodyFat ?? 0.0).toStringAsFixed(1)}%',
                       style: TextStyle(
@@ -169,24 +174,10 @@ class _BodyScreenState extends State<BodyScreen> {
 
             const SizedBox(height: 16),
 
-            // 体重趋势图卡片
-            GlassCard(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    '体重趋势', 
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 16),
-                  WeightLineChart(data: _dataManager.weights7d),
-                  const SizedBox(height: 16),
-                  _buildWeightStats(),
-                ],
-              ),
+            // 体重趋势图卡片 - 替换为增强版图表
+            const EnhancedWeightChart(
+              showBodyFat: true,
+              showTimeSelector: true,
             ),
 
             const SizedBox(height: 16),
@@ -197,7 +188,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '历史记录', 
+                    '历史记录',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -208,7 +199,8 @@ class _BodyScreenState extends State<BodyScreen> {
                 ],
               ),
             ),
-          ],        ),
+          ],
+        ),
       ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
@@ -253,49 +245,6 @@ class _BodyScreenState extends State<BodyScreen> {
     );
   }
 
-  // 构建体重统计信息
-  Widget _buildWeightStats() {
-    if (_dataManager.weights7d.isEmpty) {
-      return const Center(child: Text('暂无数据'));
-    }
-
-    final weights = _dataManager.weights7d.map((e) => e.value).toList();
-    final avgWeight = weights.reduce((a, b) => a + b) / weights.length;
-    final minWeight = weights.reduce((a, b) => a < b ? a : b);
-    final maxWeight = weights.reduce((a, b) => a > b ? a : b);
-
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        _buildStatItem('平均', avgWeight.toStringAsFixed(1)),
-        _buildStatItem('最低', minWeight.toStringAsFixed(1)),
-        _buildStatItem('最高', maxWeight.toStringAsFixed(1)),
-      ],
-    );
-  }
-
-  // 构建单个统计项
-  Widget _buildStatItem(String label, String value) {
-    return Column(
-      children: [
-        Text(
-          label,
-          style: const TextStyle(
-            color: Colors.grey,
-            fontSize: 14,
-          ),
-        ),
-        Text(
-          value,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
-        ),
-      ],
-    );
-  }
-
   // 构建体重历史记录列表
   Widget _buildWeightHistory() {
     if (_dataManager.weights7d.isEmpty) {
@@ -332,17 +281,16 @@ class _BodyScreenState extends State<BodyScreen> {
               Text(
                 '${entry.value.toStringAsFixed(1)} kg',
                 style: const TextStyle(
-                  fontWeight: FontWeight.bold,
                   fontSize: 16,
                 ),
               ),
               if (change != null) ...[
                 const SizedBox(width: 8),
                 Text(
-                  change > 0 ? '+${change.toStringAsFixed(1)}' : '${change.toStringAsFixed(1)}',
+                  '${change > 0 ? '+' : ''}${change.toStringAsFixed(1)}',
                   style: TextStyle(
+                    fontSize: 12,
                     color: change > 0 ? Colors.red : Colors.green,
-                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
@@ -376,7 +324,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 controller: _weightController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  labelText: '当前体重 (kg)',
+                  labelText: '体重 (kg)',
                   suffixText: 'kg',
                 ),
               ),
@@ -388,16 +336,15 @@ class _BodyScreenState extends State<BodyScreen> {
               child: const Text('取消'),
             ),
             PrimaryButton(
-              onPressed: () async {
-                final height = double.tryParse(_heightController.text);
+              onPressed: () async {                final height = double.tryParse(_heightController.text);
                 final weight = double.tryParse(_weightController.text);
-                
                 if (height != null && weight != null) {
                   await _dataManager.updateHeight(height);
                   await _dataManager.addWeight(weight);
                 }
-                
-                Navigator.of(context).pop();
+                if (context.mounted) {
+                  Navigator.of(context).pop();
+                }
               },
               child: const Text('保存'),
             ),
@@ -433,18 +380,26 @@ class _BodyScreenState extends State<BodyScreen> {
             ),
             PrimaryButton(
               onPressed: () async {
-                final value = double.tryParse(controller.text);
-                if (value != null) {
-                  await _dataManager.addWeight(value);
+                final weight = double.tryParse(controller.text);
+                if (weight != null) {
+                  await _dataManager.addWeight(weight);
+                  if (context.mounted) {
+                    Navigator.of(context).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('体重记录已保存')),
+                    );
+                  }
                 }
-                Navigator.of(context).pop();
               },
               child: const Text('保存'),
-            ),          ],
+            ),
+          ],
         );
       },
     );
-  }  // 添加体脂记录对话框
+  }
+
+  // 添加体脂记录对话框
   void _showAddBodyFatDialog(BuildContext context) {
     final controller = TextEditingController();
     
@@ -471,11 +426,16 @@ class _BodyScreenState extends State<BodyScreen> {
             ),
             PrimaryButton(
               onPressed: () async {
-                final value = double.tryParse(controller.text);
-                if (value != null) {
-                  await _dataManager.addBodyFat(value);
+                final bodyFat = double.tryParse(controller.text);
+                if (bodyFat != null) {
+                  await _dataManager.addBodyFat(bodyFat);
+                  if (context.mounted) {
+                    Navigator.of(context).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('体脂率记录已保存')),
+                    );
+                  }
                 }
-                Navigator.of(context).pop();
               },
               child: const Text('保存'),
             ),
@@ -499,6 +459,7 @@ class _BodyScreenState extends State<BodyScreen> {
     if (bmi > 35) return 1.0;
     return (bmi - 15) / 20; // 15-35范围映射到0-1
   }
+
   // 获取BMI状态文字
   String _getBmiStatusText(double bmi) {
     if (bmi < 18.5) return '体重过轻';

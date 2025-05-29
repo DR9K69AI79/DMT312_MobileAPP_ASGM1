@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
-import '../widgets/weight_line_chart.dart';
+import '../widgets/weight_chart.dart';
 import '../widgets/ring_progress.dart';
+import '../widgets/time_range_selector.dart';
 import '../services/data_manager.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -19,6 +20,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     super.initState();
     // 监听数据变化，更新UI
     _dataManager.addListener(_updateUI);
+    // 确保数据管理器已初始化
+    _ensureDataManagerInitialized();
   }
 
   @override
@@ -29,14 +32,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   void _updateUI() {
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  // 确保DataManager已经初始化
+  Future<void> _ensureDataManagerInitialized() async {
+    await _dataManager.initialize();
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('健身助手'),        actions: [
+      appBar: AppBar(        title: const Text('健身助手'),
+        actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
@@ -56,8 +69,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('今日体重', style: TextStyle(fontSize: 18)),                      Text(
+                    children: [                      const Text('今日体重', style: TextStyle(fontSize: 18)),
+                      Text(
                         '${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg',
                         style: TextStyle(
                           fontSize: 36,
@@ -67,8 +80,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  WeightLineChart(data: _dataManager.weights7d),
+                  const SizedBox(height: 16),                  const EnhancedWeightChart(
+                    showBodyFat: false,
+                    showTimeSelector: false,
+                    defaultTimeRange: TimeRange.month1, // Dashboard显示30天数据
+                  ),
                 ],
               ),
             ),

@@ -197,21 +197,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
       ),
     );
   }
-
   // 导出数据
   Future<void> _exportData() async {
     setState(() => _isExporting = true);
     
     try {
-      await _exportService.exportAllData(_dataManager);
+      final filePath = await _exportService.exportDataWithFilePicker();
       
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('数据导出成功！'),
-            backgroundColor: Colors.green,
-          ),
-        );
+        if (filePath != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('数据导出成功！\n保存位置：${filePath}'),
+              backgroundColor: Colors.green,
+              duration: const Duration(seconds: 4),
+            ),
+          );
+        } else {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('导出已取消'),
+              backgroundColor: Colors.orange,
+            ),
+          );
+        }
       }
     } catch (e) {
       if (mounted) {
@@ -228,13 +237,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       }
     }
   }
-
   // 导入数据
   Future<void> _importData() async {
     setState(() => _isImporting = true);
     
     try {
-      await _exportService.importAllData(_dataManager);
+      await _exportService.importAllDataWithFilePicker(_dataManager);
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

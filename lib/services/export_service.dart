@@ -1,30 +1,70 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:file_picker/file_picker.dart';
 import 'data_manager.dart';
 import '../models/workout_entry.dart';
+import '../models/nutrition_entry.dart';
 
 /// 数据导入导出服务
-class ExportService {
-  /// 导出所有数据到文件
+class ExportService {  /// 导出数据到用户选择的位置
+  Future<String?> exportDataWithFilePicker() async {
+    final dataManager = DataManager();
+    
+    // 准备导出的数据（排除文章数据）
+    final exportData = {
+      'version': '2.0',
+      'exportDate': DateTime.now().toIso8601String(),
+      'data': {
+        'weights': _convertWeightData(dataManager.getWeightData()),
+        'bodyFat': _convertBodyFatData(dataManager.getBodyFatData()),
+        'workouts': _convertWorkoutData(dataManager.getWorkoutData()),
+        'nutrition': _convertNutritionData(dataManager.getNutritionData()),
+        'userSettings': {
+          'height': dataManager.height,
+          'currentWeight': dataManager.currentWeight,
+          'currentBodyFat': dataManager.currentBodyFat,
+        }
+      }
+    };
+
+    // 让用户选择保存位置
+    String? outputFile = await FilePicker.platform.saveFile(
+      dialogTitle: '选择保存位置',
+      fileName: 'fitness_backup_${DateTime.now().millisecondsSinceEpoch}.json',
+      type: FileType.custom,
+      allowedExtensions: ['json'],
+    );
+
+    if (outputFile == null) {
+      // 用户取消了选择
+      return null;
+    }
+    
+    // 写入数据
+    final file = File(outputFile);
+    await file.writeAsString(jsonEncode(exportData));
+    
+    return file.path;
+  }
+
+  /// 导出所有数据到文件（兼容旧方法）
   Future<String> exportData() async {
     final dataManager = DataManager();
     
-    // 准备导出的数据
+    // 准备导出的数据（排除文章数据）
     final exportData = {
-      'version': '1.0',
+      'version': '2.0',
       'exportDate': DateTime.now().toIso8601String(),
       'data': {
-        'weights': dataManager.weights7d.map((e) => e.toJson()).toList(),
-        'workouts': dataManager.workoutToday.map((e) => e.toJson()).toList(),
-        'articles': dataManager.articles.map((e) => e.toJson()).toList(),
-        'nutrition': dataManager.getNutritionData().values.map((e) => e.toJson()).toList(),
+        'weights': _convertWeightData(dataManager.getWeightData()),
+        'bodyFat': _convertBodyFatData(dataManager.getBodyFatData()),
+        'workouts': _convertWorkoutData(dataManager.getWorkoutData()),
+        'nutrition': _convertNutritionData(dataManager.getNutritionData()),
         'userSettings': {
-          'calorieIntake': dataManager.calorieIntake,
-          'caloriesBurned': dataManager.caloriesBurned,
-          'calorieGoal': dataManager.calorieGoal,
           'height': dataManager.height,
           'currentWeight': dataManager.currentWeight,
+          'currentBodyFat': dataManager.currentBodyFat,
         }
       }
     };
@@ -56,6 +96,40 @@ class ExportService {
   /// 导出所有数据（为设置页面提供的方法）
   Future<String> exportAllData(DataManager dataManager) async {
     return await exportData();
+  }
+  /// 使用文件选择器导入数据
+  Future<bool> importDataWithFilePicker() async {
+    try {
+      // 让用户选择要导入的文件
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.custom,
+        allowedExtensions: ['json'],
+        dialogTitle: '选择要导入的备份文件',
+      );
+
+      if (result == null || result.files.isEmpty) {
+        // 用户取消了选择
+        return false;
+      }
+
+      final file = result.files.first;
+      if (file.path == null) {
+        return false;
+      }
+
+      // 导入选择的文件
+      return await importData(file.path!);
+    } catch (e) {
+      return false;
+    }
+  }
+  /// 导入所有数据（为设置页面提供的方法，使用文件选择器）
+  Future<void> importAllDataWithFilePicker(DataManager dataManager) async {
+    final success = await importDataWithFilePicker();
+    
+    if (!success) {
+      throw Exception('导入数据失败，请检查文件格式是否正确');
+    }
   }
 
   /// 导入所有数据（为设置页面提供的方法）
@@ -96,38 +170,109 @@ class ExportService {
       final dataManager = DataManager();
 
       // 清空现有数据
-      await dataManager.clearAllData();
-
-      // 导入体重数据
+      await dataManager.clearAllData();      // 导入体重数据
       if (data['weights'] != null) {
         final weightsList = data['weights'] as List;
         for (final weightJson in weightsList) {
-          final weight = weightJson['value']?.toDouble() ?? 0.0;
-          await dataManager.addWeight(weight);
-        }
-      }
-
-      // 导入训练数据
-      if (data['workouts'] != null) {
-        final workoutsList = data['workouts'] as List;        for (final workoutJson in workoutsList) {
-          final name = workoutJson['name'] as String? ?? '';
-          final sets = workoutJson['sets'] as int? ?? 0;
-          final date = workoutJson['date'] != null 
-              ? DateTime.parse(workoutJson['date'] as String)
-              : DateTime.now();
-          final isCompleted = workoutJson['isCompleted'] as bool? ?? false;
+          final weight = weightJson['weight']?.toDouble() ?? 0.0;
+          final dateStr = weightJson['date'] as String?;
           
-          final workout = WorkoutEntry(
-            name: name,
-            sets: sets,
-            date: date,
-            isCompleted: isCompleted,
-          );
-          await dataManager.addWorkout(workout);
+          if (dateStr != null) {
+            // 使用导入数据中的日期
+            final date = DateTime.parse(dateStr);
+            await dataManager.addWeight(weight, date: date);
+          } else {
+            // 如果没有日期信息，使用当前日期（向后兼容）
+            await dataManager.addWeight(weight);
+          }
+        }
+      }      // 导入体脂数据
+      if (data['bodyFat'] != null) {
+        final bodyFatList = data['bodyFat'] as List;
+        for (final bodyFatJson in bodyFatList) {
+          final bodyFatPercentage = bodyFatJson['bodyFatPercentage']?.toDouble();
+          final dateStr = bodyFatJson['date'] as String?;
+          
+          if (bodyFatPercentage != null && dateStr != null) {
+            // 使用导入数据中的日期
+            final date = DateTime.parse(dateStr);
+            await dataManager.addBodyFat(bodyFatPercentage, date: date);
+          }
+        }
+      }// 导入训练数据
+      if (data['workouts'] != null) {
+        final workoutsMap = data['workouts'] as Map<String, dynamic>;
+        for (final dateEntry in workoutsMap.entries) {
+          final workoutsList = dateEntry.value as List;
+          for (final workoutJson in workoutsList) {
+            final name = workoutJson['name'] as String? ?? '';
+            final sets = workoutJson['sets'] as int? ?? 0;
+            final date = workoutJson['date'] != null 
+                ? DateTime.parse(workoutJson['date'] as String)
+                : DateTime.now();
+            final isCompleted = workoutJson['isCompleted'] as bool? ?? false;
+            
+            final workout = WorkoutEntry(
+              name: name,
+              sets: sets,
+              date: date,
+              isCompleted: isCompleted,
+            );
+            await dataManager.addWorkout(workout);
+          }
         }
       }      // 导入营养数据
-      if (data['nutrition'] != null) {        // 注意：此处暂不实现导入营养数据的功能
-        // 需要根据新的DailyNutritionEntry结构实现
+      if (data['nutrition'] != null) {
+        final nutritionList = data['nutrition'] as List;
+        for (final nutritionJson in nutritionList) {
+          final date = nutritionJson['date'] != null 
+              ? DateTime.parse(nutritionJson['date'] as String)
+              : DateTime.now();
+          final calorieIntake = nutritionJson['calorieIntake'] as int? ?? 0;
+          final caloriesBurned = nutritionJson['caloriesBurned'] as int? ?? 0;
+          final calorieGoal = nutritionJson['calorieGoal'] as int? ?? 2000;
+          
+          // 设置基础热量数据
+          await dataManager.updateCalorieIntake(calorieIntake, date: date);
+          await dataManager.updateCaloriesBurned(caloriesBurned, date: date);
+          await dataManager.updateCalorieGoal(calorieGoal, date: date);
+          
+          // 处理meals数据：从Python格式转换为应用格式
+          if (nutritionJson['meals'] != null) {
+            final mealsData = nutritionJson['meals'] as List;
+            for (final mealData in mealsData) {
+              final mealName = mealData['name'] as String? ?? '';
+              final mealCalories = mealData['calories'] as int? ?? 0;
+              final foods = mealData['foods'] as List<dynamic>? ?? [];
+              
+              // 将Python格式的meal转换为多个MealEntry
+              // 如果有具体食物列表，为每个食物创建一个MealEntry
+              if (foods.isNotEmpty) {
+                final averageCalories = (mealCalories / foods.length).round();
+                for (final food in foods) {
+                  final meal = MealEntry(
+                    mealType: mealName,
+                    name: food.toString(),
+                    calories: averageCalories,
+                    amount: '1份',
+                    timestamp: date,
+                  );
+                  await dataManager.addMeal(meal, date: date);
+                }
+              } else if (mealCalories > 0) {
+                // 如果没有具体食物但有热量，创建一个通用的MealEntry
+                final meal = MealEntry(
+                  mealType: mealName,
+                  name: '$mealName餐',
+                  calories: mealCalories,
+                  amount: '1份',
+                  timestamp: date,
+                );
+                await dataManager.addMeal(meal, date: date);
+              }
+            }
+          }
+        }
       }
 
       // 导入用户设置
@@ -241,9 +386,45 @@ class ExportService {
         'modifiedDate': stat.modified,
         'version': data['version'],
         'exportDate': data['exportDate'],
-      };
-    } catch (e) {
+      };    } catch (e) {
       return null;
     }
+  }
+  /// 转换体重数据格式
+  List<Map<String, dynamic>> _convertWeightData(Map<String, dynamic> weightData) {
+    return weightData.entries.map((entry) {
+      return {
+        'date': entry.key,
+        'weight': entry.value.value,
+      };
+    }).toList();
+  }
+  /// 转换体脂数据格式
+  List<Map<String, dynamic>> _convertBodyFatData(Map<String, dynamic> bodyFatData) {
+    return bodyFatData.entries.map((entry) {
+      return {
+        'date': entry.key,
+        'bodyFatPercentage': entry.value.value,
+      };
+    }).toList();
+  }
+
+  /// 转换训练数据格式
+  Map<String, dynamic> _convertWorkoutData(Map<String, List<dynamic>> workoutData) {
+    final converted = <String, dynamic>{};
+    for (final entry in workoutData.entries) {
+      converted[entry.key] = entry.value.map((workout) => workout.toJson()).toList();
+    }
+    return converted;
+  }
+  /// 转换营养数据格式
+  List<Map<String, dynamic>> _convertNutritionData(Map<String, dynamic> nutritionData) {
+    return nutritionData.entries.map((entry) {
+      final entryData = entry.value.toJson() as Map<String, dynamic>;
+      return {
+        'date': entry.key,
+        ...entryData,
+      };
+    }).toList();
   }
 }

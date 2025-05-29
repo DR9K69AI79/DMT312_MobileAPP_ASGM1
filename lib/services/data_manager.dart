@@ -44,21 +44,123 @@ class DataManager extends ChangeNotifier {
     'activityLevel': 'moderate',
     'weightGoal': 65.0,
     'bodyFatGoal': 15.0,
-  };
-
-  // 初始化
+  };  // 初始化
   Future<void> initialize() async {
     if (_initialized) return;
     
     try {
+      debugPrint('DataManager: Starting initialization...');
       _prefs = await SharedPreferences.getInstance();
       await _loadAllData();
-      await _initializeSampleData();
+      
+      debugPrint('DataManager: Loaded data - Weight entries: ${_weightData.length}');
+      
+      // 检查是否需要重新初始化数据
+      // 如果数据少于15条（不足30天的一半），重新初始化
+      if (_weightData.length < 15) {
+        debugPrint('DataManager: Insufficient data (${_weightData.length} entries), reinitializing with 30 days...');
+        await clearAllData(); // 清除现有数据
+        await _initializeDefaultData();
+        debugPrint('DataManager: Reinitialized with ${_weightData.length} entries');
+      }
+      
       _initialized = true;
       notifyListeners();
+      debugPrint('DataManager: Initialization completed successfully');
     } catch (e) {
       debugPrint('Error initializing DataManager: $e');
     }
+  }// 初始化默认数据
+  Future<void> _initializeDefaultData() async {
+    debugPrint('DataManager: Initializing default data...');
+    
+    // 初始化默认体重数据（近30天，以满足dashboard需求）
+    final now = DateTime.now();
+    for (int i = 29; i >= 0; i--) {
+      final date = now.subtract(Duration(days: i));
+      final dateKey = _formatDate(date);
+      // 模拟体重数据，在70kg左右波动，创建一个有趋势的数据
+      final baseWeight = 72.0; // 起始体重
+      final trendWeight = baseWeight - (i / 29.0) * 2.0; // 逐渐减重2kg的趋势
+      final randomFluctuation = (i % 3 - 1) * 0.3; // 小幅随机波动
+      final weight = trendWeight + randomFluctuation;
+      _weightData[dateKey] = WeightEntry(
+        date: date,
+        value: weight,
+      );
+      debugPrint('DataManager: Added weight entry for $dateKey: ${weight.toStringAsFixed(1)}kg');
+    }
+    
+    // 初始化默认体脂数据（近30天）
+    for (int i = 29; i >= 0; i--) {
+      final date = now.subtract(Duration(days: i));
+      final dateKey = _formatDate(date);
+      // 模拟体脂数据，在16%左右波动，也有减少趋势
+      final baseBodyFat = 18.0; // 起始体脂率
+      final trendBodyFat = baseBodyFat - (i / 29.0) * 3.0; // 逐渐减少3%的趋势
+      final randomFluctuation = (i % 2) * 0.2; // 小幅随机波动
+      final bodyFat = trendBodyFat + randomFluctuation;
+      _bodyFatData[dateKey] = BodyFatEntry(
+        date: date,
+        value: bodyFat,
+      );
+      debugPrint('DataManager: Added body fat entry for $dateKey: ${bodyFat.toStringAsFixed(1)}%');
+    }
+    
+    // 初始化今日训练数据
+    final todayKey = _formatDate(now);
+    _workoutData[todayKey] = [
+      WorkoutEntry(
+        date: now,
+        name: '俯卧撑',
+        sets: 3,
+        isCompleted: true,
+      ),
+      WorkoutEntry(
+        date: now,
+        name: '深蹲',
+        sets: 4,
+        isCompleted: false,
+      ),
+      WorkoutEntry(
+        date: now,
+        name: '平板支撑',
+        sets: 3,
+        isCompleted: false,
+      ),
+    ];
+    
+    // 初始化默认文章
+    _articles = [
+      Article(
+        title: '如何科学增肌',
+        coverUrl: 'https://picsum.photos/id/237/200/300',
+        mdPath: 'assets/articles/muscle_gain.md',
+        category: '训练',
+      ),
+      Article(
+        title: '高效燃脂训练计划',
+        coverUrl: 'https://picsum.photos/id/238/200/300',
+        mdPath: 'assets/articles/fat_burn.md',
+        category: '训练',
+      ),
+      Article(
+        title: '运动员饮食指南',
+        coverUrl: 'https://picsum.photos/id/239/200/300',
+        mdPath: 'assets/articles/diet.md',
+        category: '饮食',
+      ),
+    ];
+    
+    // 保存默认数据并等待完成
+    debugPrint('DataManager: Saving default data...');
+    await _saveWeightData();
+    await _saveBodyFatData();
+    await _saveWorkoutData();
+    
+    debugPrint('DataManager: Default data initialized and saved successfully');
+    debugPrint('DataManager: Total weight entries: ${_weightData.length}');
+    debugPrint('DataManager: Current weight: ${currentWeight}');
   }
 
   // 兼容性方法：init方法别名
@@ -218,18 +320,6 @@ class DataManager extends ChangeNotifier {
       debugPrint('Error saving nutrition data: $e');
     }
   }
-
-  // 保存文章数据
-  Future<void> _saveArticles() async {
-    try {
-      final List<Map<String, dynamic>> dataList = 
-          _articles.map((item) => item.toJson()).toList();
-      await _prefs.setString(_articlesKey, json.encode(dataList));
-    } catch (e) {
-      debugPrint('Error saving articles: $e');
-    }
-  }
-
   // 保存用户数据
   Future<void> _saveUserData() async {
     try {
@@ -237,130 +327,7 @@ class DataManager extends ChangeNotifier {
     } catch (e) {
       debugPrint('Error saving user data: $e');
     }
-  }
-  // 初始化示例数据
-  Future<void> _initializeSampleData() async {
-    if (_weightData.isEmpty) {
-      await _initializeSampleWeightData();
-    }
-    if (_workoutData.isEmpty) {
-      await _initializeSampleWorkoutData();
-    }    if (_nutritionData.isEmpty) {
-      await _initializeSampleNutritionData();
-    }
-    if (_articles.isEmpty) {
-      await _initializeSampleArticles();
-    }
-  }
-
-  // 初始化示例体重数据
-  Future<void> _initializeSampleWeightData() async {
-    final now = DateTime.now();
-    for (int i = 6; i >= 0; i--) {
-      final date = now.subtract(Duration(days: i));
-      final dateKey = _formatDate(date);
-      final weight = 70.0 + (i * 0.2) - 1.2; // 模拟体重变化
-        _weightData[dateKey] = WeightEntry(
-        value: double.parse(weight.toStringAsFixed(1)),
-        date: date,
-      );
-    }
-    await _saveWeightData();
-  }
-
-  // 初始化示例锻炼数据
-  Future<void> _initializeSampleWorkoutData() async {
-    final now = DateTime.now();
-    final today = _formatDate(now);
-      _workoutData[today] = [
-      WorkoutEntry(
-        name: '俯卧撑',
-        sets: 3,
-        date: now,
-      ),
-      WorkoutEntry(
-        name: '深蹲',
-        sets: 3,
-        date: now,
-      ),
-    ];
-    
-    // 添加昨天的数据
-    final yesterday = _formatDate(now.subtract(const Duration(days: 1)));
-    _workoutData[yesterday] = [
-      WorkoutEntry(
-        name: '跑步',
-        sets: 1,
-        date: now.subtract(const Duration(days: 1)),
-      ),
-    ];
-    
-    await _saveWorkoutData();
-  }
-
-  // 初始化示例营养数据
-  Future<void> _initializeSampleNutritionData() async {
-    final now = DateTime.now();
-    final today = _formatDate(now);
-      _nutritionData[today] = DailyNutritionEntry(
-      date: now,
-      calorieIntake: 1800,
-      caloriesBurned: 250,
-      calorieGoal: 2000,
-      meals: [
-        MealEntry(
-          mealType: '早餐',
-          name: '燕麦粥',
-          calories: 400,
-          amount: '1份',
-          timestamp: DateTime(now.year, now.month, now.day, 8, 0),
-        ),
-        MealEntry(
-          mealType: '午餐',
-          name: '鸡胸肉沙拉',
-          calories: 600,
-          amount: '1份',
-          timestamp: DateTime(now.year, now.month, now.day, 12, 30),
-        ),
-        MealEntry(
-          mealType: '晚餐',
-          name: '蒸蛋羹',
-          calories: 500,
-          amount: '1份',
-          timestamp: DateTime(now.year, now.month, now.day, 18, 30),
-        ),
-        MealEntry(
-          mealType: '加餐',
-          name: '水果',
-          calories: 300,
-          amount: '1份',
-          timestamp: DateTime(now.year, now.month, now.day, 15, 0),
-        ),
-      ],
-    );
-    
-    await _saveNutritionData();
-  }
-  // 初始化示例文章数据
-  Future<void> _initializeSampleArticles() async {
-    _articles = [
-      Article(
-        title: '健康饮食的重要性',
-        coverUrl: 'assets/images/article1.jpg',
-        mdPath: 'assets/articles/healthy_diet.md',
-        category: '营养',
-      ),
-      Article(
-        title: '有效的锻炼计划',
-        coverUrl: 'assets/images/article2.jpg',
-        mdPath: 'assets/articles/workout_plan.md',
-        category: '锻炼',
-      ),
-    ];
-    await _saveArticles();
-  }
-
-  // 获取指定天数的体重数据
+  }// 获取指定天数的体重数据
   Map<String, WeightEntry> getWeightData({int? days}) {
     if (days == null) {
       return Map.from(_weightData);

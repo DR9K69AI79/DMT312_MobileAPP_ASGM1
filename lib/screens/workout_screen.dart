@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/ring_progress.dart';
+import '../widgets/workout_heatmap.dart';
 import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
 import '../models/workout_entry.dart';
@@ -97,8 +98,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   const SizedBox(height: 8),
                   _buildWorkoutList(),
                 ],
-              ),
-            ),
+              ),            ),
+              const SizedBox(height: 16),            // 训练完成度热力图
+            const WorkoutHeatmap(),
             
             const SizedBox(height: 16),
             
