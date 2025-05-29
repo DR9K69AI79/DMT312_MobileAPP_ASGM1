@@ -35,7 +35,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('饮食记录'),
+        title: const Text('Nutririon Record'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -48,7 +48,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '今日热量摘要',
+                    'Daily Calorie Summary',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -57,10 +57,10 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,                    children: [
-                      _buildCalorieItem('摄入', _dataManager.calorieIntake, Colors.blue),
-                      _buildCalorieItem('消耗', _dataManager.caloriesBurned, Colors.green),
+                      _buildCalorieItem('Intack', _dataManager.calorieIntake, Colors.blue),
+                      _buildCalorieItem('Burn', _dataManager.caloriesBurned, Colors.green),
                       _buildCalorieItem(
-                        '剩余',
+                        'Rest',
                         _dataManager.calorieBalance,
                         _dataManager.calorieBalance > 0 ? Colors.red : Colors.green,
                       ),
@@ -80,7 +80,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '快速录入',
+                    'Quick Intake',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -92,13 +92,14 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     children: [
                       _buildQuickAddButton('+100', 100),
                       _buildQuickAddButton('+250', 250),
-                      _buildQuickAddButton('+500', 500),
+                      _buildQuickAddButton('-100', -100),
+                      _buildQuickAddButton('-250', -250),
                     ],
                   ),
                   const SizedBox(height: 16),
                   const Divider(),
                   const SizedBox(height: 8),
-                  const Text('常见食物'),
+                  const Text('Common Food'),
                   const SizedBox(height: 8),
                   SizedBox(
                     height: 100,
@@ -122,7 +123,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                 children: [
                   const TextField(
                     decoration: InputDecoration(
-                      labelText: '搜索食物',
+                      labelText: 'Search Food',
                       prefixIcon: Icon(Icons.search),
                       suffixIcon: Icon(Icons.qr_code_scanner),
                       border: OutlineInputBorder(),
@@ -186,7 +187,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '每日目标: ${_dataManager.calorieGoal} kcal',
+          'Daily Goal: ${_dataManager.calorieGoal} kcal',
           style: const TextStyle(
             fontSize: 14,
             color: Colors.grey,
@@ -225,7 +226,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
       onPressed: () {
         _dataManager.updateCalorieIntake(_dataManager.calorieIntake + calories);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('已添加 $calories kcal')),
+          SnackBar(content: Text('Add $calories kcal')),
         );
       },
       style: ElevatedButton.styleFrom(
@@ -239,12 +240,12 @@ class _NutritionScreenState extends State<NutritionScreen> {
   // 构建常见食物列表
   Widget _buildCommonFoodsList() {
     final commonFoods = [
-      {'name': '鸡蛋', 'calories': 75, 'icon': Icons.egg},
-      {'name': '香蕉', 'calories': 100, 'icon': Icons.spa},
-      {'name': '面包', 'calories': 200, 'icon': Icons.breakfast_dining},
-      {'name': '牛奶', 'calories': 150, 'icon': Icons.local_cafe},
-      {'name': '苹果', 'calories': 80, 'icon': Icons.apple},
-      {'name': '米饭', 'calories': 250, 'icon': Icons.rice_bowl},
+      {'name': 'Egg', 'calories': 75, 'icon': Icons.egg},
+      {'name': 'Banana', 'calories': 100, 'icon': Icons.spa},
+      {'name': 'Bread', 'calories': 200, 'icon': Icons.breakfast_dining},
+      {'name': 'Milk', 'calories': 150, 'icon': Icons.local_cafe},
+      {'name': 'Apple', 'calories': 80, 'icon': Icons.apple},
+      {'name': 'Rice', 'calories': 250, 'icon': Icons.rice_bowl},
     ];
     
     return ListView.builder(
@@ -262,7 +263,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     _dataManager.calorieIntake + (food['calories'] as int)
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text('已添加 ${food['name']} (${food['calories']} kcal)')),
+                    SnackBar(content: Text('Add ${food['name']} (${food['calories']} kcal)')),
                   );
                 },
                 child: Container(
@@ -304,7 +305,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
     }
     
     // 确保所有餐次都有显示，即使是空的
-    final allMealTypes = ['早餐', '午餐', '晚餐', '加餐'];
+    final allMealTypes = ['Breakfast', 'Lunch', 'Dinner', 'Extra Meals'];
     for (final mealType in allMealTypes) {
       if (!mealGroups.containsKey(mealType)) {
         mealGroups[mealType] = [];
@@ -351,7 +352,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
               Center(
                 child: TextButton.icon(
                   icon: const Icon(Icons.add),
-                  label: Text('添加到$mealName'),
+                  label: Text('Add$mealName'),
                   onPressed: () => _showAddFoodDialog(context, mealType: mealName),
                 ),
               ),
@@ -382,7 +383,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
       onDismissed: (direction) async {
         await _dataManager.removeMeal(index);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('已从$mealType移除 ${meal.name}')),
+          SnackBar(content: Text('Remove${meal.name}From $mealType')),
         );
       },
       child: ListTile(
@@ -404,7 +405,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
     final nameController = TextEditingController();
     final amountController = TextEditingController();
     final caloriesController = TextEditingController();
-    String selectedMealType = mealType ?? '早餐';
+    String selectedMealType = mealType ?? 'Breakfast';
     
     showModalBottomSheet<void>(
       context: context,
@@ -423,7 +424,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text(
-                    '添加食物',
+                    'Add food',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -433,7 +434,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   DropdownButton<String>(
                     value: selectedMealType,
                     isExpanded: true,
-                    items: ['早餐', '午餐', '晚餐', '加餐'].map((String mealType) {
+                    items: ['Breakfast', 'Lunch', 'Dinner', 'Extra meals'].map((String mealType) {
                       return DropdownMenuItem<String>(
                         value: mealType,
                         child: Text(mealType),
@@ -451,7 +452,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   TextField(
                     controller: nameController,
                     decoration: const InputDecoration(
-                      labelText: '食物名称',
+                      labelText: 'Food Name',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -459,7 +460,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   TextField(
                     controller: amountController,
                     decoration: const InputDecoration(
-                      labelText: '分量 (如: 1碗, 100g)',
+                      labelText: 'Quantity (Such as: 1 bowl, 100g)',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -468,7 +469,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     controller: caloriesController,
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
-                      labelText: '热量 (kcal)',
+                      labelText: 'Calorie (kcal)',
                       border: OutlineInputBorder(),
                     ),
                   ),
@@ -478,7 +479,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     children: [
                       TextButton(
                         onPressed: () => Navigator.pop(context),
-                        child: const Text('取消'),
+                        child: const Text('Cancel'),
                       ),
                       const SizedBox(width: 16),                      PrimaryButton(
                         onPressed: () async {
@@ -497,7 +498,7 @@ class _NutritionScreenState extends State<NutritionScreen> {
                             Navigator.pop(context);
                           }
                         },
-                        child: const Text('添加'),
+                        child: const Text('Add'),
                       ),
                     ],
                   ),

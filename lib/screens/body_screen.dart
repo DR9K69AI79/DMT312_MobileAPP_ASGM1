@@ -43,7 +43,7 @@ class _BodyScreenState extends State<BodyScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('身体数据'),
+        title: const Text('Body Data'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -68,15 +68,15 @@ class _BodyScreenState extends State<BodyScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const Text(
-                              '个人资料',
+                              'Personal Data',
                               style: TextStyle(
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             const SizedBox(height: 8),
-                            Text('身高: ${_dataManager.height.toStringAsFixed(1)} cm'),
-                            Text('当前体重: ${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg'),
+                            Text('Height: ${_dataManager.height.toStringAsFixed(1)} cm'),
+                            Text('Weight: ${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg'),
                           ],
                         ),
                       ),
@@ -98,7 +98,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'BMI指数', 
+                    'BMI Index', 
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '体脂率',
+                    'Boday Fat Rate',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -188,7 +188,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '历史记录',
+                    'History',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -250,7 +250,7 @@ class _BodyScreenState extends State<BodyScreen> {
     if (_dataManager.weights7d.isEmpty) {
       return const Padding(
         padding: EdgeInsets.all(16.0),
-        child: Center(child: Text('暂无记录')),
+        child: Center(child: Text('No Record')),
       );
     }
 
@@ -307,7 +307,7 @@ class _BodyScreenState extends State<BodyScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('编辑个人资料'),
+          title: const Text('Edit Profile'),
           content: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -315,7 +315,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 controller: _heightController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  labelText: '身高 (cm)',
+                  labelText: 'Height (cm)',
                   suffixText: 'cm',
                 ),
               ),
@@ -324,7 +324,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 controller: _weightController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  labelText: '体重 (kg)',
+                  labelText: 'Weight (kg)',
                   suffixText: 'kg',
                 ),
               ),
@@ -333,7 +333,7 @@ class _BodyScreenState extends State<BodyScreen> {
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('取消'),
+              child: const Text('Cancel'),
             ),
             PrimaryButton(
               onPressed: () async {                final height = double.tryParse(_heightController.text);
@@ -346,7 +346,7 @@ class _BodyScreenState extends State<BodyScreen> {
                   Navigator.of(context).pop();
                 }
               },
-              child: const Text('保存'),
+              child: const Text('Save'),
             ),
           ],
         );
@@ -364,19 +364,19 @@ class _BodyScreenState extends State<BodyScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('记录体重'),
+          title: const Text('Record Weight'),
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              labelText: '体重 (kg)',
+              labelText: 'Weight (kg)',
               suffixText: 'kg',
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('取消'),
+              child: const Text('Cancel'),
             ),
             PrimaryButton(
               onPressed: () async {
@@ -386,12 +386,12 @@ class _BodyScreenState extends State<BodyScreen> {
                   if (context.mounted) {
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('体重记录已保存')),
+                      const SnackBar(content: Text('Weight Record Saved')),
                     );
                   }
                 }
               },
-              child: const Text('保存'),
+              child: const Text('Save'),
             ),
           ],
         );
@@ -410,19 +410,19 @@ class _BodyScreenState extends State<BodyScreen> {
       context: context,
       builder: (context) {
         return AlertDialog(
-          title: const Text('记录体脂率'),
+          title: const Text('Record Body Fat Rate'),
           content: TextField(
             controller: controller,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              labelText: '体脂率 (%)',
+              labelText: 'Body Fat Rate (%)',
               suffixText: '%',
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('取消'),
+              child: const Text('Cancel'),
             ),
             PrimaryButton(
               onPressed: () async {
@@ -432,12 +432,12 @@ class _BodyScreenState extends State<BodyScreen> {
                   if (context.mounted) {
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('体脂率记录已保存')),
+                      const SnackBar(content: Text('Body Fat Rate Record Saved')),
                     );
                   }
                 }
               },
-              child: const Text('保存'),
+              child: const Text('Save'),
             ),
           ],
         );
@@ -462,11 +462,11 @@ class _BodyScreenState extends State<BodyScreen> {
 
   // 获取BMI状态文字
   String _getBmiStatusText(double bmi) {
-    if (bmi < 18.5) return '体重过轻';
-    if (bmi < 24) return '体重正常';
-    if (bmi < 28) return '超重';
-    if (bmi < 35) return '肥胖';
-    return '严重肥胖';
+    if (bmi < 18.5) return 'Under Weight';
+    if (bmi < 24) return 'Normal Weight';
+    if (bmi < 28) return 'Over Weight';
+    if (bmi < 35) return 'Obesity';
+    return 'Severe Obesity';
   }
 
   // 获取体脂率颜色
@@ -479,9 +479,9 @@ class _BodyScreenState extends State<BodyScreen> {
 
   // 获取体脂率状态文字
   String _getBodyFatStatusText(double bodyFat) {
-    if (bodyFat < 10) return '体脂过低';
-    if (bodyFat < 15) return '体脂理想';
-    if (bodyFat < 20) return '体脂偏高';
-    return '体脂过高';
+    if (bodyFat < 10) return 'Low Body Fat Rate';
+    if (bodyFat < 15) return 'Ideal Body Fat Rate';
+    if (bodyFat < 20) return 'High Body Fat Rate';
+    return 'Excessive Body Fat Rate';
   }
 }

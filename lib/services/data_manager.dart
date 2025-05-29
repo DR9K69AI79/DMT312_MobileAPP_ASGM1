@@ -112,19 +112,19 @@ class DataManager extends ChangeNotifier {
     _workoutData[todayKey] = [
       WorkoutEntry(
         date: now,
-        name: '俯卧撑',
+        name: 'Push-up',
         sets: 3,
         isCompleted: true,
       ),
       WorkoutEntry(
         date: now,
-        name: '深蹲',
+        name: 'Squat',
         sets: 4,
         isCompleted: false,
       ),
       WorkoutEntry(
         date: now,
-        name: '平板支撑',
+        name: 'Plank',
         sets: 3,
         isCompleted: false,
       ),
@@ -133,22 +133,28 @@ class DataManager extends ChangeNotifier {
     // 初始化默认文章
     _articles = [
       Article(
-        title: '如何科学增肌',
+        title: 'How to scientifically increase muscle mass',
         coverUrl: 'https://picsum.photos/id/237/200/300',
         mdPath: 'assets/articles/muscle_gain.md',
-        category: '训练',
+        category: 'Training',
       ),
       Article(
-        title: '高效燃脂训练计划',
+        title: 'Efficient fat burning training program',
         coverUrl: 'https://picsum.photos/id/238/200/300',
         mdPath: 'assets/articles/fat_burn.md',
-        category: '训练',
+        category: 'Trainging',
       ),
       Article(
-        title: '运动员饮食指南',
+        title: 'Dietary guidelines for athletes',
         coverUrl: 'https://picsum.photos/id/239/200/300',
         mdPath: 'assets/articles/diet.md',
-        category: '饮食',
+        category: 'Nutrition',
+      ),
+      Article(
+        title: '拉伸与恢复的重要性',
+        coverUrl: 'https://picsum.photos/id/240/200/300',
+        mdPath: 'assets/articles/recovery.md',
+        category: '康复',
       ),
     ];
     

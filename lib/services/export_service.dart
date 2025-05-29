@@ -30,7 +30,7 @@ class ExportService {  /// 导出数据到用户选择的位置
 
     // 让用户选择保存位置
     String? outputFile = await FilePicker.platform.saveFile(
-      dialogTitle: '选择保存位置',
+      dialogTitle: 'Select save location',
       fileName: 'fitness_backup_${DateTime.now().millisecondsSinceEpoch}.json',
       type: FileType.custom,
       allowedExtensions: ['json'],
@@ -104,7 +104,7 @@ class ExportService {  /// 导出数据到用户选择的位置
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
         allowedExtensions: ['json'],
-        dialogTitle: '选择要导入的备份文件',
+        dialogTitle: 'Select the backup file to import',
       );
 
       if (result == null || result.files.isEmpty) {
@@ -128,7 +128,7 @@ class ExportService {  /// 导出数据到用户选择的位置
     final success = await importDataWithFilePicker();
     
     if (!success) {
-      throw Exception('导入数据失败，请检查文件格式是否正确');
+      throw Exception('Data import failed, please check if the file format is correct');
     }
   }
 
@@ -137,7 +137,7 @@ class ExportService {  /// 导出数据到用户选择的位置
     // 获取可用的备份文件
     final backups = await getAvailableBackups();
     if (backups.isEmpty) {
-      throw Exception('没有找到备份文件');
+      throw Exception('No backup file found');
     }
     
     // 使用最新的备份文件
@@ -145,7 +145,7 @@ class ExportService {  /// 导出数据到用户选择的位置
     final success = await importData(latestBackup.path);
     
     if (!success) {
-      throw Exception('导入数据失败');
+      throw Exception('Data Import Failed');
     }
   }
 

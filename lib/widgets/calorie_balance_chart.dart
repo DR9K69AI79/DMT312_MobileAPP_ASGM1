@@ -29,7 +29,7 @@ class _CalorieBalanceChartState extends State<CalorieBalanceChart> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              '热量盈亏',
+              'Calorie Surplus & Deficit',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -70,7 +70,7 @@ class _CalorieBalanceChartState extends State<CalorieBalanceChart> {
     if (nutritionData.isEmpty) {
       return const Center(
         child: Text(
-          '暂无数据',
+          'No Data',
           style: TextStyle(
             fontSize: 16,
             color: Colors.grey,
@@ -208,15 +208,15 @@ class _CalorieBalanceChartState extends State<CalorieBalanceChart> {
               String value;
                 switch (rodIndex) {
                 case 0:
-                  label = '摄入';
+                  label = 'Intake';
                   value = '${entry.calorieIntake.toInt()} kcal';
                   break;
                 case 1:
-                  label = '消耗';
+                  label = 'Burn';
                   value = '${entry.caloriesBurned.toInt()} kcal';
                   break;
                 case 2:
-                  label = '净盈亏';
+                  label = 'Net P&L';
                   final balance = entry.calorieIntake - entry.caloriesBurned;
                   value = '${balance > 0 ? '+' : ''}${balance.toInt()} kcal';
                   break;
@@ -242,10 +242,10 @@ class _CalorieBalanceChartState extends State<CalorieBalanceChart> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        _buildLegendItem(Colors.green, '摄入'),
-        _buildLegendItem(Colors.red, '消耗'),
-        _buildLegendItem(Colors.orange, '盈余'),
-        _buildLegendItem(Colors.purple, '亏损'),
+        _buildLegendItem(Colors.green, 'Intake'),
+        _buildLegendItem(Colors.red, 'Burn'),
+        _buildLegendItem(Colors.orange, 'Surplus'),
+        _buildLegendItem(Colors.purple, 'Deficit'),
       ],
     );
   }
@@ -294,6 +294,7 @@ class _CalorieBalanceChartState extends State<CalorieBalanceChart> {
     final avgBurned = totalBurned / daysWithData;
 
     return Container(
+      alignment: Alignment.center,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.grey[50],
@@ -301,32 +302,32 @@ class _CalorieBalanceChartState extends State<CalorieBalanceChart> {
       ),
       child: Column(
         children: [
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '总盈亏: ${totalBalance > 0 ? '+' : ''}${totalBalance.toInt()} kcal',
+                'Overall Surplus or Deficit: ${totalBalance > 0 ? '+' : ''}${totalBalance.toInt()} kcal',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: totalBalance >= 0 ? Colors.orange : Colors.purple,
                 ),
               ),
               Text(
-                '记录天数: $daysWithData 天',
+                'Recorded Days: $daysWithData Days',
                 style: const TextStyle(color: Colors.grey),
               ),
             ],
           ),
           const SizedBox(height: 4),
-          Row(
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '平均摄入: ${avgIntake.toInt()} kcal/天',
+                'Average Intake: ${avgIntake.toInt()} kcal/Day',
                 style: const TextStyle(fontSize: 12, color: Colors.green),
               ),
               Text(
-                '平均消耗: ${avgBurned.toInt()} kcal/天',
+                'Average Burn: ${avgBurned.toInt()} kcal/Day',
                 style: const TextStyle(fontSize: 12, color: Colors.red),
               ),
             ],

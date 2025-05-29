@@ -21,7 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('设置'),
+        title: const Text('Settings'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -34,7 +34,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '数据管理',
+                    'Data Manage',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -57,10 +57,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: CircularProgressIndicator(strokeWidth: 2),
                                 ),
                                 SizedBox(width: 8),
-                                Text('导出中...'),
+                                Text('Exporting...'),
                               ],
                             )
-                          : const Text('导出数据'),
+                          : const Text('Export Data'),
                     ),
                   ),
                   
@@ -83,10 +83,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                                   child: CircularProgressIndicator(strokeWidth: 2),
                                 ),
                                 SizedBox(width: 8),
-                                Text('导入中...'),
+                                Text('Importing...'),
                               ],
                             )
-                          : const Text('导入数据'),
+                          : const Text('Import Data'),
                     ),
                   ),
                   
@@ -101,13 +101,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         foregroundColor: Colors.red,
                         side: const BorderSide(color: Colors.red),
                       ),
-                      child: const Text('清空所有数据'),
+                      child: const Text('Clear All Data'),
                     ),
                   ),
                   
                   const SizedBox(height: 16),
                   const Text(
-                    '数据导出格式：JSON\n数据包含：体重记录、训练计划、营养记录、用户设置',
+                    'Data export format：JSON\nData includes：Weight Records、Training Plans、Nutrition Records、User Settings',
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.grey,
@@ -125,7 +125,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '用户设置',
+                    'User Setting',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -135,7 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   
                   // 身高设置
                   ListTile(
-                    title: const Text('身高'),
+                    title: const Text('Height'),
                     subtitle: Text('${_dataManager.height.toStringAsFixed(1)} cm'),
                     trailing: const Icon(Icons.edit),
                     onTap: () => _showHeightDialog(),
@@ -145,7 +145,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   
                   // 热量目标设置
                   ListTile(
-                    title: const Text('每日热量目标'),
+                    title: const Text('Daily Calorie Goal'),
                     subtitle: Text('${_dataManager.calorieGoal} kcal'),
                     trailing: const Icon(Icons.edit),
                     onTap: () => _showCalorieGoalDialog(),
@@ -162,7 +162,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '关于应用',
+                    'About Application',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -171,22 +171,22 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   const SizedBox(height: 16),
                   
                   const ListTile(
-                    title: Text('应用版本'),
+                    title: Text('Application Version'),
                     subtitle: Text('1.0.0'),
                   ),
                   
                   const Divider(),
                   
                   const ListTile(
-                    title: Text('开发者'),
-                    subtitle: Text('Flutter 健身应用'),
+                    title: Text('Developer'),
+                    subtitle: Text('Flutter Fitness App'),
                   ),
                   
                   const Divider(),
                   
                   ListTile(
-                    title: const Text('数据存储说明'),
-                    subtitle: const Text('数据保存在本地设备，确保隐私安全'),
+                    title: const Text('Data store explanation'),
+                    subtitle: const Text('Data is saved on local devices to ensure privacy and security'),
                     onTap: () => _showDataStorageDialog(),
                   ),
                 ],
@@ -208,7 +208,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         if (filePath != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
-              content: Text('数据导出成功！\n保存位置：${filePath}'),
+              content: Text('Data exports successfully！\nSave Path：${filePath}'),
               backgroundColor: Colors.green,
               duration: const Duration(seconds: 4),
             ),
@@ -216,7 +216,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         } else {
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('导出已取消'),
+              content: Text('Export Cancelled'),
               backgroundColor: Colors.orange,
             ),
           );
@@ -226,7 +226,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('导出失败：$e'),
+            content: Text('Export Failed：$e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -247,7 +247,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('数据导入成功！'),
+            content: Text('Data imports successfully!'),
             backgroundColor: Colors.green,
           ),
         );
@@ -256,7 +256,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('导入失败：$e'),
+            content: Text('Import Failed：$e'),
             backgroundColor: Colors.red,
           ),
         );
@@ -273,12 +273,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('确认清空数据'),
-        content: const Text('此操作将删除所有数据，包括体重记录、训练计划、营养记录等。此操作不可撤销。'),
+        title: const Text('Confirm clearing data'),
+        content: const Text('This operation will delete all data, including weight records, training plans, nutrition records, etc. This operation is irrevocable.'),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('取消'),
+            child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () async {
@@ -286,12 +286,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
               await _dataManager.clearAllData();
               if (mounted) {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('数据已清空')),
+                  const SnackBar(content: Text('Data is cleared')),
                 );
               }
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
-            child: const Text('确认清空'),
+            child: const Text('Confirm to clear'),
           ),
         ],
       ),
@@ -307,19 +307,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('设置身高'),
+        title: const Text('Set Height'),
         content: TextField(
           controller: controller,
           keyboardType: TextInputType.number,
           decoration: const InputDecoration(
-            labelText: '身高 (cm)',
+            labelText: 'Height (cm)',
             suffixText: 'cm',
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('取消'),
+            child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () async {
@@ -332,7 +332,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 }
               }
             },
-            child: const Text('确定'),
+            child: const Text('Confirm'),
           ),
         ],
       ),
@@ -348,19 +348,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('设置热量目标'),
+        title: const Text('Set Calorie Goal'),
         content: TextField(
           controller: controller,
           keyboardType: TextInputType.number,
           decoration: const InputDecoration(
-            labelText: '每日热量目标 (kcal)',
+            labelText: 'Daily Calorie Goal (kcal)',
             suffixText: 'kcal',
           ),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('取消'),
+            child: const Text('Cancel'),
           ),
           TextButton(
             onPressed: () async {
@@ -373,7 +373,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 }
               }
             },
-            child: const Text('确定'),
+            child: const Text('Canfirm'),
           ),
         ],
       ),
@@ -385,30 +385,30 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('数据存储说明'),
+        title: const Text('Data Storage Instruction'),
         content: const Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('数据存储方式：'),
+            Text('Data Storage Method：'),
             SizedBox(height: 8),
-            Text('• 所有数据保存在设备本地存储'),
-            Text('• 使用JSON格式进行持久化'),
-            Text('• 不会上传到任何服务器'),
-            Text('• 确保用户隐私安全'),
+            Text('• All data is stored locally on the device'),
+            Text('• Using JSON format for persistence'),
+            Text('• Will not be uploaded to any server'),
+            Text('• Ensuring user privacy and security'),
             SizedBox(height: 16),
-            Text('支持的数据类型：'),
+            Text('Supported data types：'),
             SizedBox(height: 8),
-            Text('• 体重记录'),
-            Text('• 训练计划'),
-            Text('• 营养记录'),
-            Text('• 用户设置'),
+            Text('• Weight Records'),
+            Text('• Training Plans'),
+            Text('• Nutrition Records'),
+            Text('• User Settings'),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('知道了'),
+            child: const Text('Got it'),
           ),
         ],
       ),

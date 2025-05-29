@@ -12,15 +12,15 @@ class LibraryScreen extends StatefulWidget {
 
 class _LibraryScreenState extends State<LibraryScreen> {
   final DataManager _dataManager = DataManager();
-  String _selectedCategory = '全部';
-  final List<String> _categories = ['全部', '训练', '饮食', '康复'];
+  String _selectedCategory = 'All';
+  final List<String> _categories = ['All', 'Training', 'Nutrition', 'Recovery'];
   String _searchQuery = '';
   
   @override
   Widget build(BuildContext context) {
     // 根据分类和搜索过滤文章
     final filteredArticles = _dataManager.articles.where((article) {
-      final matchesCategory = _selectedCategory == '全部' || 
+      final matchesCategory = _selectedCategory == 'All' || 
                              article.category == _selectedCategory;
       final matchesSearch = _searchQuery.isEmpty ||
                           article.title.toLowerCase().contains(_searchQuery.toLowerCase());
@@ -29,7 +29,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const Text('学习资源'),
+        title: const Text('Learning Resources'),
       ),
       body: Column(
         children: [
@@ -72,7 +72,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
             child: GlassCard(
               child: TextField(
                 decoration: const InputDecoration(
-                  hintText: '搜索文章',
+                  hintText: 'Search Article',
                   prefixIcon: Icon(Icons.search),
                   border: OutlineInputBorder(),
                 ),
@@ -86,14 +86,14 @@ class _LibraryScreenState extends State<LibraryScreen> {
           ),
           
           // 推荐文章横向滚动
-          if (_searchQuery.isEmpty && _selectedCategory == '全部') ...[
+          if (_searchQuery.isEmpty && _selectedCategory == 'All') ...[
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '推荐文章',
+                    'Recommanded Articles',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -118,7 +118,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
           // 文章列表
           Expanded(
             child: filteredArticles.isEmpty
-              ? const Center(child: Text('没有找到相关文章'))
+              ? const Center(child: Text('No Article Found'))
               : GridView.builder(
                   padding: const EdgeInsets.all(16.0),
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -324,17 +324,17 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       const SizedBox(height: 16),
                       // 文章内容（示例）
                       const Text(
-                        '这里是文章内容的样例。在实际应用中，这里会展示从Markdown文件加载的内容，或者从网络获取的文章详情。',
+                        'Here is an example of the content of the article. In practical applications, content loaded from Markdown files or article details obtained from the internet will be displayed here.',
                         style: TextStyle(fontSize: 16),
                       ),
                       const SizedBox(height: 16),
                       const Text(
-                        '文章段落示例：Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.',
+                        'Example article paragraph：Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.',
                         style: TextStyle(fontSize: 16),
                       ),
                       const SizedBox(height: 16),
                       const Text(
-                        '文章段落示例：Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
+                        'Example article paragraph：Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
                         style: TextStyle(fontSize: 16),
                       ),
                     ],
@@ -356,17 +356,17 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   children: [
                     TextButton.icon(
                       icon: const Icon(Icons.bookmark_border),
-                      label: const Text('收藏'),
+                      label: const Text('Favorite'),
                       onPressed: () {},
                     ),
                     TextButton.icon(
                       icon: const Icon(Icons.share),
-                      label: const Text('分享'),
+                      label: const Text('Share'),
                       onPressed: () {},
                     ),
                     TextButton.icon(
                       icon: const Icon(Icons.wb_sunny_outlined),
-                      label: const Text('模式'),
+                      label: const Text('Mode'),
                       onPressed: () {},
                     ),
                   ],

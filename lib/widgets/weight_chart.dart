@@ -54,7 +54,7 @@ class _EnhancedWeightChartState extends State<EnhancedWeightChart> {
             Row(
               children: [
                 const Text(
-                  '体重趋势',
+                  'Weight Trend',
                   style: TextStyle(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -72,7 +72,7 @@ class _EnhancedWeightChartState extends State<EnhancedWeightChart> {
                         _showBodyFat = !_showBodyFat;
                       });
                     },
-                    tooltip: _showBodyFat ? '隐藏体脂率' : '显示体脂率',
+                    tooltip: _showBodyFat ? 'Hish Body Fat Rate' : 'Show Body Fat Rate',
                   ),
               ],
             ),
@@ -111,7 +111,7 @@ class _EnhancedWeightChartState extends State<EnhancedWeightChart> {
     if (weightData.isEmpty) {
       return const Center(
         child: Text(
-          '暂无数据',
+          'No Data',
           style: TextStyle(
             fontSize: 16,
             color: Colors.grey,
@@ -151,7 +151,7 @@ class _EnhancedWeightChartState extends State<EnhancedWeightChart> {
     if (weightData.isEmpty) {
       return const Center(
         child: Text(
-          '暂无数据',
+          'No Data',
           style: TextStyle(
             fontSize: 16,
             color: Colors.grey,
@@ -363,9 +363,9 @@ class _EnhancedWeightChartState extends State<EnhancedWeightChart> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        _buildLegendItem(Colors.blue, '体重 (kg)'),
+        _buildLegendItem(Colors.blue, 'Weight (kg)'),
         if (_showBodyFat)
-          _buildLegendItem(Colors.orange, '体脂率 (%)'),
+          _buildLegendItem(Colors.orange, 'Body Fat Rate (%)'),
       ],
     );
   }

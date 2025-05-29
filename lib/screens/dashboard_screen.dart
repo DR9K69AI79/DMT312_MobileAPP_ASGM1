@@ -48,7 +48,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(        title: const Text('健身助手'),
+      appBar: AppBar(        title: const Text('Fitness Assistant'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
@@ -69,7 +69,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [                      const Text('今日体重', style: TextStyle(fontSize: 18)),
+                    children: [                      const Text('Today Weight', style: TextStyle(fontSize: 18)),
                       Text(
                         '${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg',
                         style: TextStyle(
@@ -95,12 +95,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
             GlassCard(
               child: Column(
                 children: [
-                  const Text('训练完成度', style: TextStyle(fontSize: 18)),
+                  const Text('Training Completion Rate', style: TextStyle(fontSize: 18)),
                   const SizedBox(height: 16),
                   Center(
                     child: RingProgress(
                       percent: _dataManager.workoutCompletionPercent,
-                      label: "已完成",
+                      label: "Completed",
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -115,7 +115,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             GlassCard(
               child: Column(
                 children: [
-                  const Text('热量盈亏', style: TextStyle(fontSize: 18)),
+                  const Text('Calorie Surplus & Deficit', style: TextStyle(fontSize: 18)),
                   const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -147,8 +147,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('摄入: ${_dataManager.calorieIntake} kcal'),
-                      Text('消耗: ${_dataManager.caloriesBurned} kcal'),
+                      Text('Intake: ${_dataManager.calorieIntake} kcal'),
+                      Text('Burn: ${_dataManager.caloriesBurned} kcal'),
                     ],
                   ),
                 ],
@@ -166,7 +166,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final workouts = _dataManager.workoutToday;
     
     if (workouts.isEmpty) {
-      return const Text('今日暂无训练计划');
+      return const Text('No Training Plans For Today');
     }
     
     return Column(
@@ -174,7 +174,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         final workout = entry.value;
         return ListTile(
           title: Text(workout.name),
-          subtitle: Text('${workout.sets} 组'),
+          subtitle: Text('${workout.sets} Groups'),
           trailing: workout.isCompleted
               ? const Icon(Icons.check_circle, color: Colors.green)
               : const Icon(Icons.circle_outlined),
@@ -198,7 +198,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
         const SizedBox(height: 8),
-        Text('目标: ${_dataManager.calorieGoal} kcal'),
+        Text('Goal: ${_dataManager.calorieGoal} kcal'),
       ],
     );
   }
@@ -306,19 +306,19 @@ class _FabMenuState extends State<_FabMenu> with SingleTickerProviderStateMixin 
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text('记录体重'),
+          title: const Text('Record Weight'),
           content: TextField(
             controller: weightController,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
-              labelText: '体重 (kg)',
+              labelText: 'Weight (kg)',
               suffixText: 'kg',
             ),
           ),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: const Text('取消'),
+              child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () async {
@@ -328,12 +328,12 @@ class _FabMenuState extends State<_FabMenu> with SingleTickerProviderStateMixin 
                   if (context.mounted) {
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text('体重记录已保存')),
+                      const SnackBar(content: Text('Weight Record Saved')),
                     );
                   }
                 }
               },
-              child: const Text('保存'),
+              child: const Text('Save'),
             ),
           ],
         );

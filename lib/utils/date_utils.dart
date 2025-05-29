@@ -89,15 +89,15 @@ class AppDateUtils {
   static String getTimeRangeLabel(int days) {
     switch (days) {
       case 7:
-        return '7天';
+        return '7 Days';
       case 30:
-        return '30天';
+        return '30 Days';
       case 90:
-        return '90天';
+        return '90 Days';
       case 365:
-        return '1年';
+        return '1 Year';
       default:
-        return '全部';
+        return 'All';
     }
   }
 }

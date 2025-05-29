@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 enum TimeRange {
-  week7(7, '7天'),
-  month1(30, '30天'),
-  month3(90, '90天'),
-  all(-1, '全部');
+  week7(7, '7 Days'),
+  month1(30, '30 Days'),
+  month3(90, '90 Days'),
+  all(-1, 'All');
 
   const TimeRange(this.days, this.label);
   final int days;

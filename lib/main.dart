@@ -23,7 +23,7 @@ class FitnessMiniApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '健身助手',
+      title: 'Fitness Assistant',
       theme: buildAppTheme(),
       home: const MainScreen(),      routes: {
         '/body': (context) => const BodyScreen(),
@@ -69,23 +69,23 @@ class _MainScreenState extends State<MainScreen> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.dashboard),
-            label: '首页',
+            label: 'Dashboard',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.monitor_weight),
-            label: '体测',
+            label: 'Body Data',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.fitness_center),
-            label: '训练',
+            label: 'Training',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.restaurant_menu),
-            label: '饮食',
+            label: 'Nutrition',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
-            label: '资源',
+            label: 'Resources',
           ),
         ],
       ),

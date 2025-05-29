@@ -44,7 +44,7 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              '训练完成度',
+              'Completion Rate',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,
@@ -95,7 +95,7 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
     if (dates.isEmpty) {
       return const Center(
         child: Text(
-          '暂无数据',
+          'No Data',
           style: TextStyle(fontSize: 16, color: Colors.grey),
         ),
       );
@@ -114,7 +114,7 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
             // 月份标签位置的占位符
             const SizedBox(height: 24),
             // 星期标签
-            ...['一', '二', '三', '四', '五', '六', '日'].map((day) {
+            ...['M', 'T', 'W', 'T', 'F', 'S', 'S'].map((day) {
               return Container(
                 width: 20,
                 height: 17,
@@ -290,7 +290,7 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
                   border: isToday ? Border.all(color: Colors.black, width: 1) : null,
                 ),
                 child: Tooltip(
-                  message: '${AppDateUtils.formatDisplayDate(dateStr)}\n完成度: ${(intensity * 100).toInt()}%',
+                  message: '${AppDateUtils.formatDisplayDate(dateStr)}\nCompletion Rate: ${(intensity * 100).toInt()}%',
                   child: const SizedBox(),
                 ),
               );
@@ -313,7 +313,7 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         const Text(
-          '少',
+          'Few',
           style: TextStyle(fontSize: 12, color: Colors.grey),
         ),
         const SizedBox(width: 4),
@@ -330,7 +330,7 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
         }),
         const SizedBox(width: 4),
         const Text(
-          '多',
+          'Many',
           style: TextStyle(fontSize: 12, color: Colors.grey),
         ),
       ],
@@ -376,11 +376,11 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '活跃天数: $activeDays/$totalDays 天',
+                'Active Days: $activeDays/$totalDays Days',
                 style: const TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(
-                '活跃率: ${activeRate.toInt()}%',
+                'Active Rate: ${activeRate.toInt()}%',
                 style: TextStyle(
                   color: activeRate >= 70 ? Colors.green : Colors.orange,
                   fontWeight: FontWeight.bold,
@@ -393,11 +393,11 @@ class _WorkoutHeatmapState extends State<WorkoutHeatmap> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '完成练习: $completedWorkouts/$totalWorkouts 个',
+                'Training Completed: $completedWorkouts/$totalWorkouts',
                 style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
               Text(
-                '完成率: ${completionRate.toInt()}%',
+                'Completion Rate: ${completionRate.toInt()}%',
                 style: TextStyle(
                   fontSize: 12,
                   color: completionRate >= 80 ? Colors.green : Colors.orange,

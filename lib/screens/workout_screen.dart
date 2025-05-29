@@ -36,7 +36,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('训练计划'),
+        title: const Text('Training Plan'),
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
@@ -48,7 +48,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               child: Column(
                 children: [
                   const Text(
-                    '今日训练状态',
+                    'Today Training Status',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -57,12 +57,12 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   const SizedBox(height: 16),                  Center(
                     child: RingProgress(
                       percent: _dataManager.workoutCompletionPercent,
-                      label: '已完成',
+                      label: 'Completed',
                     ),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    '已完成 ${_dataManager.workoutToday.where((w) => w.isCompleted).length} / ${_dataManager.workoutToday.length} 个训练',
+                    '${_dataManager.workoutToday.where((w) => w.isCompleted).length} / ${_dataManager.workoutToday.length} Completed',
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -80,7 +80,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       const Text(
-                        '训练计划',
+                        'Training Plans',
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                       ),
                       TextButton.icon(
                         icon: const Icon(Icons.edit),
-                        label: const Text('编辑'),
+                        label: const Text('Edit'),
                         onPressed: () {
                           // TODO: 实现训练计划编辑功能
                         },
@@ -110,7 +110,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    '快速添加训练',
+                    'Quick Add Training',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -140,7 +140,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     if (workouts.isEmpty) {
       return const Padding(
         padding: EdgeInsets.symmetric(vertical: 32.0),
-        child: Center(child: Text('今日暂无训练计划')),
+        child: Center(child: Text('There are no training plans for today')),
       );
     }
     
@@ -164,12 +164,12 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
           direction: DismissDirection.endToStart,          onDismissed: (direction) async {
             await _dataManager.removeWorkout(index);
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('已删除 ${workout.name}')),
+              SnackBar(content: Text('${workout.name} Deleted')),
             );
           },
           child: ListTile(
             title: Text(workout.name),
-            subtitle: Text('${workout.sets} 组'),
+            subtitle: Text('${workout.sets} Group'),
             trailing: IconButton(
               icon: workout.isCompleted
                 ? const Icon(Icons.check_circle, color: Colors.green)
@@ -185,12 +185,12 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
   // 构建快速添加训练列表
   Widget _buildQuickAddWorkouts() {
     final workoutTypes = [
-      {'name': '俯卧撑', 'icon': Icons.fitness_center},
-      {'name': '深蹲', 'icon': Icons.accessibility_new},
-      {'name': '平板支撑', 'icon': Icons.timer},
-      {'name': '卷腹', 'icon': Icons.line_style},
-      {'name': '引体向上', 'icon': Icons.vertical_align_top},
-      {'name': '跑步', 'icon': Icons.directions_run},
+      {'name': 'Push-up', 'icon': Icons.fitness_center},
+      {'name': 'Squat', 'icon': Icons.accessibility_new},
+      {'name': 'Plank', 'icon': Icons.timer},
+      {'name': 'Crunch', 'icon': Icons.line_style},
+      {'name': 'Pull-up', 'icon': Icons.vertical_align_top},
+      {'name': 'Running', 'icon': Icons.directions_run},
     ];
     
     return ListView.builder(
@@ -236,7 +236,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
     );
     _dataManager.addWorkout(workout);
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('已添加 $name')),
+      SnackBar(content: Text('$name Added')),
     );
   }
   
@@ -260,7 +260,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
             mainAxisSize: MainAxisSize.min,
             children: [
               const Text(
-                '添加训练',
+                'Add Training',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -270,7 +270,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               TextField(
                 controller: nameController,
                 decoration: const InputDecoration(
-                  labelText: '训练名称',
+                  labelText: 'Training Name',
                   prefixIcon: Icon(Icons.fitness_center),
                   border: OutlineInputBorder(),
                 ),
@@ -280,7 +280,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 controller: setsController,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
-                  labelText: '组数',
+                  labelText: 'Number of groups',
                   prefixIcon: Icon(Icons.repeat),
                   border: OutlineInputBorder(),
                 ),
@@ -291,7 +291,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                 children: [
                   TextButton(
                     onPressed: () => Navigator.pop(context),
-                    child: const Text('取消'),
+                    child: const Text('Cancel'),
                   ),
                   const SizedBox(width: 16),
                   PrimaryButton(
@@ -307,7 +307,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                         Navigator.pop(context);
                       }
                     },
-                    child: const Text('添加'),
+                    child: const Text('Add'),
                   ),
                 ],
               ),
