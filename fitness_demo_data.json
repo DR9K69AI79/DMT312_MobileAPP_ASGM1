@@ -1,0 +1,5014 @@
+{
+  "version": "1.0",
+  "exportDate": "2025-05-29T17:35:01.126439",
+  "data": {
+    "weights": [
+      {
+        "date": "2025-03-01",
+        "weight": 70.5
+      },
+      {
+        "date": "2025-03-02",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-03-03",
+        "weight": 69.7
+      },
+      {
+        "date": "2025-03-04",
+        "weight": 69.9
+      },
+      {
+        "date": "2025-03-05",
+        "weight": 70.0
+      },
+      {
+        "date": "2025-03-06",
+        "weight": 69.6
+      },
+      {
+        "date": "2025-03-07",
+        "weight": 69.2
+      },
+      {
+        "date": "2025-03-08",
+        "weight": 69.2
+      },
+      {
+        "date": "2025-03-09",
+        "weight": 69.3
+      },
+      {
+        "date": "2025-03-10",
+        "weight": 69.2
+      },
+      {
+        "date": "2025-03-11",
+        "weight": 68.9
+      },
+      {
+        "date": "2025-03-12",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-03-13",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-03-14",
+        "weight": 68.2
+      },
+      {
+        "date": "2025-03-15",
+        "weight": 68.3
+      },
+      {
+        "date": "2025-03-16",
+        "weight": 68.1
+      },
+      {
+        "date": "2025-03-17",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-03-18",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-03-19",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-03-20",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-03-21",
+        "weight": 68.8
+      },
+      {
+        "date": "2025-03-22",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-03-23",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-03-24",
+        "weight": 68.6
+      },
+      {
+        "date": "2025-03-25",
+        "weight": 68.6
+      },
+      {
+        "date": "2025-03-26",
+        "weight": 68.2
+      },
+      {
+        "date": "2025-03-27",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-03-28",
+        "weight": 67.6
+      },
+      {
+        "date": "2025-03-29",
+        "weight": 67.6
+      },
+      {
+        "date": "2025-03-30",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-03-31",
+        "weight": 68.0
+      },
+      {
+        "date": "2025-04-01",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-04-02",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-04-03",
+        "weight": 68.8
+      },
+      {
+        "date": "2025-04-04",
+        "weight": 69.2
+      },
+      {
+        "date": "2025-04-05",
+        "weight": 68.8
+      },
+      {
+        "date": "2025-04-06",
+        "weight": 68.7
+      },
+      {
+        "date": "2025-04-07",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-04-08",
+        "weight": 68.1
+      },
+      {
+        "date": "2025-04-09",
+        "weight": 68.3
+      },
+      {
+        "date": "2025-04-10",
+        "weight": 68.8
+      },
+      {
+        "date": "2025-04-11",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-04-12",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-04-13",
+        "weight": 68.6
+      },
+      {
+        "date": "2025-04-14",
+        "weight": 68.6
+      },
+      {
+        "date": "2025-04-15",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-04-16",
+        "weight": 68.1
+      },
+      {
+        "date": "2025-04-17",
+        "weight": 67.8
+      },
+      {
+        "date": "2025-04-18",
+        "weight": 67.6
+      },
+      {
+        "date": "2025-04-19",
+        "weight": 67.3
+      },
+      {
+        "date": "2025-04-20",
+        "weight": 66.9
+      },
+      {
+        "date": "2025-04-21",
+        "weight": 66.9
+      },
+      {
+        "date": "2025-04-22",
+        "weight": 67.3
+      },
+      {
+        "date": "2025-04-23",
+        "weight": 67.4
+      },
+      {
+        "date": "2025-04-24",
+        "weight": 67.6
+      },
+      {
+        "date": "2025-04-25",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-04-26",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-04-27",
+        "weight": 67.9
+      },
+      {
+        "date": "2025-04-28",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-04-29",
+        "weight": 67.9
+      },
+      {
+        "date": "2025-04-30",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-05-01",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-05-02",
+        "weight": 67.3
+      },
+      {
+        "date": "2025-05-03",
+        "weight": 66.8
+      },
+      {
+        "date": "2025-05-04",
+        "weight": 67.3
+      },
+      {
+        "date": "2025-05-05",
+        "weight": 67.6
+      },
+      {
+        "date": "2025-05-06",
+        "weight": 67.2
+      },
+      {
+        "date": "2025-05-07",
+        "weight": 67.3
+      },
+      {
+        "date": "2025-05-08",
+        "weight": 66.9
+      },
+      {
+        "date": "2025-05-09",
+        "weight": 67.2
+      },
+      {
+        "date": "2025-05-10",
+        "weight": 67.3
+      },
+      {
+        "date": "2025-05-11",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-05-12",
+        "weight": 67.5
+      },
+      {
+        "date": "2025-05-13",
+        "weight": 67.3
+      },
+      {
+        "date": "2025-05-14",
+        "weight": 67.0
+      },
+      {
+        "date": "2025-05-15",
+        "weight": 66.6
+      },
+      {
+        "date": "2025-05-16",
+        "weight": 66.8
+      },
+      {
+        "date": "2025-05-17",
+        "weight": 66.5
+      },
+      {
+        "date": "2025-05-18",
+        "weight": 66.9
+      },
+      {
+        "date": "2025-05-19",
+        "weight": 66.7
+      },
+      {
+        "date": "2025-05-20",
+        "weight": 66.2
+      },
+      {
+        "date": "2025-05-21",
+        "weight": 66.2
+      },
+      {
+        "date": "2025-05-22",
+        "weight": 65.7
+      },
+      {
+        "date": "2025-05-23",
+        "weight": 66.2
+      },
+      {
+        "date": "2025-05-24",
+        "weight": 66.4
+      },
+      {
+        "date": "2025-05-25",
+        "weight": 66.8
+      },
+      {
+        "date": "2025-05-26",
+        "weight": 66.5
+      },
+      {
+        "date": "2025-05-27",
+        "weight": 66.3
+      },
+      {
+        "date": "2025-05-28",
+        "weight": 66.0
+      },
+      {
+        "date": "2025-05-29",
+        "weight": 65.5
+      }
+    ],
+    "bodyFat": [
+      {
+        "date": "2025-03-01",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-03-02",
+        "bodyFatPercentage": 17.6
+      },
+      {
+        "date": "2025-03-03",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-03-04",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-03-05",
+        "bodyFatPercentage": 17.2
+      },
+      {
+        "date": "2025-03-06",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-03-07",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-03-08",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-03-09",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-03-10",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-03-11",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-03-12",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-03-13",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-03-14",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-03-15",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-03-16",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-03-17",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-03-18",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-03-19",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-03-20",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-03-21",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-03-22",
+        "bodyFatPercentage": 17.0
+      },
+      {
+        "date": "2025-03-23",
+        "bodyFatPercentage": 17.0
+      },
+      {
+        "date": "2025-03-24",
+        "bodyFatPercentage": 16.8
+      },
+      {
+        "date": "2025-03-25",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-03-26",
+        "bodyFatPercentage": 16.8
+      },
+      {
+        "date": "2025-03-27",
+        "bodyFatPercentage": 16.5
+      },
+      {
+        "date": "2025-03-28",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-03-29",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-03-30",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-03-31",
+        "bodyFatPercentage": 16.8
+      },
+      {
+        "date": "2025-04-01",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-04-02",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-04-03",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-04-04",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-04-05",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-04-06",
+        "bodyFatPercentage": 16.4
+      },
+      {
+        "date": "2025-04-07",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-04-08",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-04-09",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-04-10",
+        "bodyFatPercentage": 16.5
+      },
+      {
+        "date": "2025-04-11",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-04-12",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-04-13",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-04-14",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-04-15",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-04-16",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-04-17",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-04-18",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-04-19",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-04-20",
+        "bodyFatPercentage": 17.2
+      },
+      {
+        "date": "2025-04-21",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-04-22",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-04-23",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-04-24",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-04-25",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-04-26",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-04-27",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-04-28",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-04-29",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-04-30",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-05-01",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-05-02",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-05-03",
+        "bodyFatPercentage": 17.0
+      },
+      {
+        "date": "2025-05-04",
+        "bodyFatPercentage": 16.8
+      },
+      {
+        "date": "2025-05-05",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-05-06",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-05-07",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-05-08",
+        "bodyFatPercentage": 17.0
+      },
+      {
+        "date": "2025-05-09",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-05-10",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-05-11",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-05-12",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-05-13",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-05-14",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-05-15",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-05-16",
+        "bodyFatPercentage": 17.6
+      },
+      {
+        "date": "2025-05-17",
+        "bodyFatPercentage": 17.6
+      },
+      {
+        "date": "2025-05-18",
+        "bodyFatPercentage": 17.6
+      },
+      {
+        "date": "2025-05-19",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-05-20",
+        "bodyFatPercentage": 17.6
+      },
+      {
+        "date": "2025-05-21",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-05-22",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-05-23",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-05-24",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-05-25",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-05-26",
+        "bodyFatPercentage": 18.3
+      },
+      {
+        "date": "2025-05-27",
+        "bodyFatPercentage": 18.3
+      },
+      {
+        "date": "2025-05-28",
+        "bodyFatPercentage": 18.6
+      },
+      {
+        "date": "2025-05-29",
+        "bodyFatPercentage": 18.6
+      }
+    ],
+    "workouts": {
+      "2025-03-01": [
+        {
+          "date": "2025-03-01T17:35:01.120444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-01T17:35:01.120444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-02": [
+        {
+          "date": "2025-03-02T17:35:01.120444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-02T17:35:01.120444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-03": [
+        {
+          "date": "2025-03-03T17:35:01.120444",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-03T17:35:01.120444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-04": [
+        {
+          "date": "2025-03-04T17:35:01.120444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-04T17:35:01.120444",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-04T17:35:01.120444",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-04T17:35:01.120444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-05": [
+        {
+          "date": "2025-03-05T17:35:01.120444",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-05T17:35:01.120444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-05T17:35:01.120444",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-06": [
+        {
+          "date": "2025-03-06T17:35:01.120444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-07": [
+        {
+          "date": "2025-03-07T17:35:01.120444",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-07T17:35:01.120444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-07T17:35:01.120444",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-07T17:35:01.120444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-08": [
+        {
+          "date": "2025-03-08T17:35:01.120444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-08T17:35:01.120444",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-09": [
+        {
+          "date": "2025-03-09T17:35:01.120444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-09T17:35:01.120444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-09T17:35:01.120444",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-09T17:35:01.120444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-10": [
+        {
+          "date": "2025-03-10T17:35:01.120444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-10T17:35:01.120444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-10T17:35:01.120444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-10T17:35:01.120444",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-11": [
+        {
+          "date": "2025-03-11T17:35:01.120444",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-12": [
+        {
+          "date": "2025-03-12T17:35:01.120444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-12T17:35:01.120444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-12T17:35:01.120444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-12T17:35:01.120444",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-13": [
+        {
+          "date": "2025-03-13T17:35:01.120444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-13T17:35:01.120444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-13T17:35:01.120444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-13T17:35:01.120444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-14": [
+        {
+          "date": "2025-03-14T17:35:01.120444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-14T17:35:01.120444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-15": [
+        {
+          "date": "2025-03-15T17:35:01.121442",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-15T17:35:01.121442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-15T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-16": [
+        {
+          "date": "2025-03-16T17:35:01.121442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-17": [
+        {
+          "date": "2025-03-17T17:35:01.121442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-17T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-17T17:35:01.121442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-18": [
+        {
+          "date": "2025-03-18T17:35:01.121442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-18T17:35:01.121442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-18T17:35:01.121442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-18T17:35:01.121442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-19": [
+        {
+          "date": "2025-03-19T17:35:01.121442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-20": [
+        {
+          "date": "2025-03-20T17:35:01.121442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-21": [
+        {
+          "date": "2025-03-21T17:35:01.121442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-21T17:35:01.121442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-22": [
+        {
+          "date": "2025-03-22T17:35:01.121442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-22T17:35:01.121442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-22T17:35:01.121442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-23": [
+        {
+          "date": "2025-03-23T17:35:01.121442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-24": [
+        {
+          "date": "2025-03-24T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-24T17:35:01.121442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-25": [
+        {
+          "date": "2025-03-25T17:35:01.121442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-26": [
+        {
+          "date": "2025-03-26T17:35:01.121442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-26T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-27": [
+        {
+          "date": "2025-03-27T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-28": [
+        {
+          "date": "2025-03-28T17:35:01.121442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-28T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-28T17:35:01.121442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-29": [
+        {
+          "date": "2025-03-29T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-30": [
+        {
+          "date": "2025-03-30T17:35:01.121442",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-31": [
+        {
+          "date": "2025-03-31T17:35:01.121442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-31T17:35:01.121442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-31T17:35:01.121442",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-31T17:35:01.121442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-01": [
+        {
+          "date": "2025-04-01T17:35:01.121442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-01T17:35:01.121442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-02": [
+        {
+          "date": "2025-04-02T17:35:01.121442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-02T17:35:01.121442",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-02T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-03": [
+        {
+          "date": "2025-04-03T17:35:01.121442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-03T17:35:01.121442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-04": [
+        {
+          "date": "2025-04-04T17:35:01.121442",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-05": [
+        {
+          "date": "2025-04-05T17:35:01.121442",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-05T17:35:01.121442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-06": [
+        {
+          "date": "2025-04-06T17:35:01.121442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-06T17:35:01.121442",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-06T17:35:01.121442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-06T17:35:01.121442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-07": [
+        {
+          "date": "2025-04-07T17:35:01.122444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-07T17:35:01.122444",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-07T17:35:01.122444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-07T17:35:01.122444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-08": [
+        {
+          "date": "2025-04-08T17:35:01.122444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-08T17:35:01.122444",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-09": [
+        {
+          "date": "2025-04-09T17:35:01.122444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-10": [
+        {
+          "date": "2025-04-10T17:35:01.122444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-10T17:35:01.122444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-10T17:35:01.122444",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-10T17:35:01.122444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-11": [
+        {
+          "date": "2025-04-11T17:35:01.122444",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-11T17:35:01.122444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-11T17:35:01.122444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-12": [
+        {
+          "date": "2025-04-12T17:35:01.122444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-12T17:35:01.122444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-12T17:35:01.122444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-12T17:35:01.122444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-13": [
+        {
+          "date": "2025-04-13T17:35:01.122444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-13T17:35:01.122444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-13T17:35:01.122444",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-14": [
+        {
+          "date": "2025-04-14T17:35:01.122444",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-14T17:35:01.122444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-15": [
+        {
+          "date": "2025-04-15T17:35:01.122444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-15T17:35:01.122444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-15T17:35:01.122444",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-16": [
+        {
+          "date": "2025-04-16T17:35:01.122444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-16T17:35:01.122444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-16T17:35:01.122444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-16T17:35:01.122444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-17": [
+        {
+          "date": "2025-04-17T17:35:01.122444",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-17T17:35:01.122444",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-18": [
+        {
+          "date": "2025-04-18T17:35:01.122444",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-18T17:35:01.122444",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-18T17:35:01.122444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-19": [
+        {
+          "date": "2025-04-19T17:35:01.122444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-19T17:35:01.122444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-19T17:35:01.122444",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-19T17:35:01.122444",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-20": [
+        {
+          "date": "2025-04-20T17:35:01.122444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-21": [
+        {
+          "date": "2025-04-21T17:35:01.122444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-22": [
+        {
+          "date": "2025-04-22T17:35:01.122444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-23": [
+        {
+          "date": "2025-04-23T17:35:01.122444",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-23T17:35:01.122444",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-23T17:35:01.122444",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-23T17:35:01.122444",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-24": [
+        {
+          "date": "2025-04-24T17:35:01.122444",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-25": [
+        {
+          "date": "2025-04-25T17:35:01.122444",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-26": [
+        {
+          "date": "2025-04-26T17:35:01.122444",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-26T17:35:01.122444",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-26T17:35:01.122444",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-26T17:35:01.122444",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-27": [
+        {
+          "date": "2025-04-27T17:35:01.123442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-27T17:35:01.123442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-27T17:35:01.123442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-27T17:35:01.123442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-28": [
+        {
+          "date": "2025-04-28T17:35:01.123442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-28T17:35:01.123442",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-29": [
+        {
+          "date": "2025-04-29T17:35:01.123442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-29T17:35:01.123442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-29T17:35:01.123442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-29T17:35:01.123442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-30": [
+        {
+          "date": "2025-04-30T17:35:01.123442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-30T17:35:01.123442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-01": [
+        {
+          "date": "2025-05-01T17:35:01.123442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-01T17:35:01.123442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-01T17:35:01.123442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-01T17:35:01.123442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-02": [
+        {
+          "date": "2025-05-02T17:35:01.123442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-02T17:35:01.123442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-02T17:35:01.123442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-03": [
+        {
+          "date": "2025-05-03T17:35:01.123442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-03T17:35:01.123442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-03T17:35:01.123442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-04": [
+        {
+          "date": "2025-05-04T17:35:01.123442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-05": [
+        {
+          "date": "2025-05-05T17:35:01.123442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-05T17:35:01.123442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-05T17:35:01.123442",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-05T17:35:01.123442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-06": [
+        {
+          "date": "2025-05-06T17:35:01.123442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-06T17:35:01.123442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-07": [
+        {
+          "date": "2025-05-07T17:35:01.123442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-08": [
+        {
+          "date": "2025-05-08T17:35:01.123442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-08T17:35:01.123442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-08T17:35:01.123442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-09": [
+        {
+          "date": "2025-05-09T17:35:01.123442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-09T17:35:01.123442",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-09T17:35:01.123442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-09T17:35:01.123442",
+          "name": "侧平举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-10": [
+        {
+          "date": "2025-05-10T17:35:01.123442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-11": [
+        {
+          "date": "2025-05-11T17:35:01.123442",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-11T17:35:01.123442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-11T17:35:01.123442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-11T17:35:01.123442",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-12": [
+        {
+          "date": "2025-05-12T17:35:01.123442",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-12T17:35:01.123442",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-12T17:35:01.123442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-13": [
+        {
+          "date": "2025-05-13T17:35:01.123442",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-14": [
+        {
+          "date": "2025-05-14T17:35:01.123442",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-14T17:35:01.123442",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-14T17:35:01.123442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-15": [
+        {
+          "date": "2025-05-15T17:35:01.123442",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-15T17:35:01.123442",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-15T17:35:01.123442",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-15T17:35:01.123442",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-16": [
+        {
+          "date": "2025-05-16T17:35:01.124524",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-17": [
+        {
+          "date": "2025-05-17T17:35:01.124524",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-17T17:35:01.124524",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-17T17:35:01.124524",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-18": [
+        {
+          "date": "2025-05-18T17:35:01.124524",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-18T17:35:01.124524",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-18T17:35:01.124524",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-18T17:35:01.124524",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-19": [
+        {
+          "date": "2025-05-19T17:35:01.124524",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-20": [
+        {
+          "date": "2025-05-20T17:35:01.124524",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-20T17:35:01.124524",
+          "name": "二头弯举",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-21": [
+        {
+          "date": "2025-05-21T17:35:01.124524",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-21T17:35:01.124524",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-22": [
+        {
+          "date": "2025-05-22T17:35:01.124524",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-23": [
+        {
+          "date": "2025-05-23T17:35:01.124524",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-24": [
+        {
+          "date": "2025-05-24T17:35:01.124524",
+          "name": "负重深蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-24T17:35:01.124524",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-24T17:35:01.124524",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-25": [
+        {
+          "date": "2025-05-25T17:35:01.124524",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-26": [
+        {
+          "date": "2025-05-26T17:35:01.124524",
+          "name": "颈前推举",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-26T17:35:01.124524",
+          "name": "腿举",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-26T17:35:01.124524",
+          "name": "俯卧撑",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-26T17:35:01.124524",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-27": [
+        {
+          "date": "2025-05-27T17:35:01.124524",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-27T17:35:01.124524",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-28": [
+        {
+          "date": "2025-05-28T17:35:01.124524",
+          "name": "卷腹",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-28T17:35:01.124524",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-28T17:35:01.124524",
+          "name": "箭步蹲",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-28T17:35:01.124524",
+          "name": "三头下压",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-29": [
+        {
+          "date": "2025-05-29T17:35:01.124524",
+          "name": "哑铃划船",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-29T17:35:01.124524",
+          "name": "深蹲",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-29T17:35:01.124524",
+          "name": "引体向上",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-29T17:35:01.124524",
+          "name": "平板支撑",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ]
+    },
+    "nutrition": [
+      {
+        "date": "2025-03-01",
+        "calorieIntake": 679,
+        "caloriesBurned": 1857,
+        "calorieGoal": 1899,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 211
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 468
+          }
+        ]
+      },
+      {
+        "date": "2025-03-02",
+        "calorieIntake": 651,
+        "caloriesBurned": 2170,
+        "calorieGoal": 1906,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 426
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 225
+          }
+        ]
+      },
+      {
+        "date": "2025-03-03",
+        "calorieIntake": 900,
+        "caloriesBurned": 2389,
+        "calorieGoal": 2085,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 399
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 501
+          }
+        ]
+      },
+      {
+        "date": "2025-03-04",
+        "calorieIntake": 796,
+        "caloriesBurned": 1870,
+        "calorieGoal": 2141,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 341
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 455
+          }
+        ]
+      },
+      {
+        "date": "2025-03-05",
+        "calorieIntake": 737,
+        "caloriesBurned": 2462,
+        "calorieGoal": 2011,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 737
+          }
+        ]
+      },
+      {
+        "date": "2025-03-06",
+        "calorieIntake": 461,
+        "caloriesBurned": 1960,
+        "calorieGoal": 1831,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 461
+          }
+        ]
+      },
+      {
+        "date": "2025-03-07",
+        "calorieIntake": 2050,
+        "caloriesBurned": 2015,
+        "calorieGoal": 1942,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 227
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 607
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 471
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 745
+          }
+        ]
+      },
+      {
+        "date": "2025-03-08",
+        "calorieIntake": 537,
+        "caloriesBurned": 1860,
+        "calorieGoal": 1828,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 537
+          }
+        ]
+      },
+      {
+        "date": "2025-03-09",
+        "calorieIntake": 1147,
+        "caloriesBurned": 2136,
+        "calorieGoal": 1988,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 179
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 361
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 607
+          }
+        ]
+      },
+      {
+        "date": "2025-03-10",
+        "calorieIntake": 1210,
+        "caloriesBurned": 2079,
+        "calorieGoal": 1854,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 225
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 440
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 545
+          }
+        ]
+      },
+      {
+        "date": "2025-03-11",
+        "calorieIntake": 1925,
+        "caloriesBurned": 2411,
+        "calorieGoal": 2031,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 693
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 208
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 556
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 468
+          }
+        ]
+      },
+      {
+        "date": "2025-03-12",
+        "calorieIntake": 1358,
+        "caloriesBurned": 2321,
+        "calorieGoal": 2044,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 229
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 479
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 650
+          }
+        ]
+      },
+      {
+        "date": "2025-03-13",
+        "calorieIntake": 1978,
+        "caloriesBurned": 2237,
+        "calorieGoal": 2036,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 238
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 333
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 641
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 766
+          }
+        ]
+      },
+      {
+        "date": "2025-03-14",
+        "calorieIntake": 1303,
+        "caloriesBurned": 2289,
+        "calorieGoal": 1832,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 399
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 164
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 740
+          }
+        ]
+      },
+      {
+        "date": "2025-03-15",
+        "calorieIntake": 1066,
+        "caloriesBurned": 2153,
+        "calorieGoal": 1910,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 625
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 441
+          }
+        ]
+      },
+      {
+        "date": "2025-03-16",
+        "calorieIntake": 1333,
+        "caloriesBurned": 2031,
+        "calorieGoal": 1818,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 513
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 607
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 213
+          }
+        ]
+      },
+      {
+        "date": "2025-03-17",
+        "calorieIntake": 498,
+        "caloriesBurned": 1858,
+        "calorieGoal": 1954,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 169
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 329
+          }
+        ]
+      },
+      {
+        "date": "2025-03-18",
+        "calorieIntake": 1882,
+        "caloriesBurned": 1948,
+        "calorieGoal": 1845,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 761
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 170
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 534
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 417
+          }
+        ]
+      },
+      {
+        "date": "2025-03-19",
+        "calorieIntake": 1125,
+        "caloriesBurned": 2144,
+        "calorieGoal": 2114,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 351
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 203
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 571
+          }
+        ]
+      },
+      {
+        "date": "2025-03-20",
+        "calorieIntake": 480,
+        "caloriesBurned": 1948,
+        "calorieGoal": 2095,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 480
+          }
+        ]
+      },
+      {
+        "date": "2025-03-21",
+        "calorieIntake": 210,
+        "caloriesBurned": 1802,
+        "calorieGoal": 2099,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 210
+          }
+        ]
+      },
+      {
+        "date": "2025-03-22",
+        "calorieIntake": 164,
+        "caloriesBurned": 2404,
+        "calorieGoal": 2039,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 164
+          }
+        ]
+      },
+      {
+        "date": "2025-03-23",
+        "calorieIntake": 1252,
+        "caloriesBurned": 2032,
+        "calorieGoal": 1918,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 181
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 523
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 548
+          }
+        ]
+      },
+      {
+        "date": "2025-03-24",
+        "calorieIntake": 163,
+        "caloriesBurned": 2388,
+        "calorieGoal": 2092,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 163
+          }
+        ]
+      },
+      {
+        "date": "2025-03-25",
+        "calorieIntake": 1134,
+        "caloriesBurned": 2398,
+        "calorieGoal": 2050,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 165
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 356
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 613
+          }
+        ]
+      },
+      {
+        "date": "2025-03-26",
+        "calorieIntake": 1778,
+        "caloriesBurned": 2237,
+        "calorieGoal": 1824,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 200
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 599
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 612
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 367
+          }
+        ]
+      },
+      {
+        "date": "2025-03-27",
+        "calorieIntake": 596,
+        "caloriesBurned": 2188,
+        "calorieGoal": 1950,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 171
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 425
+          }
+        ]
+      },
+      {
+        "date": "2025-03-28",
+        "calorieIntake": 1266,
+        "caloriesBurned": 2086,
+        "calorieGoal": 1871,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 522
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 744
+          }
+        ]
+      },
+      {
+        "date": "2025-03-29",
+        "calorieIntake": 1128,
+        "caloriesBurned": 2455,
+        "calorieGoal": 2101,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 329
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 604
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 195
+          }
+        ]
+      },
+      {
+        "date": "2025-03-30",
+        "calorieIntake": 656,
+        "caloriesBurned": 2228,
+        "calorieGoal": 2074,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 476
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 180
+          }
+        ]
+      },
+      {
+        "date": "2025-03-31",
+        "calorieIntake": 350,
+        "caloriesBurned": 1967,
+        "calorieGoal": 2139,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 350
+          }
+        ]
+      },
+      {
+        "date": "2025-04-01",
+        "calorieIntake": 1898,
+        "caloriesBurned": 2084,
+        "calorieGoal": 1989,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 532
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 749
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 233
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 384
+          }
+        ]
+      },
+      {
+        "date": "2025-04-02",
+        "calorieIntake": 471,
+        "caloriesBurned": 2456,
+        "calorieGoal": 1961,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 471
+          }
+        ]
+      },
+      {
+        "date": "2025-04-03",
+        "calorieIntake": 516,
+        "caloriesBurned": 1872,
+        "calorieGoal": 1977,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 516
+          }
+        ]
+      },
+      {
+        "date": "2025-04-04",
+        "calorieIntake": 951,
+        "caloriesBurned": 2290,
+        "calorieGoal": 1916,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 722
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 229
+          }
+        ]
+      },
+      {
+        "date": "2025-04-05",
+        "calorieIntake": 1131,
+        "caloriesBurned": 2162,
+        "calorieGoal": 2174,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 402
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 200
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 529
+          }
+        ]
+      },
+      {
+        "date": "2025-04-06",
+        "calorieIntake": 1665,
+        "caloriesBurned": 2385,
+        "calorieGoal": 1817,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 533
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 164
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 433
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 535
+          }
+        ]
+      },
+      {
+        "date": "2025-04-07",
+        "calorieIntake": 1998,
+        "caloriesBurned": 2189,
+        "calorieGoal": 1967,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 196
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 701
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 654
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 447
+          }
+        ]
+      },
+      {
+        "date": "2025-04-08",
+        "calorieIntake": 1657,
+        "caloriesBurned": 1977,
+        "calorieGoal": 1930,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 445
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 736
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 476
+          }
+        ]
+      },
+      {
+        "date": "2025-04-09",
+        "calorieIntake": 1152,
+        "caloriesBurned": 2252,
+        "calorieGoal": 2102,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 540
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 612
+          }
+        ]
+      },
+      {
+        "date": "2025-04-10",
+        "calorieIntake": 1594,
+        "caloriesBurned": 2428,
+        "calorieGoal": 2087,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 172
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 577
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 496
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 349
+          }
+        ]
+      },
+      {
+        "date": "2025-04-11",
+        "calorieIntake": 1036,
+        "caloriesBurned": 2446,
+        "calorieGoal": 2051,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 342
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 180
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 514
+          }
+        ]
+      },
+      {
+        "date": "2025-04-12",
+        "calorieIntake": 754,
+        "caloriesBurned": 2277,
+        "calorieGoal": 1841,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 189
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 565
+          }
+        ]
+      },
+      {
+        "date": "2025-04-13",
+        "calorieIntake": 1507,
+        "caloriesBurned": 2036,
+        "calorieGoal": 2008,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 499
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 577
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 431
+          }
+        ]
+      },
+      {
+        "date": "2025-04-14",
+        "calorieIntake": 235,
+        "caloriesBurned": 2104,
+        "calorieGoal": 2026,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 235
+          }
+        ]
+      },
+      {
+        "date": "2025-04-15",
+        "calorieIntake": 978,
+        "caloriesBurned": 2120,
+        "calorieGoal": 1862,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 383
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 595
+          }
+        ]
+      },
+      {
+        "date": "2025-04-16",
+        "calorieIntake": 710,
+        "caloriesBurned": 2105,
+        "calorieGoal": 2074,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 493
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 217
+          }
+        ]
+      },
+      {
+        "date": "2025-04-17",
+        "calorieIntake": 933,
+        "caloriesBurned": 2434,
+        "calorieGoal": 2068,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 441
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 492
+          }
+        ]
+      },
+      {
+        "date": "2025-04-18",
+        "calorieIntake": 1434,
+        "caloriesBurned": 2218,
+        "calorieGoal": 2042,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 506
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 691
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 237
+          }
+        ]
+      },
+      {
+        "date": "2025-04-19",
+        "calorieIntake": 1623,
+        "caloriesBurned": 2157,
+        "calorieGoal": 2072,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 630
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 531
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 462
+          }
+        ]
+      },
+      {
+        "date": "2025-04-20",
+        "calorieIntake": 1893,
+        "caloriesBurned": 2154,
+        "calorieGoal": 1997,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 439
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 688
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 186
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 580
+          }
+        ]
+      },
+      {
+        "date": "2025-04-21",
+        "calorieIntake": 830,
+        "caloriesBurned": 2336,
+        "calorieGoal": 2107,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 198
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 632
+          }
+        ]
+      },
+      {
+        "date": "2025-04-22",
+        "calorieIntake": 762,
+        "caloriesBurned": 2157,
+        "calorieGoal": 1869,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 577
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 185
+          }
+        ]
+      },
+      {
+        "date": "2025-04-23",
+        "calorieIntake": 613,
+        "caloriesBurned": 2027,
+        "calorieGoal": 2098,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 431
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 182
+          }
+        ]
+      },
+      {
+        "date": "2025-04-24",
+        "calorieIntake": 1513,
+        "caloriesBurned": 1818,
+        "calorieGoal": 2166,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 732
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 239
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 542
+          }
+        ]
+      },
+      {
+        "date": "2025-04-25",
+        "calorieIntake": 212,
+        "caloriesBurned": 2185,
+        "calorieGoal": 2056,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 212
+          }
+        ]
+      },
+      {
+        "date": "2025-04-26",
+        "calorieIntake": 438,
+        "caloriesBurned": 2140,
+        "calorieGoal": 1917,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 438
+          }
+        ]
+      },
+      {
+        "date": "2025-04-27",
+        "calorieIntake": 602,
+        "caloriesBurned": 2388,
+        "calorieGoal": 2087,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 602
+          }
+        ]
+      },
+      {
+        "date": "2025-04-28",
+        "calorieIntake": 532,
+        "caloriesBurned": 2492,
+        "calorieGoal": 2199,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 532
+          }
+        ]
+      },
+      {
+        "date": "2025-04-29",
+        "calorieIntake": 1116,
+        "caloriesBurned": 1917,
+        "calorieGoal": 1922,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 419
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 470
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 227
+          }
+        ]
+      },
+      {
+        "date": "2025-04-30",
+        "calorieIntake": 1545,
+        "caloriesBurned": 1840,
+        "calorieGoal": 2014,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 331
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 477
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 194
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 543
+          }
+        ]
+      },
+      {
+        "date": "2025-05-01",
+        "calorieIntake": 477,
+        "caloriesBurned": 1964,
+        "calorieGoal": 2058,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 477
+          }
+        ]
+      },
+      {
+        "date": "2025-05-02",
+        "calorieIntake": 927,
+        "caloriesBurned": 2106,
+        "calorieGoal": 1833,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 440
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 487
+          }
+        ]
+      },
+      {
+        "date": "2025-05-03",
+        "calorieIntake": 233,
+        "caloriesBurned": 2278,
+        "calorieGoal": 2029,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 233
+          }
+        ]
+      },
+      {
+        "date": "2025-05-04",
+        "calorieIntake": 1674,
+        "caloriesBurned": 2232,
+        "calorieGoal": 2027,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 741
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 559
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 374
+          }
+        ]
+      },
+      {
+        "date": "2025-05-05",
+        "calorieIntake": 1843,
+        "caloriesBurned": 2230,
+        "calorieGoal": 2110,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 671
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 210
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 452
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 510
+          }
+        ]
+      },
+      {
+        "date": "2025-05-06",
+        "calorieIntake": 1722,
+        "caloriesBurned": 2393,
+        "calorieGoal": 2099,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 346
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 536
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 658
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 182
+          }
+        ]
+      },
+      {
+        "date": "2025-05-07",
+        "calorieIntake": 566,
+        "caloriesBurned": 1859,
+        "calorieGoal": 1956,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 340
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 226
+          }
+        ]
+      },
+      {
+        "date": "2025-05-08",
+        "calorieIntake": 649,
+        "caloriesBurned": 1964,
+        "calorieGoal": 1924,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 649
+          }
+        ]
+      },
+      {
+        "date": "2025-05-09",
+        "calorieIntake": 1940,
+        "caloriesBurned": 1863,
+        "calorieGoal": 2146,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 629
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 356
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 746
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 209
+          }
+        ]
+      },
+      {
+        "date": "2025-05-10",
+        "calorieIntake": 578,
+        "caloriesBurned": 2109,
+        "calorieGoal": 2003,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 199
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 379
+          }
+        ]
+      },
+      {
+        "date": "2025-05-11",
+        "calorieIntake": 1263,
+        "caloriesBurned": 2073,
+        "calorieGoal": 1974,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 172
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 538
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 553
+          }
+        ]
+      },
+      {
+        "date": "2025-05-12",
+        "calorieIntake": 1690,
+        "caloriesBurned": 2496,
+        "calorieGoal": 2007,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 187
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 550
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 479
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 474
+          }
+        ]
+      },
+      {
+        "date": "2025-05-13",
+        "calorieIntake": 1449,
+        "caloriesBurned": 2402,
+        "calorieGoal": 2039,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 628
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 585
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 236
+          }
+        ]
+      },
+      {
+        "date": "2025-05-14",
+        "calorieIntake": 1319,
+        "caloriesBurned": 2119,
+        "calorieGoal": 1872,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 166
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 455
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 698
+          }
+        ]
+      },
+      {
+        "date": "2025-05-15",
+        "calorieIntake": 1296,
+        "caloriesBurned": 2126,
+        "calorieGoal": 1817,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 709
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 196
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 391
+          }
+        ]
+      },
+      {
+        "date": "2025-05-16",
+        "calorieIntake": 1849,
+        "caloriesBurned": 2293,
+        "calorieGoal": 2032,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 763
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 184
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 461
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 441
+          }
+        ]
+      },
+      {
+        "date": "2025-05-17",
+        "calorieIntake": 1169,
+        "caloriesBurned": 2460,
+        "calorieGoal": 1914,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 569
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 418
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 182
+          }
+        ]
+      },
+      {
+        "date": "2025-05-18",
+        "calorieIntake": 1831,
+        "caloriesBurned": 1938,
+        "calorieGoal": 1986,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 163
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 671
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 464
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 533
+          }
+        ]
+      },
+      {
+        "date": "2025-05-19",
+        "calorieIntake": 1518,
+        "caloriesBurned": 1982,
+        "calorieGoal": 2016,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 625
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 238
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 655
+          }
+        ]
+      },
+      {
+        "date": "2025-05-20",
+        "calorieIntake": 1240,
+        "caloriesBurned": 2343,
+        "calorieGoal": 1966,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 633
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 199
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 408
+          }
+        ]
+      },
+      {
+        "date": "2025-05-21",
+        "calorieIntake": 1729,
+        "caloriesBurned": 2364,
+        "calorieGoal": 1815,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 426
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 567
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 544
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 192
+          }
+        ]
+      },
+      {
+        "date": "2025-05-22",
+        "calorieIntake": 1625,
+        "caloriesBurned": 2375,
+        "calorieGoal": 2004,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 476
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 235
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 547
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 367
+          }
+        ]
+      },
+      {
+        "date": "2025-05-23",
+        "calorieIntake": 726,
+        "caloriesBurned": 1906,
+        "calorieGoal": 1940,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 515
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 211
+          }
+        ]
+      },
+      {
+        "date": "2025-05-24",
+        "calorieIntake": 238,
+        "caloriesBurned": 2375,
+        "calorieGoal": 2111,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 238
+          }
+        ]
+      },
+      {
+        "date": "2025-05-25",
+        "calorieIntake": 1665,
+        "caloriesBurned": 2315,
+        "calorieGoal": 1853,
+        "meals": [
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 492
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 193
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 395
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 585
+          }
+        ]
+      },
+      {
+        "date": "2025-05-26",
+        "calorieIntake": 1957,
+        "caloriesBurned": 1923,
+        "calorieGoal": 1940,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 363
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 633
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 203
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 758
+          }
+        ]
+      },
+      {
+        "date": "2025-05-27",
+        "calorieIntake": 1301,
+        "caloriesBurned": 1872,
+        "calorieGoal": 1978,
+        "meals": [
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 667
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 445
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 189
+          }
+        ]
+      },
+      {
+        "date": "2025-05-28",
+        "calorieIntake": 983,
+        "caloriesBurned": 2404,
+        "calorieGoal": 1903,
+        "meals": [
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 344
+          },
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 195
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 444
+          }
+        ]
+      },
+      {
+        "date": "2025-05-29",
+        "calorieIntake": 1620,
+        "caloriesBurned": 1837,
+        "calorieGoal": 1893,
+        "meals": [
+          {
+            "name": "加餐",
+            "foods": [
+              "水果",
+              "坚果"
+            ],
+            "calories": 187
+          },
+          {
+            "name": "晚餐",
+            "foods": [
+              "面条",
+              "沙拉",
+              "牛肉"
+            ],
+            "calories": 448
+          },
+          {
+            "name": "早餐",
+            "foods": [
+              "鸡蛋",
+              "牛奶",
+              "面包"
+            ],
+            "calories": 440
+          },
+          {
+            "name": "午餐",
+            "foods": [
+              "米饭",
+              "蔬菜",
+              "鸡胸肉"
+            ],
+            "calories": 545
+          }
+        ]
+      }
+    ],
+    "userSettings": {
+      "name": "演示用户",
+      "age": 25,
+      "height": 175,
+      "gender": "male",
+      "activityLevel": "moderate",
+      "fitnessGoal": "lose_weight"
+    }
+  }
+}

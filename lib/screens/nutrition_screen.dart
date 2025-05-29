@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
-import '../mock_data.dart';
+import '../widgets/calorie_balance_chart.dart';
+import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
+import '../models/nutrition_entry.dart';
 
 class NutritionScreen extends StatefulWidget {
   const NutritionScreen({super.key});
@@ -11,52 +13,22 @@ class NutritionScreen extends StatefulWidget {
 }
 
 class _NutritionScreenState extends State<NutritionScreen> {
-  final MockData _mockData = MockData();
-  
-  // 模拟饮食数据
-  final Map<String, List<Map<String, dynamic>>> _meals = {
-    '早餐': [
-      {'name': '鸡蛋', 'calories': 150, 'amount': '2个'},
-      {'name': '全麦面包', 'calories': 200, 'amount': '2片'},
-    ],
-    '午餐': [
-      {'name': '米饭', 'calories': 250, 'amount': '1碗'},
-      {'name': '炒青菜', 'calories': 100, 'amount': '1份'},
-      {'name': '鸡胸肉', 'calories': 300, 'amount': '100g'},
-    ],
-    '晚餐': [
-      {'name': '全麦面', 'calories': 300, 'amount': '1碗'},
-      {'name': '西红柿', 'calories': 50, 'amount': '1个'},
-      {'name': '鸡蛋', 'calories': 75, 'amount': '1个'},
-    ],
-  };
+  final DataManager _dataManager = DataManager();
   
   @override
   void initState() {
     super.initState();
-    _mockData.addListener(_updateUI);
-    _updateCaloriesFromMeals();
+    _dataManager.addListener(_updateUI);
   }
   
   @override
   void dispose() {
-    _mockData.removeListener(_updateUI);
+    _dataManager.removeListener(_updateUI);
     super.dispose();
   }
   
   void _updateUI() {
     setState(() {});
-  }
-  
-  // 从餐食计算总热量
-  void _updateCaloriesFromMeals() {
-    int total = 0;
-    for (final meal in _meals.values) {
-      for (final item in meal) {
-        total += item['calories'] as int;
-      }
-    }
-    _mockData.updateCalorieIntake(total);
   }
 
   @override
@@ -84,14 +56,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
                   ),
                   const SizedBox(height: 16),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildCalorieItem('摄入', _mockData.calorieIntake, Colors.blue),
-                      _buildCalorieItem('消耗', _mockData.caloriesBurned, Colors.green),
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,                    children: [
+                      _buildCalorieItem('摄入', _dataManager.calorieIntake, Colors.blue),
+                      _buildCalorieItem('消耗', _dataManager.caloriesBurned, Colors.green),
                       _buildCalorieItem(
                         '剩余',
-                        _mockData.calorieBalance,
-                        _mockData.calorieBalance > 0 ? Colors.red : Colors.green,
+                        _dataManager.calorieBalance,
+                        _dataManager.calorieBalance > 0 ? Colors.red : Colors.green,
                       ),
                     ],
                   ),
@@ -134,7 +105,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     child: _buildCommonFoodsList(),
                   ),
                 ],
-              ),
+              ),            ),
+            
+            const SizedBox(height: 16),
+            
+            // 热量盈亏图表
+            const CalorieBalanceChart(
+              showTimeSelector: true,
             ),
             
             const SizedBox(height: 16),
@@ -202,15 +179,14 @@ class _NutritionScreenState extends State<NutritionScreen> {
       ],
     );
   }
-  
-  // 构建热量进度条
+    // 构建热量进度条
   Widget _buildCalorieProgress() {
-    final caloriePercent = _mockData.calorieIntake / _mockData.calorieGoal;
+    final caloriePercent = _dataManager.calorieIntake / _dataManager.calorieGoal;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '每日目标: ${_mockData.calorieGoal} kcal',
+          '每日目标: ${_dataManager.calorieGoal} kcal',
           style: const TextStyle(
             fontSize: 14,
             color: Colors.grey,
@@ -243,12 +219,11 @@ class _NutritionScreenState extends State<NutritionScreen> {
       ],
     );
   }
-  
-  // 构建快速添加按钮
+    // 构建快速添加按钮
   Widget _buildQuickAddButton(String label, int calories) {
     return ElevatedButton(
       onPressed: () {
-        _mockData.updateCalorieIntake(_mockData.calorieIntake + calories);
+        _dataManager.updateCalorieIntake(_dataManager.calorieIntake + calories);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('已添加 $calories kcal')),
         );
@@ -281,11 +256,10 @@ class _NutritionScreenState extends State<NutritionScreen> {
           padding: const EdgeInsets.only(right: 16.0),
           child: Column(
             mainAxisSize: MainAxisSize.min,
-            children: [
-              InkWell(
+            children: [              InkWell(
                 onTap: () {
-                  _mockData.updateCalorieIntake(
-                    _mockData.calorieIntake + (food['calories'] as int)
+                  _dataManager.updateCalorieIntake(
+                    _dataManager.calorieIntake + (food['calories'] as int)
                   );
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(content: Text('已添加 ${food['name']} (${food['calories']} kcal)')),
@@ -311,18 +285,37 @@ class _NutritionScreenState extends State<NutritionScreen> {
           ),
         );
       },
-    );
-  }
+    );  }
   
   // 构建餐次卡片
   List<Widget> _buildMealSections() {
     final result = <Widget>[];
+    final todayNutrition = _dataManager.nutritionToday;
     
-    _meals.forEach((mealName, foodItems) {
+    // 按餐次分组
+    final mealGroups = <String, List<MealEntry>>{};
+    if (todayNutrition != null && todayNutrition.meals.isNotEmpty) {
+      for (final meal in todayNutrition.meals) {
+        if (!mealGroups.containsKey(meal.mealType)) {
+          mealGroups[meal.mealType] = [];
+        }
+        mealGroups[meal.mealType]!.add(meal);
+      }
+    }
+    
+    // 确保所有餐次都有显示，即使是空的
+    final allMealTypes = ['早餐', '午餐', '晚餐', '加餐'];
+    for (final mealType in allMealTypes) {
+      if (!mealGroups.containsKey(mealType)) {
+        mealGroups[mealType] = [];
+      }
+    }
+    
+    mealGroups.forEach((mealName, foodItems) {
       // 计算当前餐次的总卡路里
       int totalCalories = 0;
       for (final food in foodItems) {
-        totalCalories += food['calories'] as int;
+        totalCalories += food.calories;
       }
       
       result.add(
@@ -347,10 +340,13 @@ class _NutritionScreenState extends State<NutritionScreen> {
                     ),
                   ),
                 ],
-              ),
-              const SizedBox(height: 8),
+              ),              const SizedBox(height: 8),
               const Divider(),
-              ...foodItems.map((food) => _buildFoodItem(food, mealName)).toList(),
+              ...foodItems.asMap().entries.map((entry) {
+                final index = entry.key;
+                final food = entry.value;
+                return _buildFoodItem(food, mealName, index);
+              }).toList(),
               const SizedBox(height: 8),
               Center(
                 child: TextButton.icon(
@@ -369,11 +365,10 @@ class _NutritionScreenState extends State<NutritionScreen> {
     
     return result;
   }
-  
   // 构建单个食物项
-  Widget _buildFoodItem(Map<String, dynamic> food, String mealType) {
+  Widget _buildFoodItem(MealEntry meal, String mealType, int index) {
     return Dismissible(
-      key: Key('${food['name']}_${food['calories']}_$mealType'),
+      key: Key('${meal.name}_${meal.calories}_${meal.timestamp.millisecondsSinceEpoch}'),
       background: Container(
         color: Colors.red,
         alignment: Alignment.centerRight,
@@ -384,21 +379,18 @@ class _NutritionScreenState extends State<NutritionScreen> {
         ),
       ),
       direction: DismissDirection.endToStart,
-      onDismissed: (direction) {
-        setState(() {
-          _meals[mealType]!.remove(food);
-          _updateCaloriesFromMeals();
-        });
+      onDismissed: (direction) async {
+        await _dataManager.removeMeal(index);
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('已从$mealType移除 ${food['name']}')),
+          SnackBar(content: Text('已从$mealType移除 ${meal.name}')),
         );
       },
       child: ListTile(
         contentPadding: EdgeInsets.zero,
-        title: Text(food['name'] as String),
-        subtitle: Text(food['amount'] as String),
+        title: Text(meal.name),
+        subtitle: Text(meal.amount),
         trailing: Text(
-          '${food['calories']} kcal',
+          '${meal.calories} kcal',
           style: const TextStyle(
             fontWeight: FontWeight.bold,
           ),
@@ -437,12 +429,11 @@ class _NutritionScreenState extends State<NutritionScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  // 选择餐次
+                  const SizedBox(height: 16),                  // 选择餐次
                   DropdownButton<String>(
                     value: selectedMealType,
                     isExpanded: true,
-                    items: _meals.keys.map((String mealType) {
+                    items: ['早餐', '午餐', '晚餐', '加餐'].map((String mealType) {
                       return DropdownMenuItem<String>(
                         value: mealType,
                         child: Text(mealType),
@@ -489,22 +480,20 @@ class _NutritionScreenState extends State<NutritionScreen> {
                         onPressed: () => Navigator.pop(context),
                         child: const Text('取消'),
                       ),
-                      const SizedBox(width: 16),
-                      PrimaryButton(
-                        onPressed: () {
+                      const SizedBox(width: 16),                      PrimaryButton(
+                        onPressed: () async {
                           final name = nameController.text.trim();
                           final amount = amountController.text.trim();
                           final calories = int.tryParse(caloriesController.text) ?? 0;
-                          
-                          if (name.isNotEmpty && amount.isNotEmpty && calories > 0) {
-                            setState(() {
-                              _meals[selectedMealType]!.add({
-                                'name': name,
-                                'amount': amount,
-                                'calories': calories,
-                              });
-                              _updateCaloriesFromMeals();
-                            });
+                            if (name.isNotEmpty && amount.isNotEmpty && calories > 0) {
+                            final meal = MealEntry(
+                              mealType: selectedMealType,
+                              name: name,
+                              calories: calories,
+                              amount: amount,
+                              timestamp: DateTime.now(),
+                            );
+                            await _dataManager.addMeal(meal);
                             Navigator.pop(context);
                           }
                         },

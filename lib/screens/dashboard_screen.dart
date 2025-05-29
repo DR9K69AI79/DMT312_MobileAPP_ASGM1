@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
-import '../widgets/weight_line_chart.dart';
+import '../widgets/weight_chart.dart';
 import '../widgets/ring_progress.dart';
-import '../mock_data.dart';
+import '../widgets/time_range_selector.dart';
+import '../services/data_manager.dart';
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -12,36 +13,47 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
-  final _mockData = MockData();
+  final _dataManager = DataManager();
 
   @override
   void initState() {
     super.initState();
     // 监听数据变化，更新UI
-    _mockData.addListener(_updateUI);
+    _dataManager.addListener(_updateUI);
+    // 确保数据管理器已初始化
+    _ensureDataManagerInitialized();
   }
 
   @override
   void dispose() {
     // 移除监听器
-    _mockData.removeListener(_updateUI);
+    _dataManager.removeListener(_updateUI);
     super.dispose();
   }
 
   void _updateUI() {
-    setState(() {});
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  // 确保DataManager已经初始化
+  Future<void> _ensureDataManagerInitialized() async {
+    await _dataManager.initialize();
+    if (mounted) {
+      setState(() {});
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('健身助手'),
+      appBar: AppBar(        title: const Text('健身助手'),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () {
-              // 打开设置页面
+              Navigator.pushNamed(context, '/settings');
             },
           ),
         ],
@@ -57,10 +69,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      const Text('今日体重', style: TextStyle(fontSize: 18)),
+                    children: [                      const Text('今日体重', style: TextStyle(fontSize: 18)),
                       Text(
-                        '${_mockData.currentWeight.toStringAsFixed(1)} kg',
+                        '${(_dataManager.currentWeight ?? 0.0).toStringAsFixed(1)} kg',
                         style: TextStyle(
                           fontSize: 36,
                           fontWeight: FontWeight.bold,
@@ -69,8 +80,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
-                  WeightLineChart(data: _mockData.weights7d),
+                  const SizedBox(height: 16),                  const EnhancedWeightChart(
+                    showBodyFat: false,
+                    showTimeSelector: false,
+                    defaultTimeRange: TimeRange.month1, // Dashboard显示30天数据
+                  ),
                 ],
               ),
             ),
@@ -85,7 +99,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   const SizedBox(height: 16),
                   Center(
                     child: RingProgress(
-                      percent: _mockData.workoutCompletionPercent,
+                      percent: _dataManager.workoutCompletionPercent,
                       label: "已完成",
                     ),
                   ),
@@ -102,25 +116,39 @@ class _DashboardScreenState extends State<DashboardScreen> {
               child: Column(
                 children: [
                   const Text('热量盈亏', style: TextStyle(fontSize: 18)),
-                  const SizedBox(height: 8),
-                  Text(
-                    '${_mockData.calorieBalance} kcal',
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: _mockData.calorieBalance > 0
-                          ? Colors.red
-                          : Colors.green,
-                    ),
+                  const SizedBox(height: 16),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        '${_dataManager.calorieBalance > 0 ? '+' : ''}',
+                        style: TextStyle(
+                          fontSize: 24,
+                          color: _dataManager.calorieBalance > 0
+                              ? Colors.green
+                              : Colors.red,
+                        ),
+                      ),
+                      Text(
+                        '${_dataManager.calorieBalance} kcal',
+                        style: TextStyle(
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                          color: _dataManager.calorieBalance > 0
+                              ? Colors.green
+                              : Colors.red,
+                        ),
+                      ),
+                    ],
                   ),
                   const SizedBox(height: 16),
                   _buildCalorieProgress(),
-                  const SizedBox(height: 8),
+                  const SizedBox(height: 16),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text('摄入: ${_mockData.calorieIntake} kcal'),
-                      Text('消耗: ${_mockData.caloriesBurned} kcal'),
+                      Text('摄入: ${_dataManager.calorieIntake} kcal'),
+                      Text('消耗: ${_dataManager.caloriesBurned} kcal'),
                     ],
                   ),
                 ],
@@ -129,31 +157,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
-      floatingActionButton: _FabMenu(mockData: _mockData),
+      floatingActionButton: _FabMenu(dataManager: _dataManager),
     );
   }
   
   // 构建训练列表
   Widget _buildWorkoutList() {
-    final workouts = _mockData.workoutToday;
+    final workouts = _dataManager.workoutToday;
+    
     if (workouts.isEmpty) {
-      return const Padding(
-        padding: EdgeInsets.all(16),
-        child: Center(child: Text('今日暂无训练计划')),
-      );
+      return const Text('今日暂无训练计划');
     }
     
     return Column(
       children: workouts.asMap().entries.map((entry) {
         final workout = entry.value;
         return ListTile(
-          contentPadding: EdgeInsets.zero,
           title: Text(workout.name),
           subtitle: Text('${workout.sets} 组'),
           trailing: workout.isCompleted
-            ? const Icon(Icons.check_circle, color: Colors.green)
-            : const Icon(Icons.circle_outlined),
-          onTap: () => _mockData.toggleWorkoutCompleted(entry.key),
+              ? const Icon(Icons.check_circle, color: Colors.green)
+              : const Icon(Icons.circle_outlined),
+          onTap: () => _dataManager.toggleWorkoutCompleted(entry.key),
         );
       }).toList(),
     );
@@ -161,38 +186,29 @@ class _DashboardScreenState extends State<DashboardScreen> {
   
   // 构建热量进度条
   Widget _buildCalorieProgress() {
-    final caloriePercent = _mockData.calorieIntake / _mockData.calorieGoal;
-    return Stack(
+    final caloriePercent = _dataManager.calorieIntake / _dataManager.calorieGoal;
+    
+    return Column(
       children: [
-        // 背景条
-        Container(
-          height: 20,
-          decoration: BoxDecoration(
-            color: Colors.grey.shade200,
-            borderRadius: BorderRadius.circular(10),
+        LinearProgressIndicator(
+          value: caloriePercent.clamp(0.0, 1.0),
+          backgroundColor: Colors.grey[300],
+          valueColor: AlwaysStoppedAnimation<Color>(
+            caloriePercent > 1.0 ? Colors.red : Colors.blue,
           ),
         ),
-        // 填充条
-        FractionallySizedBox(
-          widthFactor: caloriePercent.clamp(0.0, 1.0),
-          child: Container(
-            height: 20,
-            decoration: BoxDecoration(
-              color: caloriePercent > 1.0 ? Colors.red : Colors.blue,
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        ),
+        const SizedBox(height: 8),
+        Text('目标: ${_dataManager.calorieGoal} kcal'),
       ],
     );
   }
 }
 
-// 浮动操作按钮菜单，内部组件
+// FAB 菜单组件
 class _FabMenu extends StatefulWidget {
-  final MockData mockData;
+  final DataManager dataManager;
   
-  const _FabMenu({required this.mockData});
+  const _FabMenu({required this.dataManager});
   
   @override
   State<_FabMenu> createState() => _FabMenuState();
@@ -239,72 +255,60 @@ class _FabMenuState extends State<_FabMenu> with SingleTickerProviderStateMixin 
           child: Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
             child: FloatingActionButton.small(
-              heroTag: 'weight',
+              heroTag: "weight",
+              onPressed: () => _showAddWeightDialog(context),
               child: const Icon(Icons.monitor_weight),
-              onPressed: () {
-                _showAddWeightDialog(context);
-                _toggle();
-              },
             ),
           ),
         ),
-        // 训练记录按钮
+        // 训练按钮
         ScaleTransition(
           scale: _animationController,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
             child: FloatingActionButton.small(
-              heroTag: 'workout',
+              heroTag: "workout",
+              onPressed: () => Navigator.pushNamed(context, '/workout'),
               child: const Icon(Icons.fitness_center),
-              onPressed: () {
-                // 跳转到训练页面
-                Navigator.pushNamed(context, '/workout');
-                _toggle();
-              },
             ),
           ),
         ),
-        // 饮食记录按钮
+        // 饮食按钮
         ScaleTransition(
           scale: _animationController,
           child: Padding(
             padding: const EdgeInsets.only(bottom: 16.0),
             child: FloatingActionButton.small(
-              heroTag: 'diet',
+              heroTag: "nutrition",
+              onPressed: () => Navigator.pushNamed(context, '/nutrition'),
               child: const Icon(Icons.restaurant_menu),
-              onPressed: () {
-                // 跳转到饮食页面
-                Navigator.pushNamed(context, '/nutrition');
-                _toggle();
-              },
             ),
           ),
         ),
-        // 主按钮
+        // 主FAB
         FloatingActionButton(
-          child: AnimatedIcon(
-            icon: AnimatedIcons.menu_close,
-            progress: _animationController,
-          ),
           onPressed: _toggle,
+          child: AnimatedRotation(
+            turns: _isOpen ? 0.125 : 0.0,
+            duration: const Duration(milliseconds: 300),
+            child: const Icon(Icons.add),
+          ),
         ),
       ],
     );
   }
   
-  // 体重录入对话框
+  // 显示添加体重对话框
   void _showAddWeightDialog(BuildContext context) {
-    final controller = TextEditingController(
-      text: widget.mockData.currentWeight.toString()
-    );
+    final weightController = TextEditingController();
     
-    showDialog<void>(
+    showDialog(
       context: context,
-      builder: (context) {
+      builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('记录体重'),
           content: TextField(
-            controller: controller,
+            controller: weightController,
             keyboardType: TextInputType.number,
             decoration: const InputDecoration(
               labelText: '体重 (kg)',
@@ -317,12 +321,17 @@ class _FabMenuState extends State<_FabMenu> with SingleTickerProviderStateMixin 
               child: const Text('取消'),
             ),
             TextButton(
-              onPressed: () {
-                final value = double.tryParse(controller.text);
-                if (value != null) {
-                  widget.mockData.addWeight(value);
+              onPressed: () async {
+                final weight = double.tryParse(weightController.text);
+                if (weight != null) {
+                  await widget.dataManager.addWeight(weight);
+                  if (context.mounted) {
+                    Navigator.of(context).pop();
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text('体重记录已保存')),
+                    );
+                  }
                 }
-                Navigator.of(context).pop();
               },
               child: const Text('保存'),
             ),

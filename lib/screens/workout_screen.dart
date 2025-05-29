@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/ring_progress.dart';
-import '../mock_data.dart';
-import '../models/workout_entry.dart';
+import '../widgets/workout_heatmap.dart';
+import '../services/data_manager.dart';
 import '../widgets/primary_button.dart';
+import '../models/workout_entry.dart';
 
 class WorkoutScreen extends StatefulWidget {
   const WorkoutScreen({super.key});
@@ -13,17 +14,17 @@ class WorkoutScreen extends StatefulWidget {
 }
 
 class _WorkoutScreenState extends State<WorkoutScreen> {
-  final MockData _mockData = MockData();
+  final DataManager _dataManager = DataManager();
   
   @override
   void initState() {
     super.initState();
-    _mockData.addListener(_updateUI);
+    _dataManager.addListener(_updateUI);
   }
   
   @override
   void dispose() {
-    _mockData.removeListener(_updateUI);
+    _dataManager.removeListener(_updateUI);
     super.dispose();
   }
   
@@ -53,16 +54,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  const SizedBox(height: 16),
-                  Center(
+                  const SizedBox(height: 16),                  Center(
                     child: RingProgress(
-                      percent: _mockData.workoutCompletionPercent,
+                      percent: _dataManager.workoutCompletionPercent,
                       label: '已完成',
                     ),
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    '已完成 ${_mockData.workoutToday.where((w) => w.isCompleted).length} / ${_mockData.workoutToday.length} 个训练',
+                    '已完成 ${_dataManager.workoutToday.where((w) => w.isCompleted).length} / ${_dataManager.workoutToday.length} 个训练',
                     textAlign: TextAlign.center,
                   ),
                 ],
@@ -98,8 +98,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   const SizedBox(height: 8),
                   _buildWorkoutList(),
                 ],
-              ),
-            ),
+              ),            ),
+              const SizedBox(height: 16),            // 训练完成度热力图
+            const WorkoutHeatmap(),
             
             const SizedBox(height: 16),
             
@@ -132,10 +133,9 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       ),
     );
   }
-  
-  // 构建训练列表
+    // 构建训练列表
   Widget _buildWorkoutList() {
-    final workouts = _mockData.workoutToday;
+    final workouts = _dataManager.workoutToday;
     
     if (workouts.isEmpty) {
       return const Padding(
@@ -161,12 +161,8 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               color: Colors.white,
             ),
           ),
-          direction: DismissDirection.endToStart,
-          onDismissed: (direction) {
-            setState(() {
-              _mockData.workoutToday.removeAt(index);
-              _mockData.notifyListeners();
-            });
+          direction: DismissDirection.endToStart,          onDismissed: (direction) async {
+            await _dataManager.removeWorkout(index);
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text('已删除 ${workout.name}')),
             );
@@ -178,7 +174,7 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
               icon: workout.isCompleted
                 ? const Icon(Icons.check_circle, color: Colors.green)
                 : const Icon(Icons.circle_outlined),
-              onPressed: () => _mockData.toggleWorkoutCompleted(index),
+              onPressed: () => _dataManager.toggleWorkoutCompleted(index),
             ),
           ),
         );
@@ -231,10 +227,14 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
       },
     );
   }
-  
   // 快速添加训练
   void _quickAddWorkout(String name, int sets) {
-    _mockData.addWorkout(name, sets);
+    final workout = WorkoutEntry(
+      name: name,
+      sets: sets,
+      date: DateTime.now(),
+    );
+    _dataManager.addWorkout(workout);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(content: Text('已添加 $name')),
     );
@@ -295,12 +295,15 @@ class _WorkoutScreenState extends State<WorkoutScreen> {
                   ),
                   const SizedBox(width: 16),
                   PrimaryButton(
-                    onPressed: () {
-                      final name = nameController.text.trim();
+                    onPressed: () {                      final name = nameController.text.trim();
                       final sets = int.tryParse(setsController.text) ?? 3;
-                      
-                      if (name.isNotEmpty) {
-                        _mockData.addWorkout(name, sets);
+                        if (name.isNotEmpty) {
+                        final workout = WorkoutEntry(
+                          name: name,
+                          sets: sets,
+                          date: DateTime.now(),
+                        );
+                        _dataManager.addWorkout(workout);
                         Navigator.pop(context);
                       }
                     },
