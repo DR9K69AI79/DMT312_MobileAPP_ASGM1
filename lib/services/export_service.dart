@@ -164,13 +164,11 @@ class ExportService {  /// 导出数据到用户选择的位置
       // 验证数据格式
       if (!_validateImportData(importData)) {
         throw FormatException('Invalid backup file format');
-      }
-
-      final data = importData['data'] as Map<String, dynamic>;
+      }      final data = importData['data'] as Map<String, dynamic>;
       final dataManager = DataManager();
 
-      // 清空现有数据
-      await dataManager.clearAllData();      // 导入体重数据
+      // 清空现有数据，但保留文章数据（文章从MD文件动态加载，不应被导入数据影响）
+      await dataManager.clearUserData();// 导入体重数据
       if (data['weights'] != null) {
         final weightsList = data['weights'] as List;
         for (final weightJson in weightsList) {
@@ -287,11 +285,13 @@ class ExportService {  /// 导出数据到用户选择的位置
         }
         if (settings['calorieGoal'] != null) {
           await dataManager.updateCalorieGoal(settings['calorieGoal'] as int);
-        }
-        if (settings['height'] != null) {
+        }        if (settings['height'] != null) {
           await dataManager.updateHeight((settings['height'] as num).toDouble());
         }
       }
+
+      // 重新加载文章数据，确保文章数据可用
+      await dataManager.reloadArticles();
 
       return true;
     } catch (e) {

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import '../widgets/glass_card.dart';
+import '../widgets/article_cover_image.dart';
 import '../services/data_manager.dart';
+import '../services/article_service.dart';
 import '../models/article.dart';
 
 class LibraryScreen extends StatefulWidget {
@@ -12,19 +15,54 @@ class LibraryScreen extends StatefulWidget {
 
 class _LibraryScreenState extends State<LibraryScreen> {
   final DataManager _dataManager = DataManager();
-  String _selectedCategory = 'All';
-  final List<String> _categories = ['All', 'Training', 'Nutrition', 'Recovery'];
+  final ArticleService _articleService = ArticleService();
+  List<String> _allTags = [];
+  String _selectedTag = 'All';
   String _searchQuery = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _updateFilters();
+    // 监听DataManager变化，以便在文章加载完成后更新筛选器
+    _dataManager.addListener(_updateFilters);
+  }
   
   @override
+  void dispose() {
+    _dataManager.removeListener(_updateFilters);
+    super.dispose();
+  }
+  
+  /// 从文章中动态提取所有标签（包括分类）
+  void _updateFilters() {
+    final articles = _dataManager.articles;
+    
+    // 提取所有tags和categories作为统一的标签
+    final tags = <String>{};
+    for (final article in articles) {
+      // 添加文章的所有标签
+      tags.addAll(article.tags);
+      // 添加分类作为标签
+      tags.add(article.category);
+    }
+    final sortedTags = tags.toList()..sort();
+    setState(() {
+      _allTags = ['All', ...sortedTags];
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // 根据分类和搜索过滤文章
+    // 根据标签和搜索过滤文章
     final filteredArticles = _dataManager.articles.where((article) {
-      final matchesCategory = _selectedCategory == 'All' || 
-                             article.category == _selectedCategory;
+      final matchesTag = _selectedTag == 'All' ||
+                        article.tags.contains(_selectedTag) ||
+                        article.category == _selectedTag;
       final matchesSearch = _searchQuery.isEmpty ||
-                          article.title.toLowerCase().contains(_searchQuery.toLowerCase());
-      return matchesCategory && matchesSearch;
+                          article.title.toLowerCase().contains(_searchQuery.toLowerCase()) ||
+                          article.description?.toLowerCase().contains(_searchQuery.toLowerCase()) == true;
+      return matchesTag && matchesSearch;
     }).toList();
     
     return Scaffold(
@@ -33,38 +71,62 @@ class _LibraryScreenState extends State<LibraryScreen> {
       ),
       body: Column(
         children: [
-          // 分类标签栏
+          // 标签筛选栏
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: GlassCard(
-              child: SizedBox(
-                height: 40,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _categories.length,
-                  itemBuilder: (context, index) {
-                    final category = _categories[index];
-                    final isSelected = category == _selectedCategory;
-                    
-                    return Padding(
-                      padding: const EdgeInsets.only(right: 8.0),
-                      child: ChoiceChip(
-                        label: Text(category),
-                        selected: isSelected,
-                        onSelected: (selected) {
-                          if (selected) {
-                            setState(() {
-                              _selectedCategory = category;
-                            });
-                          }
-                        },
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.only(left: 12.0, top: 8.0, bottom: 4.0),
+                    child: Text(
+                      'Filter by Tags',
+                      style: TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: _allTags.length,
+                      itemBuilder: (context, index) {
+                        final tag = _allTags[index];
+                        final isSelected = tag == _selectedTag;
+                        
+                        return Padding(
+                          padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
+                          child: FilterChip(
+                            label: Text(
+                              tag,
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: isSelected ? Colors.white : null,
+                              ),
+                            ),
+                            selected: isSelected,
+                            onSelected: (selected) {
+                              setState(() {
+                                _selectedTag = selected ? tag : 'All';
+                              });
+                            },
+                            backgroundColor: Colors.grey.withValues(alpha: 0.1),
+                            selectedColor: Theme.of(context).primaryColor,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
+          
+          const SizedBox(height: 8),
           
           // 搜索框
           Padding(
@@ -86,14 +148,14 @@ class _LibraryScreenState extends State<LibraryScreen> {
           ),
           
           // 推荐文章横向滚动
-          if (_searchQuery.isEmpty && _selectedCategory == 'All') ...[
+          if (_searchQuery.isEmpty && _selectedTag == 'All') ...[
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Text(
-                    'Recommanded Articles',
+                    'Recommended Articles',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -101,7 +163,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   ),
                   const SizedBox(height: 16),
                   SizedBox(
-                    height: 200,                    child: ListView.builder(
+                    height: 135,
+                    child: ListView.builder(
                       scrollDirection: Axis.horizontal,
                       itemCount: _dataManager.articles.length,
                       itemBuilder: (context, index) {
@@ -152,13 +215,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
             fit: StackFit.expand,
             children: [
               // 文章封面
-              Image.network(
-                article.coverUrl,
+              ArticleCoverImage(
+                article: article,
                 fit: BoxFit.cover,
-                errorBuilder: (ctx, obj, st) => Container(
-                  color: Colors.grey[300],
-                  child: const Icon(Icons.broken_image, size: 50),
-                ),
               ),
               // 渐变阴影和标题
               Positioned(
@@ -173,7 +232,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                       end: Alignment.bottomCenter,
                       colors: [
                         Colors.transparent,
-                        Colors.black.withOpacity(0.8),
+                        Colors.black.withValues(alpha: 0.8),
                       ],
                     ),
                   ),
@@ -186,6 +245,13 @@ class _LibraryScreenState extends State<LibraryScreen> {
                           color: Colors.white,
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black54,
+                              offset: Offset(0, 0),
+                              blurRadius: 5,
+                            ),
+                          ],
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -216,17 +282,12 @@ class _LibraryScreenState extends State<LibraryScreen> {
         clipBehavior: Clip.antiAlias,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // 文章封面
+          children: [            // 文章封面
             Expanded(
-              child: Image.network(
-                article.coverUrl,
+              child: ArticleCoverImage(
+                article: article,
                 fit: BoxFit.cover,
                 width: double.infinity,
-                errorBuilder: (ctx, obj, st) => Container(
-                  color: Colors.grey[300],
-                  child: const Icon(Icons.broken_image, size: 50),
-                ),
               ),
             ),
             // 文章信息
@@ -271,7 +332,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
       ),
     );
   }
-  
+
   // 显示文章详情对话框
   void _showArticleDialog(Article article) {
     showDialog<void>(
@@ -305,40 +366,42 @@ class _LibraryScreenState extends State<LibraryScreen> {
               ),
               // 文章内容
               Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Image.network(
-                        article.coverUrl,
-                        height: 200,
-                        width: double.infinity,
-                        fit: BoxFit.cover,
-                        errorBuilder: (ctx, obj, st) => Container(
-                          height: 200,
-                          color: Colors.grey[300],
-                          child: const Icon(Icons.broken_image, size: 50),
+                child: FutureBuilder<String>(
+                  future: _articleService.loadMarkdownContent(article.mdPath),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    }
+                    
+                    if (snapshot.hasError) {
+                      return Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(Icons.error, size: 48, color: Colors.red),
+                            const SizedBox(height: 16),
+                            Text('Loading Failed: ${snapshot.error}'),
+                          ],
                         ),
+                      );
+                    }
+                      final markdownContent = snapshot.data ?? '';                    return Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Markdown(
+                        data: markdownContent,
+                        styleSheet: MarkdownStyleSheet(
+                          h1: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                          h2: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                          h3: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          p: const TextStyle(fontSize: 16, height: 1.5),
+                          listBullet: const TextStyle(fontSize: 16),
+                        ),
+                        selectable: true,
                       ),
-                      const SizedBox(height: 16),
-                      // 文章内容（示例）
-                      const Text(
-                        'Here is an example of the content of the article. In practical applications, content loaded from Markdown files or article details obtained from the internet will be displayed here.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Example article paragraph：Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam in dui mauris. Vivamus hendrerit arcu sed erat molestie vehicula. Sed auctor neque eu tellus rhoncus ut eleifend nibh porttitor. Ut in nulla enim. Phasellus molestie magna non est bibendum non venenatis nisl tempor. Suspendisse dictum feugiat nisl ut dapibus. Mauris iaculis porttitor.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'Example article paragraph：Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                    ],
-                  ),
+                    );
+                  },
                 ),
               ),
               // 底部操作栏
@@ -356,7 +419,7 @@ class _LibraryScreenState extends State<LibraryScreen> {
                   children: [
                     TextButton.icon(
                       icon: const Icon(Icons.bookmark_border),
-                      label: const Text('Favorite'),
+                      label: const Text('Collect'),
                       onPressed: () {},
                     ),
                     TextButton.icon(

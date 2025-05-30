@@ -9,7 +9,8 @@ from typing import Dict, List, Any
 class FitnessDataGenerator:
     def __init__(self, days: int, start_date: datetime.datetime = None, 
                  initial_weight: float = 70.0, weight_fluctuation: float = 0.5,
-                 initial_body_fat: float = 18.0, body_fat_fluctuation: float = 0.3):
+                 initial_body_fat: float = 18.0, body_fat_fluctuation: float = 0.3,
+                 english_names: bool = False):
         """
         初始化生成器
         
@@ -20,6 +21,7 @@ class FitnessDataGenerator:
             weight_fluctuation: 体重波动范围(kg)
             initial_body_fat: 初始体脂率(%)
             body_fat_fluctuation: 体脂率波动范围(%)
+            english_names: 是否使用英文名称(默认为False)
         """
         self.days = days
         self.start_date = start_date or datetime.datetime.now()
@@ -27,9 +29,10 @@ class FitnessDataGenerator:
         self.weight_fluctuation = weight_fluctuation
         self.initial_body_fat = initial_body_fat
         self.body_fat_fluctuation = body_fat_fluctuation
+        self.english_names = english_names
         
-        # 预设的训练项目（使用固定sets值以确保一致性）
-        self.workout_templates = [
+        # 预设的训练项目（中文版）
+        self.workout_templates_cn = [
             {"name": "俯卧撑", "sets": 4},
             {"name": "深蹲", "sets": 4},
             {"name": "平板支撑", "sets": 3},
@@ -45,13 +48,42 @@ class FitnessDataGenerator:
             {"name": "腿举", "sets": 4}
         ]
         
-        # 预设的食物项目和卡路里（使用固定值以确保一致性）
-        self.meal_templates = [
+        # 预设的训练项目（英文版）
+        self.workout_templates_en = [
+            {"name": "Push-ups", "sets": 4},
+            {"name": "Squats", "sets": 4},
+            {"name": "Plank", "sets": 3},
+            {"name": "Pull-ups", "sets": 3},
+            {"name": "Crunches", "sets": 4},
+            {"name": "Bicep Curls", "sets": 3},
+            {"name": "Tricep Dips", "sets": 3},
+            {"name": "Dumbbell Rows", "sets": 4},
+            {"name": "Lunges", "sets": 4},
+            {"name": "Weighted Squats", "sets": 4},
+            {"name": "Overhead Press", "sets": 3},
+            {"name": "Lateral Raises", "sets": 3},
+            {"name": "Leg Press", "sets": 4}
+        ]
+        
+        # 预设的食物项目和卡路里（中文版）
+        self.meal_templates_cn = [
             {"name": "早餐", "foods": ["鸡蛋", "牛奶", "面包"], "calories": 400},
             {"name": "午餐", "foods": ["米饭", "蔬菜", "鸡胸肉"], "calories": 650},
             {"name": "晚餐", "foods": ["面条", "沙拉", "牛肉"], "calories": 550},
             {"name": "加餐", "foods": ["水果", "坚果"], "calories": 200}
         ]
+        
+        # 预设的食物项目和卡路里（英文版）
+        self.meal_templates_en = [
+            {"name": "Breakfast", "foods": ["Eggs", "Milk", "Bread"], "calories": 400},
+            {"name": "Lunch", "foods": ["Rice", "Vegetables", "Chicken Breast"], "calories": 650},
+            {"name": "Dinner", "foods": ["Pasta", "Salad", "Beef"], "calories": 550},
+            {"name": "Snack", "foods": ["Fruits", "Nuts"], "calories": 200}
+        ]
+        
+        # 根据语言选择对应的模板
+        self.workout_templates = self.workout_templates_en if english_names else self.workout_templates_cn
+        self.meal_templates = self.meal_templates_en if english_names else self.meal_templates_cn
 
     def _format_date(self, date: datetime.datetime) -> str:
         """格式化日期为YYYY-MM-DD格式"""
@@ -308,14 +340,24 @@ class FitnessDataGenerator:
         nutrition = self.generate_nutrition_data()
         
         # 用户设置（基本信息）
-        user_settings = {
-            "name": "演示用户",
-            "age": 25,
-            "height": 175,
-            "gender": "male",
-            "activityLevel": "moderate",
-            "fitnessGoal": "lose_weight"
-        }
+        if self.english_names:
+            user_settings = {
+                "name": "Demo User",
+                "age": 25,
+                "height": 175,
+                "gender": "male",
+                "activityLevel": "moderate",
+                "fitnessGoal": "lose_weight"
+            }
+        else:
+            user_settings = {
+                "name": "演示用户",
+                "age": 25,
+                "height": 175,
+                "gender": "male",
+                "activityLevel": "moderate",
+                "fitnessGoal": "lose_weight"
+            }
         
         # 组装完整的导出数据结构
         export_data = {
@@ -339,10 +381,12 @@ def main():
     parser.add_argument('--initial-weight', type=float, default=70.0, help='初始体重 (kg, 默认: 70.0)')
     parser.add_argument('--initial-body-fat', type=float, default=18.0, help='初始体脂率 (%, 默认: 18.0)')
     parser.add_argument('--validate', action='store_true', help='验证生成的数据格式')
+    parser.add_argument('--english', action='store_true', help='使用英文名称生成数据')
     
     args = parser.parse_args()
     
-    print(f"正在生成 {args.days} 天的健身演示数据...")
+    language_info = "英文" if args.english else "中文"
+    print(f"正在生成 {args.days} 天的健身演示数据（{language_info}版本）...")
     print(f"初始体重: {args.initial_weight} kg")
     print(f"初始体脂率: {args.initial_body_fat}%")
     
@@ -350,7 +394,8 @@ def main():
     generator = FitnessDataGenerator(
         days=args.days,
         initial_weight=args.initial_weight,
-        initial_body_fat=args.initial_body_fat
+        initial_body_fat=args.initial_body_fat,
+        english_names=args.english
     )
     
     demo_data = generator.generate_demo_data()

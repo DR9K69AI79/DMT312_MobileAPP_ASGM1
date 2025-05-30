@@ -6,16 +6,15 @@ import '../models/workout_entry.dart';
 import '../models/article.dart';
 import '../models/nutrition_entry.dart';
 import '../models/body_fat_entry.dart';
+import 'article_service.dart';
 
 /// 数据管理器，负责管理所有应用数据的持久化
 /// 重构为按日期组织的无限历史数据存储
-class DataManager extends ChangeNotifier {
-  // 数据键
+class DataManager extends ChangeNotifier {  // 数据键
   static const String _weightDataKey = 'weight_data';
   static const String _bodyFatDataKey = 'body_fat_data';
   static const String _workoutDataKey = 'workout_data';
   static const String _nutritionDataKey = 'nutrition_data';
-  static const String _articlesKey = 'articles';
   static const String _userDataKey = 'user_data';
 
   // 单例模式实现
@@ -129,36 +128,7 @@ class DataManager extends ChangeNotifier {
         isCompleted: false,
       ),
     ];
-    
-    // 初始化默认文章
-    _articles = [
-      Article(
-        title: 'How to scientifically increase muscle mass',
-        coverUrl: 'https://picsum.photos/id/237/200/300',
-        mdPath: 'assets/articles/muscle_gain.md',
-        category: 'Training',
-      ),
-      Article(
-        title: 'Efficient fat burning training program',
-        coverUrl: 'https://picsum.photos/id/238/200/300',
-        mdPath: 'assets/articles/fat_burn.md',
-        category: 'Trainging',
-      ),
-      Article(
-        title: 'Dietary guidelines for athletes',
-        coverUrl: 'https://picsum.photos/id/239/200/300',
-        mdPath: 'assets/articles/diet.md',
-        category: 'Nutrition',
-      ),
-      Article(
-        title: '拉伸与恢复的重要性',
-        coverUrl: 'https://picsum.photos/id/240/200/300',
-        mdPath: 'assets/articles/recovery.md',
-        category: '康复',
-      ),
-    ];
-    
-    // 保存默认数据并等待完成
+      // 保存默认数据并等待完成
     debugPrint('DataManager: Saving default data...');
     await _saveWeightData();
     await _saveBodyFatData();
@@ -249,17 +219,48 @@ class DataManager extends ChangeNotifier {
       debugPrint('Error loading nutrition data: $e');
     }
   }
-
   // 加载文章数据
   Future<void> _loadArticles() async {
     try {
-      final String? dataJson = _prefs.getString(_articlesKey);
-      if (dataJson != null) {
-        final List<dynamic> dataList = json.decode(dataJson);
-        _articles = dataList.map((item) => Article.fromJson(item)).toList();
+      final articleService = ArticleService();
+      _articles = await articleService.loadAllArticles();
+      debugPrint('Articles initialized: ${_articles.length} articles');
+      
+      // 如果没有成功加载任何文章，保留一些默认文章作为后备
+      if (_articles.isEmpty) {
+        debugPrint('No articles loaded from assets, using fallback articles');
+        _articles = [
+          Article(
+            title: 'How to scientifically increase muscle mass',
+            coverUrl: 'https://picsum.photos/id/237/200/300',
+            mdPath: 'assets/articles/muscle_gain.md',
+            category: 'Training',
+          ),
+          Article(
+            title: 'Efficient fat burning training program',
+            coverUrl: 'https://picsum.photos/id/238/200/300',
+            mdPath: 'assets/articles/fat_burn.md',
+            category: 'Training',
+          ),
+        ];
       }
     } catch (e) {
       debugPrint('Error loading articles: $e');
+      // 发生错误时使用默认文章
+      _articles = [
+        Article(
+          title: 'How to scientifically increase muscle mass',
+          coverUrl: 'https://picsum.photos/id/237/200/300',
+          mdPath: 'assets/articles/muscle_gain.md',
+          category: 'Training',
+        ),
+        Article(
+          title: 'Efficient fat burning training program',
+          coverUrl: 'https://picsum.photos/id/238/200/300',
+          mdPath: 'assets/articles/fat_burn.md',
+          category: 'Training',
+        ),
+      ];
     }
   }
 
@@ -441,6 +442,11 @@ class DataManager extends ChangeNotifier {
 
   // 获取文章列表
   List<Article> get articles => List.from(_articles);
+
+  // 重新加载文章数据（用于数据导入后确保文章可用）
+  Future<void> reloadArticles() async {
+    await _loadArticles();
+  }
   // 获取用户数据
   Map<String, dynamic> get userData => Map.from(_userData);
   // 兼容性接口：获取当前热量摄入
@@ -654,6 +660,24 @@ class DataManager extends ChangeNotifier {
     _articles.clear();
     
     await _prefs.clear();
+    notifyListeners();
+  }
+
+  // 清除用户数据但保留文章数据（用于数据导入）
+  Future<void> clearUserData() async {
+    _weightData.clear();
+    _bodyFatData.clear();
+    _workoutData.clear();
+    _nutritionData.clear();
+    // 注意：不清空 _articles，因为文章是从MD文件动态加载的
+    
+    // 清空SharedPreferences中的用户数据，但保留其他可能的系统数据
+    await _prefs.remove(_weightDataKey);
+    await _prefs.remove(_bodyFatDataKey);
+    await _prefs.remove(_workoutDataKey);
+    await _prefs.remove(_nutritionDataKey);
+    await _prefs.remove(_userDataKey);
+    
     notifyListeners();
   }
 
