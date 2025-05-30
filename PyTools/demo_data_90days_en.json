@@ -1,0 +1,5002 @@
+{
+  "version": "1.0",
+  "exportDate": "2025-05-31T03:03:46.592757",
+  "data": {
+    "weights": [
+      {
+        "date": "2025-03-03",
+        "weight": 69.6
+      },
+      {
+        "date": "2025-03-04",
+        "weight": 69.2
+      },
+      {
+        "date": "2025-03-05",
+        "weight": 69.6
+      },
+      {
+        "date": "2025-03-06",
+        "weight": 69.4
+      },
+      {
+        "date": "2025-03-07",
+        "weight": 69.9
+      },
+      {
+        "date": "2025-03-08",
+        "weight": 69.7
+      },
+      {
+        "date": "2025-03-09",
+        "weight": 69.5
+      },
+      {
+        "date": "2025-03-10",
+        "weight": 69.7
+      },
+      {
+        "date": "2025-03-11",
+        "weight": 69.8
+      },
+      {
+        "date": "2025-03-12",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-03-13",
+        "weight": 69.9
+      },
+      {
+        "date": "2025-03-14",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-03-15",
+        "weight": 69.8
+      },
+      {
+        "date": "2025-03-16",
+        "weight": 69.4
+      },
+      {
+        "date": "2025-03-17",
+        "weight": 69.3
+      },
+      {
+        "date": "2025-03-18",
+        "weight": 69.7
+      },
+      {
+        "date": "2025-03-19",
+        "weight": 69.9
+      },
+      {
+        "date": "2025-03-20",
+        "weight": 69.7
+      },
+      {
+        "date": "2025-03-21",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-03-22",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-03-23",
+        "weight": 69.9
+      },
+      {
+        "date": "2025-03-24",
+        "weight": 69.4
+      },
+      {
+        "date": "2025-03-25",
+        "weight": 69.0
+      },
+      {
+        "date": "2025-03-26",
+        "weight": 68.8
+      },
+      {
+        "date": "2025-03-27",
+        "weight": 69.1
+      },
+      {
+        "date": "2025-03-28",
+        "weight": 69.4
+      },
+      {
+        "date": "2025-03-29",
+        "weight": 69.0
+      },
+      {
+        "date": "2025-03-30",
+        "weight": 69.3
+      },
+      {
+        "date": "2025-03-31",
+        "weight": 68.9
+      },
+      {
+        "date": "2025-04-01",
+        "weight": 68.6
+      },
+      {
+        "date": "2025-04-02",
+        "weight": 68.6
+      },
+      {
+        "date": "2025-04-03",
+        "weight": 68.5
+      },
+      {
+        "date": "2025-04-04",
+        "weight": 68.4
+      },
+      {
+        "date": "2025-04-05",
+        "weight": 68.0
+      },
+      {
+        "date": "2025-04-06",
+        "weight": 67.9
+      },
+      {
+        "date": "2025-04-07",
+        "weight": 67.4
+      },
+      {
+        "date": "2025-04-08",
+        "weight": 67.5
+      },
+      {
+        "date": "2025-04-09",
+        "weight": 68.0
+      },
+      {
+        "date": "2025-04-10",
+        "weight": 67.9
+      },
+      {
+        "date": "2025-04-11",
+        "weight": 67.8
+      },
+      {
+        "date": "2025-04-12",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-04-13",
+        "weight": 67.8
+      },
+      {
+        "date": "2025-04-14",
+        "weight": 67.6
+      },
+      {
+        "date": "2025-04-15",
+        "weight": 68.0
+      },
+      {
+        "date": "2025-04-16",
+        "weight": 68.1
+      },
+      {
+        "date": "2025-04-17",
+        "weight": 68.2
+      },
+      {
+        "date": "2025-04-18",
+        "weight": 67.8
+      },
+      {
+        "date": "2025-04-19",
+        "weight": 67.9
+      },
+      {
+        "date": "2025-04-20",
+        "weight": 68.3
+      },
+      {
+        "date": "2025-04-21",
+        "weight": 67.9
+      },
+      {
+        "date": "2025-04-22",
+        "weight": 67.4
+      },
+      {
+        "date": "2025-04-23",
+        "weight": 67.7
+      },
+      {
+        "date": "2025-04-24",
+        "weight": 68.1
+      },
+      {
+        "date": "2025-04-25",
+        "weight": 68.3
+      },
+      {
+        "date": "2025-04-26",
+        "weight": 68.6
+      },
+      {
+        "date": "2025-04-27",
+        "weight": 68.8
+      },
+      {
+        "date": "2025-04-28",
+        "weight": 69.0
+      },
+      {
+        "date": "2025-04-29",
+        "weight": 68.8
+      },
+      {
+        "date": "2025-04-30",
+        "weight": 69.3
+      },
+      {
+        "date": "2025-05-01",
+        "weight": 69.1
+      },
+      {
+        "date": "2025-05-02",
+        "weight": 69.4
+      },
+      {
+        "date": "2025-05-03",
+        "weight": 68.9
+      },
+      {
+        "date": "2025-05-04",
+        "weight": 69.4
+      },
+      {
+        "date": "2025-05-05",
+        "weight": 69.5
+      },
+      {
+        "date": "2025-05-06",
+        "weight": 69.4
+      },
+      {
+        "date": "2025-05-07",
+        "weight": 69.3
+      },
+      {
+        "date": "2025-05-08",
+        "weight": 69.6
+      },
+      {
+        "date": "2025-05-09",
+        "weight": 69.9
+      },
+      {
+        "date": "2025-05-10",
+        "weight": 70.4
+      },
+      {
+        "date": "2025-05-11",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-05-12",
+        "weight": 70.4
+      },
+      {
+        "date": "2025-05-13",
+        "weight": 70.4
+      },
+      {
+        "date": "2025-05-14",
+        "weight": 70.8
+      },
+      {
+        "date": "2025-05-15",
+        "weight": 71.1
+      },
+      {
+        "date": "2025-05-16",
+        "weight": 70.8
+      },
+      {
+        "date": "2025-05-17",
+        "weight": 70.5
+      },
+      {
+        "date": "2025-05-18",
+        "weight": 70.4
+      },
+      {
+        "date": "2025-05-19",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-05-20",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-05-21",
+        "weight": 70.3
+      },
+      {
+        "date": "2025-05-22",
+        "weight": 70.7
+      },
+      {
+        "date": "2025-05-23",
+        "weight": 70.7
+      },
+      {
+        "date": "2025-05-24",
+        "weight": 70.4
+      },
+      {
+        "date": "2025-05-25",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-05-26",
+        "weight": 70.1
+      },
+      {
+        "date": "2025-05-27",
+        "weight": 69.7
+      },
+      {
+        "date": "2025-05-28",
+        "weight": 69.2
+      },
+      {
+        "date": "2025-05-29",
+        "weight": 68.9
+      },
+      {
+        "date": "2025-05-30",
+        "weight": 68.9
+      },
+      {
+        "date": "2025-05-31",
+        "weight": 68.4
+      }
+    ],
+    "bodyFat": [
+      {
+        "date": "2025-03-03",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-03-04",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-03-05",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-03-06",
+        "bodyFatPercentage": 18.3
+      },
+      {
+        "date": "2025-03-07",
+        "bodyFatPercentage": 18.5
+      },
+      {
+        "date": "2025-03-08",
+        "bodyFatPercentage": 18.4
+      },
+      {
+        "date": "2025-03-09",
+        "bodyFatPercentage": 18.5
+      },
+      {
+        "date": "2025-03-10",
+        "bodyFatPercentage": 18.5
+      },
+      {
+        "date": "2025-03-11",
+        "bodyFatPercentage": 18.3
+      },
+      {
+        "date": "2025-03-12",
+        "bodyFatPercentage": 18.2
+      },
+      {
+        "date": "2025-03-13",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-03-14",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-03-15",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-03-16",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-03-17",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-03-18",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-03-19",
+        "bodyFatPercentage": 18.2
+      },
+      {
+        "date": "2025-03-20",
+        "bodyFatPercentage": 18.2
+      },
+      {
+        "date": "2025-03-21",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-03-22",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-03-23",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-03-24",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-03-25",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-03-26",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-03-27",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-03-28",
+        "bodyFatPercentage": 18.4
+      },
+      {
+        "date": "2025-03-29",
+        "bodyFatPercentage": 18.2
+      },
+      {
+        "date": "2025-03-30",
+        "bodyFatPercentage": 18.5
+      },
+      {
+        "date": "2025-03-31",
+        "bodyFatPercentage": 18.3
+      },
+      {
+        "date": "2025-04-01",
+        "bodyFatPercentage": 18.2
+      },
+      {
+        "date": "2025-04-02",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-04-03",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-04-04",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-04-05",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-04-06",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-04-07",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-04-08",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-04-09",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-04-10",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-04-11",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-04-12",
+        "bodyFatPercentage": 17.6
+      },
+      {
+        "date": "2025-04-13",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-04-14",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-04-15",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-04-16",
+        "bodyFatPercentage": 18.2
+      },
+      {
+        "date": "2025-04-17",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-04-18",
+        "bodyFatPercentage": 17.9
+      },
+      {
+        "date": "2025-04-19",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-04-20",
+        "bodyFatPercentage": 18.3
+      },
+      {
+        "date": "2025-04-21",
+        "bodyFatPercentage": 18.4
+      },
+      {
+        "date": "2025-04-22",
+        "bodyFatPercentage": 18.3
+      },
+      {
+        "date": "2025-04-23",
+        "bodyFatPercentage": 18.1
+      },
+      {
+        "date": "2025-04-24",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-04-25",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-04-26",
+        "bodyFatPercentage": 17.2
+      },
+      {
+        "date": "2025-04-27",
+        "bodyFatPercentage": 17.0
+      },
+      {
+        "date": "2025-04-28",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-04-29",
+        "bodyFatPercentage": 16.8
+      },
+      {
+        "date": "2025-04-30",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-05-01",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-05-02",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-05-03",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-05-04",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-05-05",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-05-06",
+        "bodyFatPercentage": 18.0
+      },
+      {
+        "date": "2025-05-07",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-05-08",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-05-09",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-05-10",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-05-11",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-05-12",
+        "bodyFatPercentage": 17.8
+      },
+      {
+        "date": "2025-05-13",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-05-14",
+        "bodyFatPercentage": 17.3
+      },
+      {
+        "date": "2025-05-15",
+        "bodyFatPercentage": 17.5
+      },
+      {
+        "date": "2025-05-16",
+        "bodyFatPercentage": 17.6
+      },
+      {
+        "date": "2025-05-17",
+        "bodyFatPercentage": 17.7
+      },
+      {
+        "date": "2025-05-18",
+        "bodyFatPercentage": 17.4
+      },
+      {
+        "date": "2025-05-19",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-05-20",
+        "bodyFatPercentage": 17.2
+      },
+      {
+        "date": "2025-05-21",
+        "bodyFatPercentage": 17.0
+      },
+      {
+        "date": "2025-05-22",
+        "bodyFatPercentage": 17.1
+      },
+      {
+        "date": "2025-05-23",
+        "bodyFatPercentage": 17.2
+      },
+      {
+        "date": "2025-05-24",
+        "bodyFatPercentage": 17.0
+      },
+      {
+        "date": "2025-05-25",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-05-26",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-05-27",
+        "bodyFatPercentage": 16.6
+      },
+      {
+        "date": "2025-05-28",
+        "bodyFatPercentage": 16.7
+      },
+      {
+        "date": "2025-05-29",
+        "bodyFatPercentage": 16.8
+      },
+      {
+        "date": "2025-05-30",
+        "bodyFatPercentage": 16.9
+      },
+      {
+        "date": "2025-05-31",
+        "bodyFatPercentage": 16.7
+      }
+    ],
+    "workouts": {
+      "2025-03-03": [
+        {
+          "date": "2025-03-03T03:03:46.586764",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-03T03:03:46.586764",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-03T03:03:46.586764",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-03T03:03:46.586764",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-04": [
+        {
+          "date": "2025-03-04T03:03:46.587745",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-04T03:03:46.587745",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-05": [
+        {
+          "date": "2025-03-05T03:03:46.587745",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-06": [
+        {
+          "date": "2025-03-06T03:03:46.587745",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-06T03:03:46.587745",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-07": [
+        {
+          "date": "2025-03-07T03:03:46.587745",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-07T03:03:46.587745",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-07T03:03:46.587745",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-07T03:03:46.587745",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-08": [
+        {
+          "date": "2025-03-08T03:03:46.587745",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-08T03:03:46.587745",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-08T03:03:46.587745",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-09": [
+        {
+          "date": "2025-03-09T03:03:46.587745",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-10": [
+        {
+          "date": "2025-03-10T03:03:46.587745",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-10T03:03:46.587745",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-11": [
+        {
+          "date": "2025-03-11T03:03:46.587745",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-11T03:03:46.587745",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-11T03:03:46.587745",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-11T03:03:46.587745",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-12": [
+        {
+          "date": "2025-03-12T03:03:46.587745",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-12T03:03:46.587745",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-12T03:03:46.587745",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-13": [
+        {
+          "date": "2025-03-13T03:03:46.587745",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-13T03:03:46.587745",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-14": [
+        {
+          "date": "2025-03-14T03:03:46.587745",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-14T03:03:46.587745",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-14T03:03:46.587745",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-14T03:03:46.587745",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-15": [
+        {
+          "date": "2025-03-15T03:03:46.587745",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-15T03:03:46.587745",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-15T03:03:46.587745",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-16": [
+        {
+          "date": "2025-03-16T03:03:46.587745",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-17": [
+        {
+          "date": "2025-03-17T03:03:46.587745",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-17T03:03:46.587745",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-17T03:03:46.587745",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-17T03:03:46.587745",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-18": [
+        {
+          "date": "2025-03-18T03:03:46.587745",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-18T03:03:46.587745",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-18T03:03:46.587745",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-18T03:03:46.587745",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-19": [
+        {
+          "date": "2025-03-19T03:03:46.587745",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-19T03:03:46.587745",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-19T03:03:46.587745",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-19T03:03:46.587745",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-20": [
+        {
+          "date": "2025-03-20T03:03:46.588758",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-21": [
+        {
+          "date": "2025-03-21T03:03:46.588758",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-22": [
+        {
+          "date": "2025-03-22T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-22T03:03:46.588758",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-22T03:03:46.588758",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-22T03:03:46.588758",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-23": [
+        {
+          "date": "2025-03-23T03:03:46.588758",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-23T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-23T03:03:46.588758",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-23T03:03:46.588758",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-24": [
+        {
+          "date": "2025-03-24T03:03:46.588758",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-24T03:03:46.588758",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-25": [
+        {
+          "date": "2025-03-25T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-25T03:03:46.588758",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-25T03:03:46.588758",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-26": [
+        {
+          "date": "2025-03-26T03:03:46.588758",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-26T03:03:46.588758",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-26T03:03:46.588758",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-26T03:03:46.588758",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-03-27": [
+        {
+          "date": "2025-03-27T03:03:46.588758",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-27T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-28": [
+        {
+          "date": "2025-03-28T03:03:46.588758",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-29": [
+        {
+          "date": "2025-03-29T03:03:46.588758",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-29T03:03:46.588758",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-29T03:03:46.588758",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-29T03:03:46.588758",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-30": [
+        {
+          "date": "2025-03-30T03:03:46.588758",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-30T03:03:46.588758",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-03-30T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-03-31": [
+        {
+          "date": "2025-03-31T03:03:46.588758",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-03-31T03:03:46.588758",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-01": [
+        {
+          "date": "2025-04-01T03:03:46.588758",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-01T03:03:46.588758",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-01T03:03:46.588758",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-02": [
+        {
+          "date": "2025-04-02T03:03:46.588758",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-02T03:03:46.588758",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-03": [
+        {
+          "date": "2025-04-03T03:03:46.588758",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-03T03:03:46.588758",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-03T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-04": [
+        {
+          "date": "2025-04-04T03:03:46.588758",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-04T03:03:46.588758",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-04T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-04T03:03:46.588758",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-05": [
+        {
+          "date": "2025-04-05T03:03:46.588758",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-05T03:03:46.588758",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-05T03:03:46.588758",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-06": [
+        {
+          "date": "2025-04-06T03:03:46.588758",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-06T03:03:46.588758",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-07": [
+        {
+          "date": "2025-04-07T03:03:46.588758",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-07T03:03:46.588758",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-07T03:03:46.588758",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-08": [
+        {
+          "date": "2025-04-08T03:03:46.588758",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-08T03:03:46.588758",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-08T03:03:46.588758",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-08T03:03:46.588758",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-09": [
+        {
+          "date": "2025-04-09T03:03:46.588758",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-09T03:03:46.588758",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-10": [
+        {
+          "date": "2025-04-10T03:03:46.589751",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-10T03:03:46.589751",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-10T03:03:46.589751",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-11": [
+        {
+          "date": "2025-04-11T03:03:46.589751",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-11T03:03:46.589751",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-11T03:03:46.589751",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-11T03:03:46.589751",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-12": [
+        {
+          "date": "2025-04-12T03:03:46.589751",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-13": [
+        {
+          "date": "2025-04-13T03:03:46.589751",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-13T03:03:46.589751",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-14": [
+        {
+          "date": "2025-04-14T03:03:46.589751",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-14T03:03:46.589751",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-14T03:03:46.589751",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-15": [
+        {
+          "date": "2025-04-15T03:03:46.589751",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-16": [
+        {
+          "date": "2025-04-16T03:03:46.589751",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-16T03:03:46.589751",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-17": [
+        {
+          "date": "2025-04-17T03:03:46.589751",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-17T03:03:46.589751",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-17T03:03:46.589751",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-18": [
+        {
+          "date": "2025-04-18T03:03:46.589751",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-18T03:03:46.589751",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-19": [
+        {
+          "date": "2025-04-19T03:03:46.589751",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-19T03:03:46.589751",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-20": [
+        {
+          "date": "2025-04-20T03:03:46.589751",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-20T03:03:46.589751",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-20T03:03:46.589751",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-21": [
+        {
+          "date": "2025-04-21T03:03:46.589751",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-21T03:03:46.589751",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-21T03:03:46.589751",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-22": [
+        {
+          "date": "2025-04-22T03:03:46.589751",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-22T03:03:46.589751",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-22T03:03:46.589751",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-22T03:03:46.589751",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-23": [
+        {
+          "date": "2025-04-23T03:03:46.589751",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-23T03:03:46.589751",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-23T03:03:46.589751",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-23T03:03:46.589751",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-24": [
+        {
+          "date": "2025-04-24T03:03:46.589751",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-24T03:03:46.589751",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-25": [
+        {
+          "date": "2025-04-25T03:03:46.589751",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-26": [
+        {
+          "date": "2025-04-26T03:03:46.589751",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-26T03:03:46.589751",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-26T03:03:46.589751",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-26T03:03:46.589751",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-27": [
+        {
+          "date": "2025-04-27T03:03:46.589751",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-27T03:03:46.589751",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-04-28": [
+        {
+          "date": "2025-04-28T03:03:46.589751",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-28T03:03:46.589751",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-29": [
+        {
+          "date": "2025-04-29T03:03:46.589751",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-04-30": [
+        {
+          "date": "2025-04-30T03:03:46.589751",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-30T03:03:46.589751",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-04-30T03:03:46.589751",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-04-30T03:03:46.589751",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-01": [
+        {
+          "date": "2025-05-01T03:03:46.589751",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-01T03:03:46.589751",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-02": [
+        {
+          "date": "2025-05-02T03:03:46.590765",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-03": [
+        {
+          "date": "2025-05-03T03:03:46.590765",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-03T03:03:46.590765",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-03T03:03:46.590765",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-04": [
+        {
+          "date": "2025-05-04T03:03:46.590765",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-04T03:03:46.590765",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-05": [
+        {
+          "date": "2025-05-05T03:03:46.590765",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-05T03:03:46.590765",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-05T03:03:46.590765",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-05T03:03:46.590765",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-06": [
+        {
+          "date": "2025-05-06T03:03:46.590765",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-06T03:03:46.590765",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-06T03:03:46.590765",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-06T03:03:46.590765",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-07": [
+        {
+          "date": "2025-05-07T03:03:46.590765",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-07T03:03:46.590765",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-07T03:03:46.590765",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-07T03:03:46.590765",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-08": [
+        {
+          "date": "2025-05-08T03:03:46.590765",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-08T03:03:46.590765",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-08T03:03:46.590765",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-08T03:03:46.590765",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-09": [
+        {
+          "date": "2025-05-09T03:03:46.590765",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-09T03:03:46.590765",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-09T03:03:46.590765",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-09T03:03:46.590765",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-10": [
+        {
+          "date": "2025-05-10T03:03:46.590765",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-10T03:03:46.590765",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-11": [
+        {
+          "date": "2025-05-11T03:03:46.590765",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-11T03:03:46.590765",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-11T03:03:46.590765",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-11T03:03:46.590765",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-12": [
+        {
+          "date": "2025-05-12T03:03:46.590765",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-12T03:03:46.590765",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-12T03:03:46.590765",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-13": [
+        {
+          "date": "2025-05-13T03:03:46.590765",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-13T03:03:46.590765",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-14": [
+        {
+          "date": "2025-05-14T03:03:46.590765",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-14T03:03:46.590765",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-15": [
+        {
+          "date": "2025-05-15T03:03:46.590765",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-15T03:03:46.590765",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-15T03:03:46.590765",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-16": [
+        {
+          "date": "2025-05-16T03:03:46.590765",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-16T03:03:46.590765",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-17": [
+        {
+          "date": "2025-05-17T03:03:46.590765",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-17T03:03:46.590765",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-17T03:03:46.590765",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-17T03:03:46.590765",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-18": [
+        {
+          "date": "2025-05-18T03:03:46.590765",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-18T03:03:46.590765",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-18T03:03:46.590765",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-19": [
+        {
+          "date": "2025-05-19T03:03:46.590765",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-20": [
+        {
+          "date": "2025-05-20T03:03:46.590765",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-20T03:03:46.590765",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-20T03:03:46.590765",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-20T03:03:46.590765",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-21": [
+        {
+          "date": "2025-05-21T03:03:46.590765",
+          "name": "Bicep Curls",
+          "sets": 3,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-22": [
+        {
+          "date": "2025-05-22T03:03:46.590765",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-23": [
+        {
+          "date": "2025-05-23T03:03:46.591757",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-23T03:03:46.591757",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-23T03:03:46.591757",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-23T03:03:46.591757",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-24": [
+        {
+          "date": "2025-05-24T03:03:46.591757",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-24T03:03:46.591757",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-24T03:03:46.591757",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-24T03:03:46.591757",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-25": [
+        {
+          "date": "2025-05-25T03:03:46.591757",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-25T03:03:46.591757",
+          "name": "Lateral Raises",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-25T03:03:46.591757",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-26": [
+        {
+          "date": "2025-05-26T03:03:46.591757",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-26T03:03:46.591757",
+          "name": "Squats",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-26T03:03:46.591757",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-26T03:03:46.591757",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-27": [
+        {
+          "date": "2025-05-27T03:03:46.591757",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-27T03:03:46.591757",
+          "name": "Dumbbell Rows",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-27T03:03:46.591757",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-27T03:03:46.591757",
+          "name": "Pull-ups",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-28": [
+        {
+          "date": "2025-05-28T03:03:46.591757",
+          "name": "Overhead Press",
+          "sets": 3,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-29": [
+        {
+          "date": "2025-05-29T03:03:46.591757",
+          "name": "Weighted Squats",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-29T03:03:46.591757",
+          "name": "Push-ups",
+          "sets": 4,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-29T03:03:46.591757",
+          "name": "Leg Press",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ],
+      "2025-05-30": [
+        {
+          "date": "2025-05-30T03:03:46.591757",
+          "name": "Crunches",
+          "sets": 4,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-30T03:03:46.591757",
+          "name": "Plank",
+          "sets": 3,
+          "isCompleted": false
+        },
+        {
+          "date": "2025-05-30T03:03:46.591757",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": false
+        }
+      ],
+      "2025-05-31": [
+        {
+          "date": "2025-05-31T03:03:46.591757",
+          "name": "Tricep Dips",
+          "sets": 3,
+          "isCompleted": true
+        },
+        {
+          "date": "2025-05-31T03:03:46.591757",
+          "name": "Lunges",
+          "sets": 4,
+          "isCompleted": true
+        }
+      ]
+    },
+    "nutrition": [
+      {
+        "date": "2025-03-03",
+        "calorieIntake": 2010,
+        "caloriesBurned": 2017,
+        "calorieGoal": 2073,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 402
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 760
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 615
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 233
+          }
+        ]
+      },
+      {
+        "date": "2025-03-04",
+        "calorieIntake": 1104,
+        "caloriesBurned": 2447,
+        "calorieGoal": 2079,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 565
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 188
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 351
+          }
+        ]
+      },
+      {
+        "date": "2025-03-05",
+        "calorieIntake": 1709,
+        "caloriesBurned": 2070,
+        "calorieGoal": 2081,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 452
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 478
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 560
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 219
+          }
+        ]
+      },
+      {
+        "date": "2025-03-06",
+        "calorieIntake": 1786,
+        "caloriesBurned": 2382,
+        "calorieGoal": 1940,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 688
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 334
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 525
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 239
+          }
+        ]
+      },
+      {
+        "date": "2025-03-07",
+        "calorieIntake": 459,
+        "caloriesBurned": 1820,
+        "calorieGoal": 1856,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 459
+          }
+        ]
+      },
+      {
+        "date": "2025-03-08",
+        "calorieIntake": 652,
+        "caloriesBurned": 1894,
+        "calorieGoal": 2025,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 652
+          }
+        ]
+      },
+      {
+        "date": "2025-03-09",
+        "calorieIntake": 193,
+        "caloriesBurned": 2187,
+        "calorieGoal": 1858,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 193
+          }
+        ]
+      },
+      {
+        "date": "2025-03-10",
+        "calorieIntake": 1225,
+        "caloriesBurned": 1876,
+        "calorieGoal": 1944,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 676
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 337
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 212
+          }
+        ]
+      },
+      {
+        "date": "2025-03-11",
+        "calorieIntake": 1791,
+        "caloriesBurned": 2198,
+        "calorieGoal": 2106,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 469
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 413
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 206
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 703
+          }
+        ]
+      },
+      {
+        "date": "2025-03-12",
+        "calorieIntake": 1175,
+        "caloriesBurned": 2164,
+        "calorieGoal": 2070,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 378
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 611
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 186
+          }
+        ]
+      },
+      {
+        "date": "2025-03-13",
+        "calorieIntake": 636,
+        "caloriesBurned": 2436,
+        "calorieGoal": 2093,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 191
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 445
+          }
+        ]
+      },
+      {
+        "date": "2025-03-14",
+        "calorieIntake": 505,
+        "caloriesBurned": 2187,
+        "calorieGoal": 2001,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 337
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 168
+          }
+        ]
+      },
+      {
+        "date": "2025-03-15",
+        "calorieIntake": 610,
+        "caloriesBurned": 2084,
+        "calorieGoal": 2061,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 610
+          }
+        ]
+      },
+      {
+        "date": "2025-03-16",
+        "calorieIntake": 582,
+        "caloriesBurned": 2155,
+        "calorieGoal": 1807,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 582
+          }
+        ]
+      },
+      {
+        "date": "2025-03-17",
+        "calorieIntake": 1055,
+        "caloriesBurned": 2081,
+        "calorieGoal": 2159,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 239
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 466
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 350
+          }
+        ]
+      },
+      {
+        "date": "2025-03-18",
+        "calorieIntake": 627,
+        "caloriesBurned": 2296,
+        "calorieGoal": 1862,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 404
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 223
+          }
+        ]
+      },
+      {
+        "date": "2025-03-19",
+        "calorieIntake": 989,
+        "caloriesBurned": 2341,
+        "calorieGoal": 2198,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 551
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 438
+          }
+        ]
+      },
+      {
+        "date": "2025-03-20",
+        "calorieIntake": 1002,
+        "caloriesBurned": 2163,
+        "calorieGoal": 1941,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 588
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 414
+          }
+        ]
+      },
+      {
+        "date": "2025-03-21",
+        "calorieIntake": 1789,
+        "caloriesBurned": 2359,
+        "calorieGoal": 2056,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 547
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 589
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 185
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 468
+          }
+        ]
+      },
+      {
+        "date": "2025-03-22",
+        "calorieIntake": 1035,
+        "caloriesBurned": 1963,
+        "calorieGoal": 1844,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 448
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 587
+          }
+        ]
+      },
+      {
+        "date": "2025-03-23",
+        "calorieIntake": 1476,
+        "caloriesBurned": 1944,
+        "calorieGoal": 2164,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 632
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 171
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 673
+          }
+        ]
+      },
+      {
+        "date": "2025-03-24",
+        "calorieIntake": 233,
+        "caloriesBurned": 2187,
+        "calorieGoal": 1867,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 233
+          }
+        ]
+      },
+      {
+        "date": "2025-03-25",
+        "calorieIntake": 1498,
+        "caloriesBurned": 2024,
+        "calorieGoal": 1858,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 527
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 526
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 445
+          }
+        ]
+      },
+      {
+        "date": "2025-03-26",
+        "calorieIntake": 1748,
+        "caloriesBurned": 2476,
+        "calorieGoal": 1934,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 476
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 227
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 353
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 692
+          }
+        ]
+      },
+      {
+        "date": "2025-03-27",
+        "calorieIntake": 1854,
+        "caloriesBurned": 2383,
+        "calorieGoal": 1984,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 348
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 210
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 517
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 779
+          }
+        ]
+      },
+      {
+        "date": "2025-03-28",
+        "calorieIntake": 707,
+        "caloriesBurned": 2393,
+        "calorieGoal": 2061,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 170
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 537
+          }
+        ]
+      },
+      {
+        "date": "2025-03-29",
+        "calorieIntake": 804,
+        "caloriesBurned": 2289,
+        "calorieGoal": 2010,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 191
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 613
+          }
+        ]
+      },
+      {
+        "date": "2025-03-30",
+        "calorieIntake": 1624,
+        "caloriesBurned": 1904,
+        "calorieGoal": 2168,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 689
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 320
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 172
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 443
+          }
+        ]
+      },
+      {
+        "date": "2025-03-31",
+        "calorieIntake": 1226,
+        "caloriesBurned": 2345,
+        "calorieGoal": 1823,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 680
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 546
+          }
+        ]
+      },
+      {
+        "date": "2025-04-01",
+        "calorieIntake": 521,
+        "caloriesBurned": 2233,
+        "calorieGoal": 1805,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 176
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 345
+          }
+        ]
+      },
+      {
+        "date": "2025-04-02",
+        "calorieIntake": 1478,
+        "caloriesBurned": 2019,
+        "calorieGoal": 2129,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 192
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 668
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 618
+          }
+        ]
+      },
+      {
+        "date": "2025-04-03",
+        "calorieIntake": 676,
+        "caloriesBurned": 2127,
+        "calorieGoal": 1975,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 676
+          }
+        ]
+      },
+      {
+        "date": "2025-04-04",
+        "calorieIntake": 572,
+        "caloriesBurned": 1995,
+        "calorieGoal": 2158,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 192
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 380
+          }
+        ]
+      },
+      {
+        "date": "2025-04-05",
+        "calorieIntake": 562,
+        "caloriesBurned": 2157,
+        "calorieGoal": 2029,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 562
+          }
+        ]
+      },
+      {
+        "date": "2025-04-06",
+        "calorieIntake": 1290,
+        "caloriesBurned": 2090,
+        "calorieGoal": 2092,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 451
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 604
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 235
+          }
+        ]
+      },
+      {
+        "date": "2025-04-07",
+        "calorieIntake": 951,
+        "caloriesBurned": 2228,
+        "calorieGoal": 1890,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 542
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 409
+          }
+        ]
+      },
+      {
+        "date": "2025-04-08",
+        "calorieIntake": 229,
+        "caloriesBurned": 2477,
+        "calorieGoal": 1856,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 229
+          }
+        ]
+      },
+      {
+        "date": "2025-04-09",
+        "calorieIntake": 830,
+        "caloriesBurned": 2328,
+        "calorieGoal": 1875,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 645
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 185
+          }
+        ]
+      },
+      {
+        "date": "2025-04-10",
+        "calorieIntake": 534,
+        "caloriesBurned": 2004,
+        "calorieGoal": 1955,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 534
+          }
+        ]
+      },
+      {
+        "date": "2025-04-11",
+        "calorieIntake": 2003,
+        "caloriesBurned": 2194,
+        "calorieGoal": 1948,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 442
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 678
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 225
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 658
+          }
+        ]
+      },
+      {
+        "date": "2025-04-12",
+        "calorieIntake": 1147,
+        "caloriesBurned": 2437,
+        "calorieGoal": 2016,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 447
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 204
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 496
+          }
+        ]
+      },
+      {
+        "date": "2025-04-13",
+        "calorieIntake": 433,
+        "caloriesBurned": 1983,
+        "calorieGoal": 2190,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 433
+          }
+        ]
+      },
+      {
+        "date": "2025-04-14",
+        "calorieIntake": 1891,
+        "caloriesBurned": 2190,
+        "calorieGoal": 1857,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 560
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 729
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 398
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 204
+          }
+        ]
+      },
+      {
+        "date": "2025-04-15",
+        "calorieIntake": 1345,
+        "caloriesBurned": 2381,
+        "calorieGoal": 2053,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 191
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 567
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 587
+          }
+        ]
+      },
+      {
+        "date": "2025-04-16",
+        "calorieIntake": 500,
+        "caloriesBurned": 1917,
+        "calorieGoal": 2043,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 500
+          }
+        ]
+      },
+      {
+        "date": "2025-04-17",
+        "calorieIntake": 1688,
+        "caloriesBurned": 1871,
+        "calorieGoal": 1901,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 342
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 554
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 229
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 563
+          }
+        ]
+      },
+      {
+        "date": "2025-04-18",
+        "calorieIntake": 1914,
+        "caloriesBurned": 2306,
+        "calorieGoal": 2054,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 778
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 427
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 160
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 549
+          }
+        ]
+      },
+      {
+        "date": "2025-04-19",
+        "calorieIntake": 960,
+        "caloriesBurned": 2025,
+        "calorieGoal": 1845,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 370
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 590
+          }
+        ]
+      },
+      {
+        "date": "2025-04-20",
+        "calorieIntake": 427,
+        "caloriesBurned": 1927,
+        "calorieGoal": 1834,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 427
+          }
+        ]
+      },
+      {
+        "date": "2025-04-21",
+        "calorieIntake": 1788,
+        "caloriesBurned": 1830,
+        "calorieGoal": 2163,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 194
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 632
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 610
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 352
+          }
+        ]
+      },
+      {
+        "date": "2025-04-22",
+        "calorieIntake": 766,
+        "caloriesBurned": 1947,
+        "calorieGoal": 1826,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 766
+          }
+        ]
+      },
+      {
+        "date": "2025-04-23",
+        "calorieIntake": 1765,
+        "caloriesBurned": 2242,
+        "calorieGoal": 1862,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 584
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 178
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 469
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 534
+          }
+        ]
+      },
+      {
+        "date": "2025-04-24",
+        "calorieIntake": 1109,
+        "caloriesBurned": 2029,
+        "calorieGoal": 1988,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 462
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 647
+          }
+        ]
+      },
+      {
+        "date": "2025-04-25",
+        "calorieIntake": 781,
+        "caloriesBurned": 2185,
+        "calorieGoal": 1814,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 450
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 331
+          }
+        ]
+      },
+      {
+        "date": "2025-04-26",
+        "calorieIntake": 1008,
+        "caloriesBurned": 2246,
+        "calorieGoal": 2143,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 468
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 540
+          }
+        ]
+      },
+      {
+        "date": "2025-04-27",
+        "calorieIntake": 479,
+        "caloriesBurned": 2214,
+        "calorieGoal": 1947,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 479
+          }
+        ]
+      },
+      {
+        "date": "2025-04-28",
+        "calorieIntake": 1312,
+        "caloriesBurned": 2014,
+        "calorieGoal": 2160,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 634
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 469
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 209
+          }
+        ]
+      },
+      {
+        "date": "2025-04-29",
+        "calorieIntake": 1601,
+        "caloriesBurned": 2033,
+        "calorieGoal": 1978,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 538
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 409
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 190
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 464
+          }
+        ]
+      },
+      {
+        "date": "2025-04-30",
+        "calorieIntake": 1139,
+        "caloriesBurned": 2233,
+        "calorieGoal": 2045,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 178
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 538
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 423
+          }
+        ]
+      },
+      {
+        "date": "2025-05-01",
+        "calorieIntake": 1067,
+        "caloriesBurned": 2327,
+        "calorieGoal": 1811,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 546
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 521
+          }
+        ]
+      },
+      {
+        "date": "2025-05-02",
+        "calorieIntake": 801,
+        "caloriesBurned": 1862,
+        "calorieGoal": 1986,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 624
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 177
+          }
+        ]
+      },
+      {
+        "date": "2025-05-03",
+        "calorieIntake": 496,
+        "caloriesBurned": 2491,
+        "calorieGoal": 2068,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 323
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 173
+          }
+        ]
+      },
+      {
+        "date": "2025-05-04",
+        "calorieIntake": 486,
+        "caloriesBurned": 2045,
+        "calorieGoal": 2035,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 486
+          }
+        ]
+      },
+      {
+        "date": "2025-05-05",
+        "calorieIntake": 1938,
+        "caloriesBurned": 1978,
+        "calorieGoal": 1914,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 653
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 217
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 466
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 602
+          }
+        ]
+      },
+      {
+        "date": "2025-05-06",
+        "calorieIntake": 1631,
+        "caloriesBurned": 2438,
+        "calorieGoal": 1843,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 698
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 543
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 390
+          }
+        ]
+      },
+      {
+        "date": "2025-05-07",
+        "calorieIntake": 1204,
+        "caloriesBurned": 2350,
+        "calorieGoal": 1973,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 498
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 706
+          }
+        ]
+      },
+      {
+        "date": "2025-05-08",
+        "calorieIntake": 1198,
+        "caloriesBurned": 1897,
+        "calorieGoal": 1854,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 641
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 557
+          }
+        ]
+      },
+      {
+        "date": "2025-05-09",
+        "calorieIntake": 1269,
+        "caloriesBurned": 1945,
+        "calorieGoal": 2193,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 381
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 200
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 688
+          }
+        ]
+      },
+      {
+        "date": "2025-05-10",
+        "calorieIntake": 505,
+        "caloriesBurned": 2232,
+        "calorieGoal": 2010,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 505
+          }
+        ]
+      },
+      {
+        "date": "2025-05-11",
+        "calorieIntake": 1324,
+        "caloriesBurned": 1912,
+        "calorieGoal": 1941,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 216
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 538
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 570
+          }
+        ]
+      },
+      {
+        "date": "2025-05-12",
+        "calorieIntake": 185,
+        "caloriesBurned": 2237,
+        "calorieGoal": 2000,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 185
+          }
+        ]
+      },
+      {
+        "date": "2025-05-13",
+        "calorieIntake": 925,
+        "caloriesBurned": 1967,
+        "calorieGoal": 2200,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 551
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 374
+          }
+        ]
+      },
+      {
+        "date": "2025-05-14",
+        "calorieIntake": 1973,
+        "caloriesBurned": 2073,
+        "calorieGoal": 2087,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 580
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 706
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 461
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 226
+          }
+        ]
+      },
+      {
+        "date": "2025-05-15",
+        "calorieIntake": 548,
+        "caloriesBurned": 2433,
+        "calorieGoal": 2085,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 548
+          }
+        ]
+      },
+      {
+        "date": "2025-05-16",
+        "calorieIntake": 771,
+        "caloriesBurned": 2451,
+        "calorieGoal": 2107,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 190
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 581
+          }
+        ]
+      },
+      {
+        "date": "2025-05-17",
+        "calorieIntake": 675,
+        "caloriesBurned": 2487,
+        "calorieGoal": 2148,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 465
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 210
+          }
+        ]
+      },
+      {
+        "date": "2025-05-18",
+        "calorieIntake": 1591,
+        "caloriesBurned": 1940,
+        "calorieGoal": 1845,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 542
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 373
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 676
+          }
+        ]
+      },
+      {
+        "date": "2025-05-19",
+        "calorieIntake": 976,
+        "caloriesBurned": 2163,
+        "calorieGoal": 1804,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 376
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 600
+          }
+        ]
+      },
+      {
+        "date": "2025-05-20",
+        "calorieIntake": 1491,
+        "caloriesBurned": 2016,
+        "calorieGoal": 1996,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 618
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 338
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 535
+          }
+        ]
+      },
+      {
+        "date": "2025-05-21",
+        "calorieIntake": 1195,
+        "caloriesBurned": 1978,
+        "calorieGoal": 1969,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 204
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 379
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 612
+          }
+        ]
+      },
+      {
+        "date": "2025-05-22",
+        "calorieIntake": 1794,
+        "caloriesBurned": 1992,
+        "calorieGoal": 2100,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 583
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 580
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 176
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 455
+          }
+        ]
+      },
+      {
+        "date": "2025-05-23",
+        "calorieIntake": 447,
+        "caloriesBurned": 2229,
+        "calorieGoal": 1868,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 447
+          }
+        ]
+      },
+      {
+        "date": "2025-05-24",
+        "calorieIntake": 1911,
+        "caloriesBurned": 2274,
+        "calorieGoal": 1802,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 531
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 736
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 405
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 239
+          }
+        ]
+      },
+      {
+        "date": "2025-05-25",
+        "calorieIntake": 1261,
+        "caloriesBurned": 2334,
+        "calorieGoal": 1952,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 597
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 664
+          }
+        ]
+      },
+      {
+        "date": "2025-05-26",
+        "calorieIntake": 970,
+        "caloriesBurned": 2269,
+        "calorieGoal": 1827,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 325
+          },
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 645
+          }
+        ]
+      },
+      {
+        "date": "2025-05-27",
+        "calorieIntake": 1139,
+        "caloriesBurned": 2031,
+        "calorieGoal": 1945,
+        "meals": [
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 552
+          },
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 401
+          },
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 186
+          }
+        ]
+      },
+      {
+        "date": "2025-05-28",
+        "calorieIntake": 1071,
+        "caloriesBurned": 1850,
+        "calorieGoal": 1966,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 548
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 523
+          }
+        ]
+      },
+      {
+        "date": "2025-05-29",
+        "calorieIntake": 400,
+        "caloriesBurned": 2223,
+        "calorieGoal": 1879,
+        "meals": [
+          {
+            "name": "Breakfast",
+            "foods": [
+              "Eggs",
+              "Milk",
+              "Bread"
+            ],
+            "calories": 400
+          }
+        ]
+      },
+      {
+        "date": "2025-05-30",
+        "calorieIntake": 462,
+        "caloriesBurned": 2411,
+        "calorieGoal": 2173,
+        "meals": [
+          {
+            "name": "Dinner",
+            "foods": [
+              "Pasta",
+              "Salad",
+              "Beef"
+            ],
+            "calories": 462
+          }
+        ]
+      },
+      {
+        "date": "2025-05-31",
+        "calorieIntake": 714,
+        "caloriesBurned": 2371,
+        "calorieGoal": 1897,
+        "meals": [
+          {
+            "name": "Snack",
+            "foods": [
+              "Fruits",
+              "Nuts"
+            ],
+            "calories": 181
+          },
+          {
+            "name": "Lunch",
+            "foods": [
+              "Rice",
+              "Vegetables",
+              "Chicken Breast"
+            ],
+            "calories": 533
+          }
+        ]
+      }
+    ],
+    "userSettings": {
+      "name": "Demo User",
+      "age": 25,
+      "height": 175,
+      "gender": "male",
+      "activityLevel": "moderate",
+      "fitnessGoal": "lose_weight"
+    }
+  }
+}
