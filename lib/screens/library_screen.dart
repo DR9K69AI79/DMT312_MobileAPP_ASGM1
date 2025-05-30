@@ -13,16 +13,38 @@ class LibraryScreen extends StatefulWidget {
   State<LibraryScreen> createState() => _LibraryScreenState();
 }
 
-class _LibraryScreenState extends State<LibraryScreen> {
+class _LibraryScreenState extends State<LibraryScreen> with TickerProviderStateMixin {
   final DataManager _dataManager = DataManager();
   final ArticleService _articleService = ArticleService();
+  final ScrollController _scrollController = ScrollController();
   List<String> _allTags = [];
   String _selectedTag = 'All';
   String _searchQuery = '';
-
+  bool _isRecommendedVisible = true;
+  late AnimationController _animationController;
+  late Animation<double> _heightAnimation;
+  
   @override
   void initState() {
     super.initState();
+    
+    // 初始化动画控制器
+    _animationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this,
+    );
+    
+    _heightAnimation = Tween<double>(
+      begin: 1.0,
+      end: 0.0,
+    ).animate(CurvedAnimation(
+      parent: _animationController,
+      curve: Curves.easeInOut,
+    ));
+    
+    // 添加滚动监听器
+    _scrollController.addListener(_onScroll);
+    
     _updateFilters();
     // 监听DataManager变化，以便在文章加载完成后更新筛选器
     _dataManager.addListener(_updateFilters);
@@ -30,8 +52,28 @@ class _LibraryScreenState extends State<LibraryScreen> {
   
   @override
   void dispose() {
+    _scrollController.removeListener(_onScroll);
+    _scrollController.dispose();
+    _animationController.dispose();
     _dataManager.removeListener(_updateFilters);
     super.dispose();
+  }
+  
+  // 滚动监听方法
+  void _onScroll() {
+    const double threshold = 100.0; // 滚动阈值
+    
+    if (_scrollController.offset > threshold && _isRecommendedVisible) {
+      setState(() {
+        _isRecommendedVisible = false;
+      });
+      _animationController.forward();
+    } else if (_scrollController.offset <= threshold && !_isRecommendedVisible) {
+      setState(() {
+        _isRecommendedVisible = true;
+      });
+      _animationController.reverse();
+    }
   }
   
   /// 从文章中动态提取所有标签（包括分类）
@@ -71,131 +113,159 @@ class _LibraryScreenState extends State<LibraryScreen> {
       ),
       body: Column(
         children: [
-          // 标签筛选栏
+          // 始终置顶的搜索和筛选栏
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: GlassCard(
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Padding(
-                    padding: EdgeInsets.only(left: 12.0, top: 8.0, bottom: 4.0),
-                    child: Text(
-                      'Filter by Tags',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.grey,
-                      ),
+                  // 搜索框
+                  TextField(
+                    decoration: const InputDecoration(
+                      hintText: 'Search Article',
+                      prefixIcon: Icon(Icons.search),
+                      border: InputBorder.none,
+                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    ),
+                    onChanged: (value) {
+                      setState(() {
+                        _searchQuery = value;
+                      });
+                    },
+                  ),
+                  const Divider(height: 1),
+                  // 标签筛选
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                    child: Row(
+                      children: [
+                        const Text(
+                          'Tags:',
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.grey,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: SizedBox(
+                            height: 32,
+                            child: ListView.builder(
+                              scrollDirection: Axis.horizontal,
+                              itemCount: _allTags.length,
+                              itemBuilder: (context, index) {
+                                final tag = _allTags[index];
+                                final isSelected = tag == _selectedTag;
+                                
+                                return Padding(
+                                  padding: const EdgeInsets.only(right: 8.0),
+                                  child: FilterChip(
+                                    label: Text(
+                                      tag,
+                                      style: TextStyle(
+                                        fontSize: 10,
+                                        color: isSelected ? Colors.white : null,
+                                      ),
+                                    ),
+                                    selected: isSelected,
+                                    onSelected: (selected) {
+                                      setState(() {
+                                        _selectedTag = selected ? tag : 'All';
+                                      });
+                                    },
+                                    backgroundColor: Colors.grey.withValues(alpha: 0.1),
+                                    selectedColor: Theme.of(context).primaryColor,
+                                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SizedBox(
-                    height: 40,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _allTags.length,
-                      itemBuilder: (context, index) {
-                        final tag = _allTags[index];
-                        final isSelected = tag == _selectedTag;
-                        
-                        return Padding(
-                          padding: const EdgeInsets.only(left: 8.0, bottom: 8.0),
-                          child: FilterChip(
-                            label: Text(
-                              tag,
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: isSelected ? Colors.white : null,
+                ],
+              ),
+            ),
+          ),
+          
+          // 可滚动的内容区域
+          Expanded(
+            child: CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                // 推荐文章横向滚动（带动画折叠效果）
+                if (_searchQuery.isEmpty && _selectedTag == 'All')
+                  SliverToBoxAdapter(
+                    child: AnimatedBuilder(
+                      animation: _heightAnimation,
+                      builder: (context, child) {
+                        return SizeTransition(
+                          sizeFactor: _heightAnimation,
+                          axisAlignment: -1.0,
+                          child: Opacity(
+                            opacity: _heightAnimation.value,
+                            child: Padding(
+                              padding: const EdgeInsets.all(16.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Text(
+                                    'Recommended Articles',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 16),
+                                  SizedBox(
+                                    height: 135,
+                                    child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: _dataManager.articles.length,
+                                      itemBuilder: (context, index) {
+                                        final article = _dataManager.articles[index];
+                                        return _buildFeaturedArticleCard(article);
+                                      },
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                            selected: isSelected,
-                            onSelected: (selected) {
-                              setState(() {
-                                _selectedTag = selected ? tag : 'All';
-                              });
-                            },
-                            backgroundColor: Colors.grey.withValues(alpha: 0.1),
-                            selectedColor: Theme.of(context).primaryColor,
                           ),
                         );
                       },
                     ),
                   ),
-                ],
-              ),
-            ),
-          ),
-          
-          const SizedBox(height: 8),
-          
-          // 搜索框
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: GlassCard(
-              child: TextField(
-                decoration: const InputDecoration(
-                  hintText: 'Search Article',
-                  prefixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(),
-                ),
-                onChanged: (value) {
-                  setState(() {
-                    _searchQuery = value;
-                  });
-                },
-              ),
-            ),
-          ),
-          
-          // 推荐文章横向滚动
-          if (_searchQuery.isEmpty && _selectedTag == 'All') ...[
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'Recommended Articles',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
+                
+                // 文章网格列表
+                filteredArticles.isEmpty
+                  ? const SliverFillRemaining(
+                      child: Center(child: Text('No Article Found')),
+                    )
+                  : SliverPadding(
+                      padding: const EdgeInsets.all(16.0),
+                      sliver: SliverGrid(
+                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          childAspectRatio: 0.75,
+                          crossAxisSpacing: 16,
+                          mainAxisSpacing: 16,
+                        ),
+                        delegate: SliverChildBuilderDelegate(
+                          (context, index) {
+                            final article = filteredArticles[index];
+                            return _buildArticleCard(article);
+                          },
+                          childCount: filteredArticles.length,
+                        ),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 16),
-                  SizedBox(
-                    height: 135,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: _dataManager.articles.length,
-                      itemBuilder: (context, index) {
-                        final article = _dataManager.articles[index];
-                        return _buildFeaturedArticleCard(article);
-                      },
-                    ),
-                  ),
-                ],
-              ),
+              ],
             ),
-          ],
-          
-          // 文章列表
-          Expanded(
-            child: filteredArticles.isEmpty
-              ? const Center(child: Text('No Article Found'))
-              : GridView.builder(
-                  padding: const EdgeInsets.all(16.0),
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    childAspectRatio: 0.75,
-                    crossAxisSpacing: 16,
-                    mainAxisSpacing: 16,
-                  ),
-                  itemCount: filteredArticles.length,
-                  itemBuilder: (context, index) {
-                    final article = filteredArticles[index];
-                    return _buildArticleCard(article);
-                  },
-                ),
           ),
         ],
       ),
@@ -282,7 +352,8 @@ class _LibraryScreenState extends State<LibraryScreen> {
         clipBehavior: Clip.antiAlias,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: [            // 文章封面
+          children: [
+            // 文章封面
             Expanded(
               child: ArticleCoverImage(
                 article: article,
@@ -387,7 +458,9 @@ class _LibraryScreenState extends State<LibraryScreen> {
                         ),
                       );
                     }
-                      final markdownContent = snapshot.data ?? '';                    return Padding(
+                    
+                    final markdownContent = snapshot.data ?? '';
+                    return Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Markdown(
                         data: markdownContent,
