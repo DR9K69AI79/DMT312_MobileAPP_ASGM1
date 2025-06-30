@@ -340,7 +340,7 @@ class _BodyScreenState extends State<BodyScreen> {
                 final weight = double.tryParse(_weightController.text);
                 if (height != null && weight != null) {
                   await _dataManager.updateHeight(height);
-                  await _dataManager.addWeight(weight);
+                  await _dataManager.addWeightValue(weight);
                 }
                 if (context.mounted) {
                   Navigator.of(context).pop();
@@ -382,7 +382,7 @@ class _BodyScreenState extends State<BodyScreen> {
               onPressed: () async {
                 final weight = double.tryParse(controller.text);
                 if (weight != null) {
-                  await _dataManager.addWeight(weight);
+                  await _dataManager.addWeightValue(weight);
                   if (context.mounted) {
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(

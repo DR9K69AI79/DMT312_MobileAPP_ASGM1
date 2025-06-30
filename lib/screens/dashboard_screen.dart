@@ -324,7 +324,7 @@ class _FabMenuState extends State<_FabMenu> with SingleTickerProviderStateMixin 
               onPressed: () async {
                 final weight = double.tryParse(weightController.text);
                 if (weight != null) {
-                  await widget.dataManager.addWeight(weight);
+                  await widget.dataManager.addWeightValue(weight);
                   if (context.mounted) {
                     Navigator.of(context).pop();
                     ScaffoldMessenger.of(context).showSnackBar(

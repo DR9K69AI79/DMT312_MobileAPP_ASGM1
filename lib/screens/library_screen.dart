@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/article_cover_image.dart';
+import '../widgets/smart_video_player.dart';
 import '../services/data_manager.dart';
 import '../services/article_service.dart';
 import '../models/article.dart';
@@ -23,10 +24,14 @@ class _LibraryScreenState extends State<LibraryScreen> with TickerProviderStateM
   bool _isRecommendedVisible = true;
   late AnimationController _animationController;
   late Animation<double> _heightAnimation;
+  late TabController _tabController;
   
   @override
   void initState() {
     super.initState();
+    
+    // 初始化标签页控制器
+    _tabController = TabController(length: 2, vsync: this);
     
     // 初始化动画控制器
     _animationController = AnimationController(
@@ -52,6 +57,7 @@ class _LibraryScreenState extends State<LibraryScreen> with TickerProviderStateM
   
   @override
   void dispose() {
+    _tabController.dispose();
     _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
     _animationController.dispose();
@@ -110,163 +116,190 @@ class _LibraryScreenState extends State<LibraryScreen> with TickerProviderStateM
     return Scaffold(
       appBar: AppBar(
         title: const Text('Learning Resources'),
-      ),
-      body: Column(
-        children: [
-          // 始终置顶的搜索和筛选栏
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: GlassCard(
-              child: Column(
-                children: [
-                  // 搜索框
-                  TextField(
-                    decoration: const InputDecoration(
-                      hintText: 'Search Article',
-                      prefixIcon: Icon(Icons.search),
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                    ),
-                    onChanged: (value) {
-                      setState(() {
-                        _searchQuery = value;
-                      });
-                    },
-                  ),
-                  const Divider(height: 1),
-                  // 标签筛选
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-                    child: Row(
-                      children: [
-                        const Text(
-                          'Tags:',
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: SizedBox(
-                            height: 32,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: _allTags.length,
-                              itemBuilder: (context, index) {
-                                final tag = _allTags[index];
-                                final isSelected = tag == _selectedTag;
-                                
-                                return Padding(
-                                  padding: const EdgeInsets.only(right: 8.0),
-                                  child: FilterChip(
-                                    label: Text(
-                                      tag,
-                                      style: TextStyle(
-                                        fontSize: 10,
-                                        color: isSelected ? Colors.white : null,
-                                      ),
-                                    ),
-                                    selected: isSelected,
-                                    onSelected: (selected) {
-                                      setState(() {
-                                        _selectedTag = selected ? tag : 'All';
-                                      });
-                                    },
-                                    backgroundColor: Colors.grey.withValues(alpha: 0.1),
-                                    selectedColor: Theme.of(context).primaryColor,
-                                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+        bottom: TabBar(
+          controller: _tabController,
+          labelColor: Theme.of(context).primaryColor,
+          unselectedLabelColor: const Color.fromARGB(255, 255, 255, 255),
+          indicatorColor: Theme.of(context).primaryColor,
+          indicatorWeight: 3,
+          labelStyle: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
           ),
-          
-          // 可滚动的内容区域
-          Expanded(
-            child: CustomScrollView(
-              controller: _scrollController,
-              slivers: [
-                // 推荐文章横向滚动（带动画折叠效果）
-                if (_searchQuery.isEmpty && _selectedTag == 'All')
-                  SliverToBoxAdapter(
-                    child: AnimatedBuilder(
-                      animation: _heightAnimation,
-                      builder: (context, child) {
-                        return SizeTransition(
-                          sizeFactor: _heightAnimation,
-                          axisAlignment: -1.0,
-                          child: Opacity(
-                            opacity: _heightAnimation.value,
-                            child: Padding(
-                              padding: const EdgeInsets.all(16.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Recommended Articles',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 16),
-                                  SizedBox(
-                                    height: 135,
-                                    child: ListView.builder(
-                                      scrollDirection: Axis.horizontal,
-                                      itemCount: _dataManager.articles.length,
-                                      itemBuilder: (context, index) {
-                                        final article = _dataManager.articles[index];
-                                        return _buildFeaturedArticleCard(article);
-                                      },
-                                    ),
-                                  ),
-                                ],
+          unselectedLabelStyle: const TextStyle(
+            fontWeight: FontWeight.normal,
+            fontSize: 16,
+          ),
+          tabs: const [
+            Tab(text: 'Articles'),
+            Tab(text: 'Videos'),
+          ],
+        ),
+      ),
+      body: TabBarView(
+        controller: _tabController,
+        children: [
+          Column(
+            children: [
+              // 始终置顶的搜索和筛选栏
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: GlassCard(
+                  child: Column(
+                    children: [
+                      // 搜索框
+                      TextField(
+                        decoration: const InputDecoration(
+                          hintText: 'Search Article',
+                          prefixIcon: Icon(Icons.search),
+                          border: InputBorder.none,
+                          contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                        ),
+                        onChanged: (value) {
+                          setState(() {
+                            _searchQuery = value;
+                          });
+                        },
+                      ),
+                      const Divider(height: 1),
+                      // 标签筛选
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                        child: Row(
+                          children: [
+                            const Text(
+                              'Tags:',
+                              style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.grey,
                               ),
                             ),
-                          ),
-                        );
-                      },
-                    ),
-                  ),
-                
-                // 文章网格列表
-                filteredArticles.isEmpty
-                  ? const SliverFillRemaining(
-                      child: Center(child: Text('No Article Found')),
-                    )
-                  : SliverPadding(
-                      padding: const EdgeInsets.all(16.0),
-                      sliver: SliverGrid(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 0.75,
-                          crossAxisSpacing: 16,
-                          mainAxisSpacing: 16,
-                        ),
-                        delegate: SliverChildBuilderDelegate(
-                          (context, index) {
-                            final article = filteredArticles[index];
-                            return _buildArticleCard(article);
-                          },
-                          childCount: filteredArticles.length,
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: SizedBox(
+                                height: 32,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: _allTags.length,
+                                  itemBuilder: (context, index) {
+                                    final tag = _allTags[index];
+                                    final isSelected = tag == _selectedTag;
+                                    
+                                    return Padding(
+                                      padding: const EdgeInsets.only(right: 8.0),
+                                      child: FilterChip(
+                                        label: Text(
+                                          tag,
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                            color: isSelected ? Colors.white : null,
+                                          ),
+                                        ),
+                                        selected: isSelected,
+                                        onSelected: (selected) {
+                                          setState(() {
+                                            _selectedTag = selected ? tag : 'All';
+                                          });
+                                        },
+                                        backgroundColor: Colors.grey.withValues(alpha: 0.1),
+                                        selectedColor: Theme.of(context).primaryColor,
+                                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                                        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
-                    ),
-              ],
-            ),
+                    ],
+                  ),
+                ),
+              ),
+              
+              // 可滚动的内容区域
+              Expanded(
+                child: CustomScrollView(
+                  controller: _scrollController,
+                  slivers: [
+                    // 推荐文章横向滚动（带动画折叠效果）
+                    if (_searchQuery.isEmpty && _selectedTag == 'All')
+                      SliverToBoxAdapter(
+                        child: AnimatedBuilder(
+                          animation: _heightAnimation,
+                          builder: (context, child) {
+                            return SizeTransition(
+                              sizeFactor: _heightAnimation,
+                              axisAlignment: -1.0,
+                              child: Opacity(
+                                opacity: _heightAnimation.value,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(16.0),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      const Text(
+                                        'Recommended Articles',
+                                        style: TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      const SizedBox(height: 16),
+                                      SizedBox(
+                                        height: 135,
+                                        child: ListView.builder(
+                                          scrollDirection: Axis.horizontal,
+                                          itemCount: _dataManager.articles.length,
+                                          itemBuilder: (context, index) {
+                                            final article = _dataManager.articles[index];
+                                            return _buildFeaturedArticleCard(article);
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    
+                    // 文章网格列表
+                    filteredArticles.isEmpty
+                      ? const SliverFillRemaining(
+                          child: Center(child: Text('No Article Found')),
+                        )
+                      : SliverPadding(
+                          padding: const EdgeInsets.all(16.0),
+                          sliver: SliverGrid(
+                            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 0.75,
+                              crossAxisSpacing: 16,
+                              mainAxisSpacing: 16,
+                            ),
+                            delegate: SliverChildBuilderDelegate(
+                              (context, index) {
+                                final article = filteredArticles[index];
+                                return _buildArticleCard(article);
+                              },
+                              childCount: filteredArticles.length,
+                            ),
+                          ),
+                        ),
+                  ],
+                ),
+              ),
+            ],
           ),
+          
+          // 视频标签页内容
+          _buildVideoTab(),
         ],
       ),
     );
@@ -512,6 +545,176 @@ class _LibraryScreenState extends State<LibraryScreen> with TickerProviderStateM
           ),
         );
       },
+    );
+  }
+
+  // 添加视频相关方法
+  Widget _buildVideoTab() {
+    final videos = [
+      {
+        'title': '基础训练教程',
+        'description': '适合初学者的基础健身动作教学',
+        'thumbnail': 'assets/images/muscle_building_cover.png',
+        'path': 'assets/videos/tutorial.mp4',
+        'duration': '10:30',
+      },
+      {
+        'title': '热身运动',
+        'description': '训练前必做的热身动作指导',
+        'thumbnail': 'assets/images/injury_prevention_cover.png',
+        'path': 'assets/videos/warmup.mp4',
+        'duration': '5:15',
+      },
+      {
+        'title': '拉伸放松',
+        'description': '训练后的拉伸和放松指导',
+        'thumbnail': 'assets/images/outdoor_cover.png',
+        'path': 'assets/videos/stretching.mp4',
+        'duration': '8:20',
+      },
+    ];
+
+    return ListView.builder(
+      padding: const EdgeInsets.all(16),
+      itemCount: videos.length,
+      itemBuilder: (context, index) {
+        final video = videos[index];
+        return Card(
+          margin: const EdgeInsets.only(bottom: 16),
+          child: InkWell(
+            onTap: () => _openVideoPlayer(
+              video['path']!,
+              video['title']!,
+              video['description']!,
+            ),
+            borderRadius: BorderRadius.circular(12),
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: Row(
+                children: [
+                  // 视频缩略图
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: Image.asset(
+                      video['thumbnail']!,
+                      width: 80,
+                      height: 60,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          width: 80,
+                          height: 60,
+                          color: Colors.grey[300],
+                          child: const Icon(
+                            Icons.play_circle_outline,
+                            size: 32,
+                            color: Colors.grey,
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  // 视频信息
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          video['title']!,
+                          style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          video['description']!,
+                          style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                            color: Colors.grey[600],
+                          ),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                        const SizedBox(height: 8),
+                        Row(
+                          children: [
+                            Icon(
+                              Icons.access_time,
+                              size: 14,
+                              color: Colors.grey[500],
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              video['duration']!,
+                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                                color: Colors.grey[500],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  // 播放按钮
+                  Container(
+                    padding: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor.withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Icon(
+                      Icons.play_arrow,
+                      color: Theme.of(context).primaryColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void _openVideoPlayer(String videoPath, String title, String description) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Scaffold(
+          appBar: AppBar(
+            title: Text(title),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SmartVideoPlayer(
+                  videoPath: videoPath,
+                  title: '',
+                  description: description,
+                  autoPlay: true,
+                  showControls: true,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  title,
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  description,
+                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Colors.grey[700],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

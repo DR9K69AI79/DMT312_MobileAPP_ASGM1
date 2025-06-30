@@ -1,741 +1,488 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'dart:convert';
 import '../models/weight_entry.dart';
 import '../models/workout_entry.dart';
 import '../models/article.dart';
 import '../models/nutrition_entry.dart';
+import '../models/user.dart';
 import '../models/body_fat_entry.dart';
 import 'article_service.dart';
+import 'database_service.dart';
 
-/// 数据管理器，负责管理所有应用数据的持久化
-/// 重构为按日期组织的无限历史数据存储
-class DataManager extends ChangeNotifier {  // 数据键
-  static const String _weightDataKey = 'weight_data';
-  static const String _bodyFatDataKey = 'body_fat_data';
-  static const String _workoutDataKey = 'workout_data';
-  static const String _nutritionDataKey = 'nutrition_data';
-  static const String _userDataKey = 'user_data';
-
+/// 数据管理器，重构为使用SQLite数据库存储
+/// 负责管理用户认证和全局状态
+class DataManager extends ChangeNotifier {
   // 单例模式实现
   static final DataManager _instance = DataManager._internal();
   factory DataManager() => _instance;
   DataManager._internal();
 
   late final SharedPreferences _prefs;
+  late final DatabaseService _dbService;
   bool _initialized = false;
 
-  // 按日期组织的数据存储 (格式: "YYYY-MM-DD")
-  final Map<String, WeightEntry> _weightData = {};
-  final Map<String, BodyFatEntry> _bodyFatData = {};
-  final Map<String, List<WorkoutEntry>> _workoutData = {};
-  final Map<String, DailyNutritionEntry> _nutritionData = {};
+  // 当前登录用户
+  User? _currentUser;
   
   // 其他数据
   List<Article> _articles = [];
   
-  // 用户数据
-  Map<String, dynamic> _userData = {
-    'name': '用户',
-    'age': 25,
-    'height': 170,
-    'gender': 'male',
-    'activityLevel': 'moderate',
-    'weightGoal': 65.0,
-    'bodyFatGoal': 15.0,
-  };  // 初始化
+  // 用户设置缓存
+  int _calorieGoal = 2000;
+  Map<String, int> _dailyCalorieIntake = {};
+  Map<String, int> _dailyCaloriesBurned = {};
+  
+  // 临时缓存数据 (为了性能优化)
+  Map<String, WeightEntry> _weightCache = {};
+  Map<String, List<WorkoutEntry>> _workoutCache = {};
+  Map<String, List<MealEntry>> _mealCache = {};
+  Map<String, BodyFatEntry> _bodyFatCache = {};
+
+  // Getters
+  User? get currentUser => _currentUser;
+  bool get isLoggedIn => _currentUser != null;
+  List<Article> get articles => _articles;
+
+  // 用户相关的属性（从当前用户获取）
+  double get height => _currentUser?.height ?? 170.0;
+  String get userName => _currentUser?.name ?? '未登录用户';
+  String get userEmail => _currentUser?.email ?? '';
+
+  // 初始化
   Future<void> initialize() async {
     if (_initialized) return;
     
     try {
-      debugPrint('DataManager: Starting initialization...');
       _prefs = await SharedPreferences.getInstance();
-      await _loadAllData();
+      _dbService = DatabaseService.instance;
       
-      debugPrint('DataManager: Loaded data - Weight entries: ${_weightData.length}');
+      // 初始化数据库
+      await _dbService.initDatabase();
       
-      // 检查是否需要重新初始化数据
-      // 如果数据少于15条（不足30天的一半），重新初始化
-      if (_weightData.length < 15) {
-        debugPrint('DataManager: Insufficient data (${_weightData.length} entries), reinitializing with 30 days...');
-        await clearAllData(); // 清除现有数据
-        await _initializeDefaultData();
-        debugPrint('DataManager: Reinitialized with ${_weightData.length} entries');
-      }
+      // 创建示例用户（如果数据库为空）
+      await _createDefaultUserIfNeeded();
       
-      _initialized = true;
-      notifyListeners();
-      debugPrint('DataManager: Initialization completed successfully');
-    } catch (e) {
-      debugPrint('Error initializing DataManager: $e');
-    }
-  }// 初始化默认数据
-  Future<void> _initializeDefaultData() async {
-    debugPrint('DataManager: Initializing default data...');
-    
-    // 初始化默认体重数据（近30天，以满足dashboard需求）
-    final now = DateTime.now();
-    for (int i = 29; i >= 0; i--) {
-      final date = now.subtract(Duration(days: i));
-      final dateKey = _formatDate(date);
-      // 模拟体重数据，在70kg左右波动，创建一个有趋势的数据
-      final baseWeight = 72.0; // 起始体重
-      final trendWeight = baseWeight - (i / 29.0) * 2.0; // 逐渐减重2kg的趋势
-      final randomFluctuation = (i % 3 - 1) * 0.3; // 小幅随机波动
-      final weight = trendWeight + randomFluctuation;
-      _weightData[dateKey] = WeightEntry(
-        date: date,
-        value: weight,
-      );
-      debugPrint('DataManager: Added weight entry for $dateKey: ${weight.toStringAsFixed(1)}kg');
-    }
-    
-    // 初始化默认体脂数据（近30天）
-    for (int i = 29; i >= 0; i--) {
-      final date = now.subtract(Duration(days: i));
-      final dateKey = _formatDate(date);
-      // 模拟体脂数据，在16%左右波动，也有减少趋势
-      final baseBodyFat = 18.0; // 起始体脂率
-      final trendBodyFat = baseBodyFat - (i / 29.0) * 3.0; // 逐渐减少3%的趋势
-      final randomFluctuation = (i % 2) * 0.2; // 小幅随机波动
-      final bodyFat = trendBodyFat + randomFluctuation;
-      _bodyFatData[dateKey] = BodyFatEntry(
-        date: date,
-        value: bodyFat,
-      );
-      debugPrint('DataManager: Added body fat entry for $dateKey: ${bodyFat.toStringAsFixed(1)}%');
-    }
-    
-    // 初始化今日训练数据
-    final todayKey = _formatDate(now);
-    _workoutData[todayKey] = [
-      WorkoutEntry(
-        date: now,
-        name: 'Push-up',
-        sets: 3,
-        isCompleted: true,
-      ),
-      WorkoutEntry(
-        date: now,
-        name: 'Squat',
-        sets: 4,
-        isCompleted: false,
-      ),
-      WorkoutEntry(
-        date: now,
-        name: 'Plank',
-        sets: 3,
-        isCompleted: false,
-      ),
-    ];
-      // 保存默认数据并等待完成
-    debugPrint('DataManager: Saving default data...');
-    await _saveWeightData();
-    await _saveBodyFatData();
-    await _saveWorkoutData();
-    
-    debugPrint('DataManager: Default data initialized and saved successfully');
-    debugPrint('DataManager: Total weight entries: ${_weightData.length}');
-    debugPrint('DataManager: Current weight: ${currentWeight}');
-  }
-
-  // 兼容性方法：init方法别名
-  Future<void> init() async {
-    await initialize();
-  }
-
-  // 加载所有数据
-  Future<void> _loadAllData() async {
-    await _loadWeightData();
-    await _loadBodyFatData();
-    await _loadWorkoutData();
-    await _loadNutritionData();
-    await _loadArticles();
-    await _loadUserData();
-  }
-
-  // 加载体重数据
-  Future<void> _loadWeightData() async {
-    try {
-      final String? dataJson = _prefs.getString(_weightDataKey);
-      if (dataJson != null) {
-        final Map<String, dynamic> dataMap = json.decode(dataJson);
-        _weightData.clear();
-        dataMap.forEach((key, value) {
-          _weightData[key] = WeightEntry.fromJson(value);
-        });
-      }
-    } catch (e) {
-      debugPrint('Error loading weight data: $e');
-    }
-  }
-
-  // 加载体脂数据
-  Future<void> _loadBodyFatData() async {
-    try {
-      final String? dataJson = _prefs.getString(_bodyFatDataKey);
-      if (dataJson != null) {
-        final Map<String, dynamic> dataMap = json.decode(dataJson);
-        _bodyFatData.clear();
-        dataMap.forEach((key, value) {
-          _bodyFatData[key] = BodyFatEntry.fromJson(value);
-        });
-      }
-    } catch (e) {
-      debugPrint('Error loading body fat data: $e');
-    }
-  }
-
-  // 加载锻炼数据
-  Future<void> _loadWorkoutData() async {
-    try {
-      final String? dataJson = _prefs.getString(_workoutDataKey);
-      if (dataJson != null) {
-        final Map<String, dynamic> dataMap = json.decode(dataJson);
-        _workoutData.clear();
-        dataMap.forEach((key, value) {
-          _workoutData[key] = (value as List)
-              .map((item) => WorkoutEntry.fromJson(item))
-              .toList();
-        });
-      }
-    } catch (e) {
-      debugPrint('Error loading workout data: $e');
-    }
-  }
-
-  // 加载营养数据
-  Future<void> _loadNutritionData() async {
-    try {
-      final String? dataJson = _prefs.getString(_nutritionDataKey);
-      if (dataJson != null) {
-        final Map<String, dynamic> dataMap = json.decode(dataJson);
-        _nutritionData.clear();
-        dataMap.forEach((key, value) {
-          _nutritionData[key] = DailyNutritionEntry.fromJson(value);
-        });
-      }
-    } catch (e) {
-      debugPrint('Error loading nutrition data: $e');
-    }
-  }
-  // 加载文章数据
-  Future<void> _loadArticles() async {
-    try {
+      // 尝试恢复用户登录状态
+      await _restoreUserSession();
+      
+      // 加载文章数据
       final articleService = ArticleService();
       _articles = await articleService.loadAllArticles();
-      debugPrint('Articles initialized: ${_articles.length} articles');
       
-      // 如果没有成功加载任何文章，保留一些默认文章作为后备
-      if (_articles.isEmpty) {
-        debugPrint('No articles loaded from assets, using fallback articles');
-        _articles = [
-          Article(
-            title: 'How to scientifically increase muscle mass',
-            coverUrl: 'https://picsum.photos/id/237/200/300',
-            mdPath: 'assets/articles/muscle_gain.md',
-            category: 'Training',
-          ),
-          Article(
-            title: 'Efficient fat burning training program',
-            coverUrl: 'https://picsum.photos/id/238/200/300',
-            mdPath: 'assets/articles/fat_burn.md',
-            category: 'Training',
-          ),
-        ];
+      _initialized = true;
+      debugPrint('DataManager: 初始化完成');
+    } catch (e) {
+      debugPrint('DataManager: 初始化失败: $e');
+    }
+  }
+
+  // 如果需要，创建默认用户
+  Future<void> _createDefaultUserIfNeeded() async {
+    try {
+      // 检查是否已有用户
+      final existingUser = await _dbService.getUser('demo@fitlog.com', 'demo123');
+      if (existingUser == null) {
+        // 创建示例用户
+        final demoUser = User(
+          name: '示例用户',
+          email: 'demo@fitlog.com',
+          password: 'demo123',
+          height: 170.0,
+          createdAt: DateTime.now(),
+        );
+        
+        await _dbService.createUser(demoUser);
+        debugPrint('DataManager: 创建示例用户完成 - 邮箱: demo@fitlog.com, 密码: demo123');
+      } else {
+        debugPrint('DataManager: 示例用户已存在');
       }
     } catch (e) {
-      debugPrint('Error loading articles: $e');
-      // 发生错误时使用默认文章
-      _articles = [
-        Article(
-          title: 'How to scientifically increase muscle mass',
-          coverUrl: 'https://picsum.photos/id/237/200/300',
-          mdPath: 'assets/articles/muscle_gain.md',
-          category: 'Training',
-        ),
-        Article(
-          title: 'Efficient fat burning training program',
-          coverUrl: 'https://picsum.photos/id/238/200/300',
-          mdPath: 'assets/articles/fat_burn.md',
-          category: 'Training',
-        ),
-      ];
+      debugPrint('DataManager: 创建示例用户失败: $e');
     }
   }
 
-  // 加载用户数据
-  Future<void> _loadUserData() async {
-    try {
-      final String? dataJson = _prefs.getString(_userDataKey);
-      if (dataJson != null) {
-        _userData = json.decode(dataJson);
-      }
-    } catch (e) {
-      debugPrint('Error loading user data: $e');
-    }
-  }
-
-  // 保存体重数据
-  Future<void> _saveWeightData() async {
-    try {
-      final Map<String, dynamic> dataMap = {};
-      _weightData.forEach((key, value) {
-        dataMap[key] = value.toJson();
-      });
-      await _prefs.setString(_weightDataKey, json.encode(dataMap));
-    } catch (e) {
-      debugPrint('Error saving weight data: $e');
-    }
-  }
-
-  // 保存体脂数据
-  Future<void> _saveBodyFatData() async {
-    try {
-      final Map<String, dynamic> dataMap = {};
-      _bodyFatData.forEach((key, value) {
-        dataMap[key] = value.toJson();
-      });
-      await _prefs.setString(_bodyFatDataKey, json.encode(dataMap));
-    } catch (e) {
-      debugPrint('Error saving body fat data: $e');
-    }
-  }
-
-  // 保存锻炼数据
-  Future<void> _saveWorkoutData() async {
-    try {
-      final Map<String, dynamic> dataMap = {};
-      _workoutData.forEach((key, value) {
-        dataMap[key] = value.map((item) => item.toJson()).toList();
-      });
-      await _prefs.setString(_workoutDataKey, json.encode(dataMap));
-    } catch (e) {
-      debugPrint('Error saving workout data: $e');
-    }
-  }
-
-  // 保存营养数据
-  Future<void> _saveNutritionData() async {
-    try {
-      final Map<String, dynamic> dataMap = {};
-      _nutritionData.forEach((key, value) {
-        dataMap[key] = value.toJson();
-      });
-      await _prefs.setString(_nutritionDataKey, json.encode(dataMap));
-    } catch (e) {
-      debugPrint('Error saving nutrition data: $e');
-    }
-  }
-  // 保存用户数据
-  Future<void> _saveUserData() async {
-    try {
-      await _prefs.setString(_userDataKey, json.encode(_userData));
-    } catch (e) {
-      debugPrint('Error saving user data: $e');
-    }
-  }// 获取指定天数的体重数据
-  Map<String, WeightEntry> getWeightData({int? days}) {
-    if (days == null) {
-      return Map.from(_weightData);
-    }
-    
-    final now = DateTime.now();
-    final Map<String, WeightEntry> result = {};
-    
-    for (int i = days - 1; i >= 0; i--) {
-      final date = now.subtract(Duration(days: i));
-      final dateKey = _formatDate(date);
-      if (_weightData.containsKey(dateKey)) {
-        result[dateKey] = _weightData[dateKey]!;
+  // 恢复用户会话
+  Future<void> _restoreUserSession() async {
+    final userId = _prefs.getInt('current_user_id');
+    if (userId != null) {
+      try {
+        _currentUser = await _dbService.getUserById(userId);
+        if (_currentUser != null) {
+          // 加载用户设置
+          await _loadUserSettings();
+          debugPrint('DataManager: 恢复用户会话: ${_currentUser!.name}');
+          notifyListeners();
+        }
+      } catch (e) {
+        debugPrint('DataManager: 恢复用户会话失败: $e');
       }
     }
-    
-    return result;
   }
 
-  // 获取指定天数的体脂数据
-  Map<String, BodyFatEntry> getBodyFatData({int? days}) {
-    if (days == null) {
-      return Map.from(_bodyFatData);
+  // 保存用户会话
+  Future<void> _saveUserSession() async {
+    if (_currentUser?.id != null) {
+      await _prefs.setInt('current_user_id', _currentUser!.id!);
+    } else {
+      await _prefs.remove('current_user_id');
     }
-    
-    final now = DateTime.now();
-    final Map<String, BodyFatEntry> result = {};
-    
-    for (int i = days - 1; i >= 0; i--) {
-      final date = now.subtract(Duration(days: i));
-      final dateKey = _formatDate(date);
-      if (_bodyFatData.containsKey(dateKey)) {
-        result[dateKey] = _bodyFatData[dateKey]!;
+  }
+
+  // === 用户认证相关方法 ===
+
+  /// 用户注册
+  Future<bool> register(User newUser) async {
+    try {
+      // 检查邮箱是否已存在
+      if (await _dbService.isEmailExists(newUser.email)) {
+        debugPrint('DataManager: 注册失败 - 邮箱已存在');
+        return false;
       }
+
+      // 创建用户
+      final userId = await _dbService.createUser(newUser.copyWith(
+        createdAt: DateTime.now(),
+      ));
+
+      // 获取完整的用户信息（包含生成的ID）
+      _currentUser = await _dbService.getUserById(userId);
+      await _saveUserSession();
+
+      debugPrint('DataManager: 用户注册成功: ${_currentUser!.name}');
+      notifyListeners();
+      return true;
+    } catch (e) {
+      debugPrint('DataManager: 注册失败: $e');
+      return false;
     }
-    
-    return result;
   }
 
-  // 获取指定天数的锻炼数据
-  Map<String, List<WorkoutEntry>> getWorkoutData({int? days}) {
-    if (days == null) {
-      return Map.from(_workoutData);
-    }
-    
-    final now = DateTime.now();
-    final Map<String, List<WorkoutEntry>> result = {};
-    
-    for (int i = days - 1; i >= 0; i--) {
-      final date = now.subtract(Duration(days: i));
-      final dateKey = _formatDate(date);
-      if (_workoutData.containsKey(dateKey)) {
-        result[dateKey] = _workoutData[dateKey]!;
+  /// 用户登录
+  Future<bool> login(String email, String password) async {
+    try {
+      _currentUser = await _dbService.getUser(email, password);
+      if (_currentUser != null) {
+        await _saveUserSession();
+        
+        // 清空缓存，准备加载新用户数据
+        _clearCache();
+        
+        // 加载用户设置
+        await _loadUserSettings();
+        
+        // 预加载用户数据
+        await _preloadUserData();
+        
+        // 预加载用户数据
+        await _preloadUserData();
+        
+        debugPrint('DataManager: 用户登录成功: ${_currentUser!.name}');
+        notifyListeners();
+        return true;
+      } else {
+        debugPrint('DataManager: 登录失败 - 用户名或密码错误');
+        return false;
       }
+    } catch (e) {
+      debugPrint('DataManager: 登录失败: $e');
+      return false;
     }
-    
-    return result;
   }
 
-  // 获取指定天数的营养数据
-  Map<String, DailyNutritionEntry> getNutritionData({int? days}) {
-    if (days == null) {
-      return Map.from(_nutritionData);
+  /// 用户登出
+  Future<void> logout() async {
+    _currentUser = null;
+    await _saveUserSession();
+    _clearCache();
+    debugPrint('DataManager: 用户已登出');
+    notifyListeners();
+  }
+
+  /// 更新用户资料
+  Future<bool> updateProfile(User updatedUser) async {
+    if (_currentUser == null) return false;
+
+    try {
+      await _dbService.updateUser(updatedUser);
+      _currentUser = updatedUser;
+      debugPrint('DataManager: 用户资料更新成功');
+      notifyListeners();
+      return true;
+    } catch (e) {
+      debugPrint('DataManager: 更新用户资料失败: $e');
+      return false;
     }
-    
-    final now = DateTime.now();
-    final Map<String, DailyNutritionEntry> result = {};
-    
-    for (int i = days - 1; i >= 0; i--) {
-      final date = now.subtract(Duration(days: i));
-      final dateKey = _formatDate(date);
-      if (_nutritionData.containsKey(dateKey)) {
-        result[dateKey] = _nutritionData[dateKey]!;
+  }
+
+  // 清空缓存
+  void _clearCache() {
+    _weightCache.clear();
+    _workoutCache.clear();
+    _mealCache.clear();
+    _bodyFatCache.clear();
+    _dailyCalorieIntake.clear();
+    _dailyCaloriesBurned.clear();
+    _calorieGoal = 2000; // 重置为默认值
+  }
+
+  // === 体重记录相关方法 ===
+
+  /// 添加体重记录
+  Future<void> addWeight(WeightEntry entry) async {
+    if (_currentUser == null) return;
+
+    try {
+      await _dbService.addWeight(entry, _currentUser!.id!);
+      _weightCache[_formatDate(entry.date)] = entry;
+      debugPrint('DataManager: 体重记录添加成功');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 添加体重记录失败: $e');
+    }
+  }
+
+  /// 获取体重记录列表
+  Future<List<WeightEntry>> getWeightEntries() async {
+    if (_currentUser == null) return [];
+
+    try {
+      final entries = await _dbService.getWeights(_currentUser!.id!);
+      
+      // 更新缓存
+      _weightCache.clear();
+      for (final entry in entries) {
+        _weightCache[_formatDate(entry.date)] = entry;
       }
+      
+      return entries;
+    } catch (e) {
+      debugPrint('DataManager: 获取体重记录失败: $e');
+      return [];
     }
-    
-    return result;
   }
 
-  // 兼容性接口：获取最近7天体重数据
-  List<WeightEntry> get weights7d {
-    final data = getWeightData(days: 7);
-    return data.values.toList()..sort((a, b) => a.date.compareTo(b.date));
-  }
-
-  // 兼容性接口：获取当前体重
+  /// 获取当前体重
   double? get currentWeight {
-    if (_weightData.isEmpty) return null;
-    final sortedEntries = _weightData.values.toList()
+    if (_weightCache.isEmpty) return null;
+    final sortedEntries = _weightCache.values.toList()
       ..sort((a, b) => b.date.compareTo(a.date));
     return sortedEntries.first.value;
   }
 
-  // 兼容性接口：获取今天的锻炼数据
-  List<WorkoutEntry> get workoutToday {
-    final today = _formatDate(DateTime.now());
-    return _workoutData[today] ?? [];
-  }
-
-  // 兼容性接口：获取今天的营养数据
-  DailyNutritionEntry? get nutritionToday {
-    final today = _formatDate(DateTime.now());
-    return _nutritionData[today];
-  }
-
-  // 获取文章列表
-  List<Article> get articles => List.from(_articles);
-
-  // 重新加载文章数据（用于数据导入后确保文章可用）
-  Future<void> reloadArticles() async {
-    await _loadArticles();
-  }
-  // 获取用户数据
-  Map<String, dynamic> get userData => Map.from(_userData);
-  // 兼容性接口：获取当前热量摄入
-  int get calorieIntake {
-    final today = nutritionToday;
-    return today?.calorieIntake ?? 0;
-  }
-
-  // 兼容性接口：获取当前热量消耗
-  int get caloriesBurned {
-    final today = nutritionToday;
-    return today?.caloriesBurned ?? 0;
-  }
-  // 兼容性接口：获取热量目标
-  int get calorieGoal {
-    final today = nutritionToday;
-    return today?.calorieGoal ?? 2000;
-  }
-
-  // 兼容性接口：获取热量平衡
-  int get calorieBalance => calorieIntake - caloriesBurned;
-  // 兼容性方法：更新热量摄入
-  Future<void> updateCalorieIntake(int intake, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-    
-    if (!_nutritionData.containsKey(dateKey)) {
-      _nutritionData[dateKey] = DailyNutritionEntry(
-        date: date,
-        calorieIntake: intake,
-        caloriesBurned: 0,
-        calorieGoal: 2000,
-        meals: [],
-      );
-    } else {
-      _nutritionData[dateKey] = _nutritionData[dateKey]!.copyWith(
-        calorieIntake: intake,
-      );
-    }
-    
-    await _saveNutritionData();
-    notifyListeners();
-  }
-
-  // 兼容性方法：更新热量消耗
-  Future<void> updateCaloriesBurned(int burned, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-    
-    if (!_nutritionData.containsKey(dateKey)) {
-      _nutritionData[dateKey] = DailyNutritionEntry(
-        date: date,
-        calorieIntake: 0,
-        caloriesBurned: burned,
-        calorieGoal: 2000,
-        meals: [],
-      );
-    } else {
-      _nutritionData[dateKey] = _nutritionData[dateKey]!.copyWith(
-        caloriesBurned: burned,
-      );
-    }
-    
-    await _saveNutritionData();
-    notifyListeners();
-  }
-
-  // 兼容性方法：更新热量目标
-  Future<void> updateCalorieGoal(int goal, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-    
-    if (!_nutritionData.containsKey(dateKey)) {
-      _nutritionData[dateKey] = DailyNutritionEntry(
-        date: date,
-        calorieIntake: 0,
-        caloriesBurned: 0,
-        calorieGoal: goal,
-        meals: [],
-      );
-    } else {
-      _nutritionData[dateKey] = _nutritionData[dateKey]!.copyWith(
-        calorieGoal: goal,
-      );
-    }
-    
-    await _saveNutritionData();
-    notifyListeners();
-  }
-
-  // 兼容性方法：更新锻炼完成状态
-  Future<void> updateWorkoutCompletion(int index, bool isCompleted, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-    
-    if (_workoutData.containsKey(dateKey) && 
-        index < _workoutData[dateKey]!.length) {
-      final workouts = List<WorkoutEntry>.from(_workoutData[dateKey]!);
-      workouts[index] = workouts[index].copyWith(isCompleted: isCompleted);
-      _workoutData[dateKey] = workouts;
-      
-      await _saveWorkoutData();
+  /// 删除体重记录
+  Future<void> deleteWeight(int id) async {
+    try {
+      await _dbService.deleteWeight(id);
+      // 清除缓存，强制重新加载
+      _weightCache.clear();
+      debugPrint('DataManager: 体重记录删除成功');
       notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 删除体重记录失败: $e');
     }
   }
-  // 添加体重记录
-  Future<void> addWeight(double weight, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-      _weightData[dateKey] = WeightEntry(
-      value: weight,
-      date: date,
-    );
-    
-    await _saveWeightData();
-    notifyListeners();
-  }
 
-  // 添加体脂记录
-  Future<void> addBodyFat(double bodyFatPercentage, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-      _bodyFatData[dateKey] = BodyFatEntry(
-      value: bodyFatPercentage,
-      date: date,
-    );
-    
-    await _saveBodyFatData();
-    notifyListeners();
-  }
+  // === 训练记录相关方法 ===
 
-  // 添加锻炼记录
-  Future<void> addWorkout(WorkoutEntry workout) async {
-    final dateKey = _formatDate(workout.date);
-    
-    if (!_workoutData.containsKey(dateKey)) {
-      _workoutData[dateKey] = [];
-    }
-    _workoutData[dateKey]!.add(workout);
-    
-    await _saveWorkoutData();
-    notifyListeners();
-  }
-  // 添加餐食记录
-  Future<void> addMeal(MealEntry meal, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-    
-    if (!_nutritionData.containsKey(dateKey)) {
-      _nutritionData[dateKey] = DailyNutritionEntry(
-        date: date,
-        calorieIntake: 0,
-        caloriesBurned: 0,
-        calorieGoal: 2000,
-        meals: [],
-      );
-    }
-    
-    final currentEntry = _nutritionData[dateKey]!;
-    final updatedMeals = List<MealEntry>.from(currentEntry.meals)..add(meal);
-    final totalCalories = updatedMeals.fold<int>(0, (sum, m) => sum + m.calories);
-    
-    _nutritionData[dateKey] = currentEntry.copyWith(
-      meals: updatedMeals,
-      calorieIntake: totalCalories,
-    );
-    
-    await _saveNutritionData();
-    notifyListeners();
-  }
+  /// 添加训练记录
+  Future<void> addWorkout(WorkoutEntry entry) async {
+    if (_currentUser == null) return;
 
-  // 删除餐食记录
-  Future<void> removeMeal(int mealIndex, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-    
-    if (_nutritionData.containsKey(dateKey) && 
-        mealIndex < _nutritionData[dateKey]!.meals.length) {
-      final currentEntry = _nutritionData[dateKey]!;
-      final updatedMeals = List<MealEntry>.from(currentEntry.meals)..removeAt(mealIndex);
-      final totalCalories = updatedMeals.fold<int>(0, (sum, m) => sum + m.calories);
+    try {
+      await _dbService.addWorkout(entry, _currentUser!.id!);
       
-      _nutritionData[dateKey] = currentEntry.copyWith(
-        meals: updatedMeals,
-        calorieIntake: totalCalories,
+      // 更新缓存
+      final dateKey = _formatDate(entry.date);
+      if (!_workoutCache.containsKey(dateKey)) {
+        _workoutCache[dateKey] = [];
+      }
+      _workoutCache[dateKey]!.add(entry);
+      
+      debugPrint('DataManager: 训练记录添加成功');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 添加训练记录失败: $e');
+    }
+  }
+
+  /// 获取特定日期的训练记录
+  Future<List<WorkoutEntry>> getWorkoutsForDate(DateTime date) async {
+    if (_currentUser == null) return [];
+
+    final dateKey = _formatDate(date);
+    
+    // 检查缓存
+    if (_workoutCache.containsKey(dateKey)) {
+      return _workoutCache[dateKey]!;
+    }
+
+    try {
+      final entries = await _dbService.getWorkoutsByDate(
+        _currentUser!.id!, 
+        dateKey
+      );
+      _workoutCache[dateKey] = entries;
+      return entries;
+    } catch (e) {
+      debugPrint('DataManager: 获取训练记录失败: $e');
+      return [];
+    }
+  }
+
+  /// 更新训练记录完成状态
+  Future<void> toggleWorkoutCompletion(WorkoutEntry workout) async {
+    if (_currentUser == null) return;
+
+    try {
+      final updatedWorkout = workout.copyWith(
+        isCompleted: !workout.isCompleted
       );
       
-      await _saveNutritionData();
+      await _dbService.updateWorkout(updatedWorkout, _currentUser!.id!);
+      
+      // 更新缓存
+      final dateKey = _formatDate(workout.date);
+      if (_workoutCache.containsKey(dateKey)) {
+        final index = _workoutCache[dateKey]!.indexWhere(
+          (w) => w.name == workout.name && w.date == workout.date
+        );
+        if (index != -1) {
+          _workoutCache[dateKey]![index] = updatedWorkout;
+        }
+      }
+      
+      debugPrint('DataManager: 训练状态更新成功');
       notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 更新训练状态失败: $e');
     }
   }
 
-  // 更新用户数据
-  Future<void> updateUserData(Map<String, dynamic> data) async {
-    _userData.addAll(data);
-    await _saveUserData();
-    notifyListeners();
+  /// 删除训练记录
+  Future<void> deleteWorkout(int id) async {
+    try {
+      await _dbService.deleteWorkout(id);
+      // 清除缓存
+      _workoutCache.clear();
+      debugPrint('DataManager: 训练记录删除成功');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 删除训练记录失败: $e');
+    }
   }
 
-  // 格式化日期为字符串
-  String _formatDate(DateTime date) {
-    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+  // === 饮食记录相关方法 ===
+
+  /// 添加饮食记录
+  Future<void> addMeal(MealEntry entry) async {
+    if (_currentUser == null) return;
+
+    try {
+      await _dbService.addMeal(entry, _currentUser!.id!);
+      
+      // 更新缓存
+      final dateKey = _formatDate(entry.timestamp);
+      if (!_mealCache.containsKey(dateKey)) {
+        _mealCache[dateKey] = [];
+      }
+      _mealCache[dateKey]!.add(entry);
+      
+      debugPrint('DataManager: 饮食记录添加成功');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 添加饮食记录失败: $e');
+    }
   }
 
-  // 清除所有数据
-  Future<void> clearAllData() async {
-    _weightData.clear();
-    _bodyFatData.clear();
-    _workoutData.clear();
-    _nutritionData.clear();
-    _articles.clear();
-    
-    await _prefs.clear();
-    notifyListeners();
-  }
+  /// 获取特定日期的饮食记录
+  Future<List<MealEntry>> getMealsForDate(DateTime date) async {
+    if (_currentUser == null) return [];
 
-  // 清除用户数据但保留文章数据（用于数据导入）
-  Future<void> clearUserData() async {
-    _weightData.clear();
-    _bodyFatData.clear();
-    _workoutData.clear();
-    _nutritionData.clear();
-    // 注意：不清空 _articles，因为文章是从MD文件动态加载的
-    
-    // 清空SharedPreferences中的用户数据，但保留其他可能的系统数据
-    await _prefs.remove(_weightDataKey);
-    await _prefs.remove(_bodyFatDataKey);
-    await _prefs.remove(_workoutDataKey);
-    await _prefs.remove(_nutritionDataKey);
-    await _prefs.remove(_userDataKey);
-    
-    notifyListeners();
-  }
-
-  // 兼容性方法：获取锻炼完成度百分比
-  double get workoutCompletionPercent {
-    final today = workoutToday;
-    if (today.isEmpty) return 0.0;
-    
-    final completedCount = today.where((workout) => workout.isCompleted).length;
-    return completedCount / today.length;
-  }
-
-  // 兼容性方法：切换锻炼完成状态
-  Future<void> toggleWorkoutCompleted(int index, {DateTime? date}) async {
-    date ??= DateTime.now();
     final dateKey = _formatDate(date);
     
-    if (_workoutData.containsKey(dateKey) && 
-        index < _workoutData[dateKey]!.length) {
-      final workouts = List<WorkoutEntry>.from(_workoutData[dateKey]!);
-      workouts[index] = workouts[index].copyWith(
-        isCompleted: !workouts[index].isCompleted
+    // 检查缓存
+    if (_mealCache.containsKey(dateKey)) {
+      return _mealCache[dateKey]!;
+    }
+
+    try {
+      final entries = await _dbService.getMealsByDate(
+        _currentUser!.id!, 
+        dateKey
       );
-      _workoutData[dateKey] = workouts;
-      
-      await _saveWorkoutData();
-      notifyListeners();
+      _mealCache[dateKey] = entries;
+      return entries;
+    } catch (e) {
+      debugPrint('DataManager: 获取饮食记录失败: $e');
+      return [];
     }
   }
 
-  // 兼容性方法：删除锻炼记录
-  Future<void> removeWorkout(int index, {DateTime? date}) async {
-    date ??= DateTime.now();
-    final dateKey = _formatDate(date);
-    
-    if (_workoutData.containsKey(dateKey) && 
-        index < _workoutData[dateKey]!.length) {
-      _workoutData[dateKey]!.removeAt(index);
-      
-      await _saveWorkoutData();
+  /// 删除饮食记录
+  Future<void> deleteMeal(int id) async {
+    try {
+      await _dbService.deleteMeal(id);
+      // 清除缓存
+      _mealCache.clear();
+      debugPrint('DataManager: 饮食记录删除成功');
       notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 删除饮食记录失败: $e');
     }
   }
 
-  // 兼容性接口：获取身高
-  double get height {
-    return (_userData['height'] as num?)?.toDouble() ?? 170.0;
+  // === 体脂率记录相关方法 ===
+
+  /// 添加体脂率记录
+  Future<void> addBodyFatEntry(BodyFatEntry entry) async {
+    if (_currentUser == null) return;
+
+    try {
+      await _dbService.addBodyFat(entry, _currentUser!.id!);
+      _bodyFatCache[_formatDate(entry.date)] = entry;
+      debugPrint('DataManager: 体脂率记录添加成功');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 添加体脂率记录失败: $e');
+    }
   }
 
-  // 兼容性接口：获取当前体脂率
-  double? get currentBodyFat {
-    if (_bodyFatData.isEmpty) return null;
-    final sortedEntries = _bodyFatData.values.toList()
-      ..sort((a, b) => b.date.compareTo(a.date));
-    return sortedEntries.first.value;
+  /// 获取体脂率记录列表
+  Future<List<BodyFatEntry>> getBodyFatEntries() async {
+    if (_currentUser == null) return [];
+
+    try {
+      final entries = await _dbService.getBodyFats(_currentUser!.id!);
+      
+      // 更新缓存
+      _bodyFatCache.clear();
+      for (final entry in entries) {
+        _bodyFatCache[_formatDate(entry.date)] = entry;
+      }
+      
+      return entries;
+    } catch (e) {
+      debugPrint('DataManager: 获取体脂率记录失败: $e');
+      return [];
+    }
   }
 
-  // 兼容性接口：获取BMI
+  /// 删除体脂率记录
+  Future<void> deleteBodyFat(int id) async {
+    try {
+      await _dbService.deleteBodyFat(id);
+      // 清除缓存，强制重新加载
+      _bodyFatCache.clear();
+      debugPrint('DataManager: 体脂率记录删除成功');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 删除体脂率记录失败: $e');
+    }
+  }
+
+  // === 兼容性方法和属性 ===
+
+  /// 获取BMI
   double get bmi {
     final weight = currentWeight ?? 0.0;
     final heightInMeters = height / 100;
@@ -743,10 +490,614 @@ class DataManager extends ChangeNotifier {  // 数据键
     return weight / (heightInMeters * heightInMeters);
   }
 
-  // 兼容性方法：更新身高
+  /// 兼容性：当前体脂率
+  double? get currentBodyFat {
+    if (_bodyFatCache.isEmpty) return null;
+    final sortedEntries = _bodyFatCache.values.toList()
+      ..sort((a, b) => b.date.compareTo(a.date));
+    return sortedEntries.first.value;
+  }
+
+  /// 兼容性：7天体重数据
+  List<WeightEntry> get weights7d {
+    if (_weightCache.isEmpty) return [];
+    
+    final now = DateTime.now();
+    final cutoffDate = now.subtract(const Duration(days: 7));
+    
+    return _weightCache.values
+        .where((entry) => entry.date.isAfter(cutoffDate))
+        .toList()
+      ..sort((a, b) => a.date.compareTo(b.date));
+  }
+
+  /// 兼容性：训练完成率
+  double get workoutCompletionPercent {
+    final today = DateTime.now();
+    final todayKey = _formatDate(today);
+    final todayWorkouts = _workoutCache[todayKey] ?? [];
+    
+    if (todayWorkouts.isEmpty) return 0.0;
+    
+    final completedCount = todayWorkouts.where((w) => w.isCompleted).length;
+    return (completedCount / todayWorkouts.length) * 100;
+  }
+
+  /// 兼容性：今日训练
+  List<WorkoutEntry> get workoutToday {
+    final today = DateTime.now();
+    final todayKey = _formatDate(today);
+    return _workoutCache[todayKey] ?? [];
+  }
+
+  /// 兼容性：热量摄入
+  int get calorieIntake {
+    final today = _formatDate(DateTime.now());
+    return _dailyCalorieIntake[today] ?? 0;
+  }
+
+  /// 兼容性：热量消耗
+  int get caloriesBurned {
+    final today = _formatDate(DateTime.now());
+    return _dailyCaloriesBurned[today] ?? 0;
+  }
+
+  /// 兼容性：热量平衡
+  int get calorieBalance => calorieIntake - caloriesBurned;
+
+  /// 兼容性：热量目标
+  int get calorieGoal => _calorieGoal;
+
+  /// 兼容性：今日营养
+  DailyNutritionEntry? get nutritionToday {
+    final today = _formatDate(DateTime.now());
+    final todayMeals = _mealCache[today] ?? [];
+    
+    // 从饮食记录计算热量摄入
+    final totalCalorieIntake = todayMeals.fold(0, (sum, meal) => sum + meal.calories);
+    
+    // 从训练记录计算热量消耗（简化计算）
+    final todayWorkouts = _workoutCache[today] ?? [];
+    final completedWorkouts = todayWorkouts.where((w) => w.isCompleted);
+    final totalCaloriesBurned = completedWorkouts.fold(0, (sum, workout) {
+      // 简化的热量消耗计算：每组训练消耗约30卡路里
+      return sum + (workout.sets * 30);
+    });
+    
+    // 更新缓存
+    _dailyCalorieIntake[today] = totalCalorieIntake;
+    _dailyCaloriesBurned[today] = totalCaloriesBurned;
+    
+    return DailyNutritionEntry(
+      date: DateTime.now(),
+      calorieIntake: totalCalorieIntake,
+      caloriesBurned: totalCaloriesBurned,
+      calorieGoal: _calorieGoal,
+      meals: todayMeals,
+    );
+  }
+
+  /// 兼容性方法：切换训练完成状态
+  Future<void> toggleWorkoutCompleted(int index) async {
+    if (_currentUser == null) return;
+    
+    final today = DateTime.now();
+    final todayKey = _formatDate(today);
+    final todayWorkouts = _workoutCache[todayKey] ?? [];
+    
+    if (index < 0 || index >= todayWorkouts.length) {
+      debugPrint('DataManager: 无效的训练索引: $index');
+      return;
+    }
+    
+    final workout = todayWorkouts[index];
+    await toggleWorkoutCompletion(workout);
+  }
+
+  /// 兼容性方法：更新身高
   Future<void> updateHeight(double newHeight) async {
-    _userData['height'] = newHeight;
-    await _saveUserData();
-    notifyListeners();
+    if (_currentUser != null) {
+      final updatedUser = _currentUser!.copyWith(height: newHeight);
+      await updateProfile(updatedUser);
+    }
+  }
+
+  /// 兼容性方法：添加体脂记录
+  Future<void> addBodyFat(double value) async {
+    if (_currentUser == null) return;
+
+    try {
+      final entry = BodyFatEntry(
+        value: value,
+        date: DateTime.now(),
+      );
+      
+      await _dbService.addBodyFat(entry, _currentUser!.id!);
+      _bodyFatCache[_formatDate(entry.date)] = entry;
+      
+      debugPrint('DataManager: 体脂率记录添加成功');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 添加体脂率记录失败: $e');
+    }
+  }
+
+  /// 兼容性方法：更新热量摄入
+  Future<void> updateCalorieIntake(int calories, {DateTime? date}) async {
+    if (_currentUser == null) return;
+
+    try {
+      final targetDate = date ?? DateTime.now();
+      final dateKey = _formatDate(targetDate);
+      
+      // 更新缓存
+      _dailyCalorieIntake[dateKey] = calories;
+      
+      // 保存到数据库（用户设置表）
+      await _dbService.setUserSetting(_currentUser!.id!, 'calorie_intake_$dateKey', calories.toString());
+      
+      debugPrint('DataManager: 热量摄入更新成功: $calories');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 更新热量摄入失败: $e');
+    }
+  }
+
+  /// 兼容性方法：更新热量消耗
+  Future<void> updateCaloriesBurned(int calories, {DateTime? date}) async {
+    if (_currentUser == null) return;
+
+    try {
+      final targetDate = date ?? DateTime.now();
+      final dateKey = _formatDate(targetDate);
+      
+      // 更新缓存
+      _dailyCaloriesBurned[dateKey] = calories;
+      
+      // 保存到数据库（用户设置表）
+      await _dbService.setUserSetting(_currentUser!.id!, 'calories_burned_$dateKey', calories.toString());
+      
+      debugPrint('DataManager: 热量消耗更新成功: $calories');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 更新热量消耗失败: $e');
+    }
+  }
+
+  /// 兼容性方法：更新热量目标
+  Future<void> updateCalorieGoal(int goal, {DateTime? date}) async {
+    if (_currentUser == null) return;
+
+    try {
+      _calorieGoal = goal;
+      
+      // 保存到数据库（用户设置表）
+      await _dbService.setUserSetting(_currentUser!.id!, 'calorie_goal', goal.toString());
+      
+      debugPrint('DataManager: 热量目标更新成功: $goal');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 更新热量目标失败: $e');
+    }
+  }
+
+  /// 兼容性方法：移除训练记录
+  Future<void> removeWorkout(int index) async {
+    if (_currentUser == null) return;
+    
+    final today = DateTime.now();
+    final todayKey = _formatDate(today);
+    final todayWorkouts = _workoutCache[todayKey] ?? [];
+    
+    if (index < 0 || index >= todayWorkouts.length) {
+      debugPrint('DataManager: 无效的训练索引: $index');
+      return;
+    }
+    
+    try {
+      // 由于模型中没有ID，暂时从缓存中移除
+      // TODO: 需要数据库支持按详细信息删除的方法
+      todayWorkouts.removeAt(index);
+      _workoutCache[todayKey] = todayWorkouts;
+      
+      debugPrint('DataManager: 训练记录删除成功（从缓存）');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 删除训练记录失败: $e');
+    }
+  }
+
+  /// 兼容性方法：移除饮食记录
+  Future<void> removeMeal(int index) async {
+    if (_currentUser == null) return;
+    
+    final today = DateTime.now();
+    final todayKey = _formatDate(today);
+    final todayMeals = _mealCache[todayKey] ?? [];
+    
+    if (index < 0 || index >= todayMeals.length) {
+      debugPrint('DataManager: 无效的饮食索引: $index');
+      return;
+    }
+    
+    try {
+      // 由于模型中没有ID，暂时从缓存中移除
+      // TODO: 需要数据库支持按详细信息删除的方法
+      todayMeals.removeAt(index);
+      _mealCache[todayKey] = todayMeals;
+      
+      debugPrint('DataManager: 饮食记录删除成功（从缓存）');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 删除饮食记录失败: $e');
+    }
+  }
+
+  /// 兼容性方法：清空所有数据
+  Future<void> clearAllData() async {
+    if (_currentUser != null) {
+      await _dbService.clearUserData(_currentUser!.id!);
+      _clearCache();
+      notifyListeners();
+    }
+  }
+
+  /// 兼容性方法：获取体重数据
+  Map<String, WeightEntry> getWeightData({int? days}) {
+    if (days == null) {
+      return _weightCache;
+    }
+    
+    // 如果指定了天数，过滤数据
+    final cutoffDate = DateTime.now().subtract(Duration(days: days));
+    final filteredData = <String, WeightEntry>{};
+    
+    for (final entry in _weightCache.entries) {
+      if (entry.value.date.isAfter(cutoffDate)) {
+        filteredData[entry.key] = entry.value;
+      }
+    }
+    
+    return filteredData;
+  }
+
+  /// 兼容性方法：获取体脂数据
+  Map<String, dynamic> getBodyFatData({int? days}) {
+    final result = <String, dynamic>{};
+    
+    if (days == null) {
+      // 返回所有体脂率数据
+      for (final entry in _bodyFatCache.entries) {
+        result[entry.key] = entry.value.value; // 返回体脂率数值
+      }
+    } else {
+      // 返回指定天数的数据
+      final cutoffDate = DateTime.now().subtract(Duration(days: days));
+      
+      for (final entry in _bodyFatCache.entries) {
+        if (entry.value.date.isAfter(cutoffDate)) {
+          result[entry.key] = entry.value.value;
+        }
+      }
+    }
+    
+    return result;
+  }
+
+  /// 兼容性方法：获取训练数据
+  Map<String, List<WorkoutEntry>> getWorkoutData() {
+    return _workoutCache;
+  }
+
+  /// 兼容性方法：获取营养数据
+  Map<String, DailyNutritionEntry> getNutritionData({int? days}) {
+    final result = <String, DailyNutritionEntry>{};
+    
+    if (days == null) {
+      // 返回所有数据
+      for (final entry in _mealCache.entries) {
+        final dateKey = entry.key;
+        final meals = entry.value;
+        
+        if (meals.isNotEmpty) {
+          final totalCalories = meals.fold(0, (sum, meal) => sum + meal.calories);
+          
+          // 计算当日训练消耗的热量
+          final dayWorkouts = _workoutCache[dateKey] ?? [];
+          final completedWorkouts = dayWorkouts.where((w) => w.isCompleted);
+          final caloriesBurned = completedWorkouts.fold(0, (sum, workout) {
+            return sum + (workout.sets * 30); // 简化计算
+          });
+          
+          result[dateKey] = DailyNutritionEntry(
+            date: meals.first.timestamp,
+            calorieIntake: totalCalories,
+            caloriesBurned: caloriesBurned,
+            calorieGoal: _calorieGoal,
+            meals: meals,
+          );
+        }
+      }
+    } else {
+      // 返回指定天数的数据
+      final cutoffDate = DateTime.now().subtract(Duration(days: days));
+      
+      for (final entry in _mealCache.entries) {
+        final dateKey = entry.key;
+        final meals = entry.value.where((meal) => meal.timestamp.isAfter(cutoffDate)).toList();
+        
+        if (meals.isNotEmpty) {
+          final totalCalories = meals.fold(0, (sum, meal) => sum + meal.calories);
+          
+          // 计算当日训练消耗的热量
+          final dayWorkouts = _workoutCache[dateKey] ?? [];
+          final completedWorkouts = dayWorkouts.where((w) => w.isCompleted);
+          final caloriesBurned = completedWorkouts.fold(0, (sum, workout) {
+            return sum + (workout.sets * 30);
+          });
+          
+          result[dateKey] = DailyNutritionEntry(
+            date: meals.first.timestamp,
+            calorieIntake: totalCalories,
+            caloriesBurned: caloriesBurned,
+            calorieGoal: _calorieGoal,
+            meals: meals,
+          );
+        }
+      }
+    }
+    
+    return result;
+  }
+
+  /// 兼容性方法：重新加载文章（空实现）
+  Future<void> reloadArticles() async {
+    // 空实现，文章通过 ArticleService 管理
+  }
+
+  // === 数据迁移和初始化方法 ===
+
+  /// 从旧系统迁移数据到数据库
+  Future<void> migrateOldData() async {
+    if (_currentUser == null) return;
+
+    // 这里可以实现从SharedPreferences迁移到SQLite的逻辑
+    // 目前暂时留空，如果需要可以后续实现
+    debugPrint('DataManager: 数据迁移功能待实现');
+  }
+
+  /// 创建示例数据（用于新用户）
+  Future<void> createSampleData() async {
+    if (_currentUser == null) return;
+
+    try {
+      final now = DateTime.now();
+      
+      // 创建一些示例体重数据
+      for (int i = 30; i >= 0; i--) {
+        final date = now.subtract(Duration(days: i));
+        final weight = 70.0 + (i * 0.1) + (i % 3) * 0.2; // 模拟体重变化
+        
+        await addWeight(WeightEntry(
+          date: date,
+          value: weight,
+        ));
+      }
+
+      // 创建今日训练计划
+      final todayWorkouts = [
+        WorkoutEntry(
+          date: now,
+          name: 'Push-up',
+          sets: 3,
+          isCompleted: false,
+        ),
+        WorkoutEntry(
+          date: now,
+          name: 'Squat',
+          sets: 4,
+          isCompleted: false,
+        ),
+        WorkoutEntry(
+          date: now,
+          name: 'Plank',
+          sets: 3,
+          isCompleted: false,
+        ),
+      ];
+
+      for (final workout in todayWorkouts) {
+        await addWorkout(workout);
+      }
+
+      debugPrint('DataManager: 示例数据创建完成');
+    } catch (e) {
+      debugPrint('DataManager: 创建示例数据失败: $e');
+    }
+  }
+
+  /// 强制刷新今日数据（用于解决"No Data"问题）
+  Future<void> refreshTodayData() async {
+    if (_currentUser == null) return;
+
+    final today = DateTime.now();
+    
+    try {
+      // 强制刷新今日训练数据
+      await getWorkoutsForDate(today);
+      
+      // 强制刷新今日饮食数据
+      await getMealsForDate(today);
+      
+      debugPrint('DataManager: 今日数据刷新完成');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 刷新今日数据失败: $e');
+    }
+  }
+
+  /// 获取数据摘要（用于调试）
+  void printDataSummary() {
+    debugPrint('=== DataManager 数据摘要 ===');
+    debugPrint('当前用户: ${_currentUser?.name ?? "未登录"}');
+    debugPrint('体重记录数: ${_weightCache.length}');
+    debugPrint('体脂率记录数: ${_bodyFatCache.length}');
+    debugPrint('训练记录数: ${_workoutCache.length}');
+    debugPrint('饮食记录数: ${_mealCache.length}');
+    debugPrint('热量目标: $_calorieGoal');
+    debugPrint('今日热量摄入: ${calorieIntake}');
+    debugPrint('今日热量消耗: ${caloriesBurned}');
+    debugPrint('今日训练完成率: ${workoutCompletionPercent.toStringAsFixed(1)}%');
+    debugPrint('=======================');
+  }
+
+  // 日期格式化辅助方法
+  String _formatDate(DateTime date) {
+    return '${date.year}-${date.month.toString().padLeft(2, '0')}-${date.day.toString().padLeft(2, '0')}';
+  }
+
+  // 加载用户设置
+  Future<void> _loadUserSettings() async {
+    if (_currentUser == null) return;
+
+    try {
+      final settings = await _dbService.getAllUserSettings(_currentUser!.id!);
+      
+      // 加载热量目标
+      final calorieGoalStr = settings['calorie_goal'];
+      if (calorieGoalStr != null) {
+        _calorieGoal = int.tryParse(calorieGoalStr) ?? 2000;
+      }
+      
+      // 加载每日热量摄入记录
+      _dailyCalorieIntake.clear();
+      _dailyCaloriesBurned.clear();
+      
+      for (final entry in settings.entries) {
+        if (entry.key.startsWith('calorie_intake_')) {
+          final dateKey = entry.key.substring('calorie_intake_'.length);
+          _dailyCalorieIntake[dateKey] = int.tryParse(entry.value) ?? 0;
+        } else if (entry.key.startsWith('calories_burned_')) {
+          final dateKey = entry.key.substring('calories_burned_'.length);
+          _dailyCaloriesBurned[dateKey] = int.tryParse(entry.value) ?? 0;
+        }
+      }
+      
+      debugPrint('DataManager: 用户设置加载完成');
+    } catch (e) {
+      debugPrint('DataManager: 加载用户设置失败: $e');
+    }
+  }
+
+  // 预加载用户数据
+  Future<void> _preloadUserData() async {
+    if (_currentUser == null) return;
+
+    try {
+      debugPrint('DataManager: 开始预加载用户数据...');
+      
+      // 预加载体重数据
+      await getWeightEntries();
+      
+      // 预加载体脂率数据
+      await getBodyFatEntries();
+      
+      // 预加载最近7天的训练数据
+      final now = DateTime.now();
+      for (int i = 0; i < 7; i++) {
+        final date = now.subtract(Duration(days: i));
+        await getWorkoutsForDate(date);
+      }
+      
+      // 预加载最近7天的饮食数据
+      for (int i = 0; i < 7; i++) {
+        final date = now.subtract(Duration(days: i));
+        await getMealsForDate(date);
+      }
+      
+      debugPrint('DataManager: 用户数据预加载完成');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 预加载用户数据失败: $e');
+    }
+  }
+
+  /// 初始化方法 - 兼容旧版本
+  Future<void> init() async {
+    await initialize();
+    debugPrint('DataManager: 已初始化');
+  }
+
+  /// 清除用户数据方法 - 兼容导出服务
+  Future<void> clearUserData() async {
+    if (_currentUser == null) return;
+    
+    try {
+      // 清除数据库中的用户数据
+      await _dbService.clearUserData(_currentUser!.id!);
+      
+      // 清除缓存
+      _weightCache.clear();
+      _workoutCache.clear();
+      _mealCache.clear();
+      
+      debugPrint('DataManager: 用户数据已清除');
+      notifyListeners();
+    } catch (e) {
+      debugPrint('DataManager: 清除用户数据失败: $e');
+    }
+  }
+
+  /// 兼容性方法：添加体重记录（支持原有的 double + date 参数格式）
+  Future<void> addWeightValue(double weight, {DateTime? date}) async {
+    if (_currentUser == null) return;
+    
+    final entry = WeightEntry(
+      value: weight,
+      date: date ?? DateTime.now(),
+    );
+    
+    await addWeight(entry);
+  }
+
+  /// 兼容性方法：添加体脂记录
+  Future<void> addBodyFatValue(double bodyFat, {DateTime? date}) async {
+    if (_currentUser == null) return;
+    
+    final entry = BodyFatEntry(
+      value: bodyFat,
+      date: date ?? DateTime.now(),
+    );
+    
+    await addBodyFatEntry(entry);
+  }
+
+  /// 兼容性方法：添加训练记录
+  Future<void> addWorkoutData(String type, int duration, int calories, {DateTime? date}) async {
+    if (_currentUser == null) return;
+    
+    final entry = WorkoutEntry(
+      name: type,
+      sets: duration, // 将 duration 映射到 sets
+      date: date ?? DateTime.now(),
+      isCompleted: true,
+    );
+    
+    await addWorkout(entry);
+  }
+
+  /// 兼容性方法：添加饮食记录
+  Future<void> addMealData(String type, String food, int calories, {DateTime? date}) async {
+    if (_currentUser == null) return;
+    
+    final entry = MealEntry(
+      mealType: type,
+      name: food,
+      calories: calories,
+      amount: '1份',
+      timestamp: date ?? DateTime.now(),
+    );
+    
+    await addMeal(entry);
   }
 }

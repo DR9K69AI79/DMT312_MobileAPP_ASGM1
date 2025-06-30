@@ -10,6 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
   fl_chart: ^1.0.0
+  # 数据库依赖
+  sqflite: ^2.3.0                 # SQLite 数据库 (Android/iOS)
+  sqflite_common_ffi: ^2.3.0      # SQLite 数据库 (Windows/macOS/Linux)
+  path: ^1.8.3                    # 路径处理
   # 新增的数据持久化相关依赖
   shared_preferences: ^2.2.2      # 简单键值对存储
   path_provider: ^2.1.1           # 获取文件系统路径
@@ -19,6 +23,11 @@ dependencies:
   file_picker: ^8.0.0             # 文件选择器
   flutter_markdown: ^0.6.23       # Markdown解析和渲染
   yaml: ^3.1.2                    # YAML解析器
+  # 音视频依赖
+  video_player: ^2.8.6            # 视频播放器
+  chewie: ^1.8.0                  # 视频播放器UI
+  # Web 兼容性依赖
+  universal_html: ^2.2.4          # Web平台HTML支持
 
 dev_dependencies:
   flutter_test:
@@ -33,3 +42,4 @@ flutter:
   assets:
     - assets/articles/
     - assets/images/
+    - assets/videos/

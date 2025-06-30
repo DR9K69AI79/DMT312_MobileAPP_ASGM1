@@ -172,7 +172,7 @@ class FitnessDataGenerator:
         return workout_data
     
     def generate_nutrition_data(self) -> List[Dict[str, Any]]:
-        """生成营养数据"""
+        """生成营养数据 - 完全符合Flutter应用MealEntry导入要求的格式"""
         nutrition_data = []
         
         for i in range(self.days):
@@ -192,15 +192,27 @@ class FitnessDataGenerator:
                 calories_variation = random.uniform(0.8, 1.2)
                 actual_calories = int(meal["calories"] * calories_variation)
                 
-                daily_meals.append({
-                    "name": meal["name"],
-                    "foods": meal["foods"],
-                    "calories": actual_calories
-                })
-                total_calories += actual_calories
+                # 为每个食物创建单独的meal条目，完全符合Flutter MealEntry格式
+                # Flutter导入时会为每个foods项目创建一个独立的MealEntry
+                for food in meal["foods"]:
+                    # 为每个食物分配合理的热量比例
+                    food_calories = actual_calories // len(meal["foods"])
+                    # 如果是最后一个食物，加上剩余的热量
+                    if food == meal["foods"][-1]:
+                        food_calories += actual_calories % len(meal["foods"])
+                    
+                    # 关键修改：每个food条目生成单独的meal记录
+                    # Flutter导入逻辑会为每个foods列表项创建一个MealEntry
+                    daily_meals.append({
+                        "name": meal["name"],  # 餐食类型（早餐、午餐等） -> mealType
+                        "foods": [food],       # 单个食物数组 -> name (取第一个)
+                        "calories": food_calories  # 该食物的热量 -> calories
+                        # amount 和 timestamp 将由导入逻辑自动填充
+                    })
+                    total_calories += food_calories
             
             # 生成合理的卡路里消耗和目标
-            calorie_burned = random.randint(1800, 2500)
+            calorie_burned = random.randint(300, 600)  # 更合理的消耗范围
             calorie_goal = random.randint(1800, 2200)
             
             nutrition_entry = {

@@ -178,10 +178,10 @@ class ExportService {  /// 导出数据到用户选择的位置
           if (dateStr != null) {
             // 使用导入数据中的日期
             final date = DateTime.parse(dateStr);
-            await dataManager.addWeight(weight, date: date);
+            await dataManager.addWeightValue(weight, date: date);
           } else {
             // 如果没有日期信息，使用当前日期（向后兼容）
-            await dataManager.addWeight(weight);
+            await dataManager.addWeightValue(weight);
           }
         }
       }      // 导入体脂数据
@@ -194,7 +194,7 @@ class ExportService {  /// 导出数据到用户选择的位置
           if (bodyFatPercentage != null && dateStr != null) {
             // 使用导入数据中的日期
             final date = DateTime.parse(dateStr);
-            await dataManager.addBodyFat(bodyFatPercentage, date: date);
+            await dataManager.addBodyFatValue(bodyFatPercentage, date: date);
           }
         }
       }// 导入训练数据
@@ -230,10 +230,10 @@ class ExportService {  /// 导出数据到用户选择的位置
           final caloriesBurned = nutritionJson['caloriesBurned'] as int? ?? 0;
           final calorieGoal = nutritionJson['calorieGoal'] as int? ?? 2000;
           
-          // 设置基础热量数据
+          // 设置热量数据
           await dataManager.updateCalorieIntake(calorieIntake, date: date);
           await dataManager.updateCaloriesBurned(caloriesBurned, date: date);
-          await dataManager.updateCalorieGoal(calorieGoal, date: date);
+          await dataManager.updateCalorieGoal(calorieGoal);
           
           // 处理meals数据：从Python格式转换为应用格式
           if (nutritionJson['meals'] != null) {
@@ -244,7 +244,6 @@ class ExportService {  /// 导出数据到用户选择的位置
               final foods = mealData['foods'] as List<dynamic>? ?? [];
               
               // 将Python格式的meal转换为多个MealEntry
-              // 如果有具体食物列表，为每个食物创建一个MealEntry
               if (foods.isNotEmpty) {
                 final averageCalories = (mealCalories / foods.length).round();
                 for (final food in foods) {
@@ -255,7 +254,7 @@ class ExportService {  /// 导出数据到用户选择的位置
                     amount: '1份',
                     timestamp: date,
                   );
-                  await dataManager.addMeal(meal, date: date);
+                  await dataManager.addMeal(meal);
                 }
               } else if (mealCalories > 0) {
                 // 如果没有具体食物但有热量，创建一个通用的MealEntry
@@ -266,7 +265,7 @@ class ExportService {  /// 导出数据到用户选择的位置
                   amount: '1份',
                   timestamp: date,
                 );
-                await dataManager.addMeal(meal, date: date);
+                await dataManager.addMeal(meal);
               }
             }
           }

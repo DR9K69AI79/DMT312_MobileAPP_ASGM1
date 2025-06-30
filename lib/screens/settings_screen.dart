@@ -133,6 +133,32 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ),
                   const SizedBox(height: 16),
                   
+                  // 个人资料入口
+                  ListTile(
+                    leading: const Icon(Icons.person),
+                    title: const Text('个人资料'),
+                    subtitle: Text(_dataManager.isLoggedIn ? _dataManager.userName : '未登录'),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/profile');
+                    },
+                  ),
+                  
+                  const Divider(),
+                  
+                  // 帮助与支持入口
+                  ListTile(
+                    leading: const Icon(Icons.help_outline),
+                    title: const Text('帮助与支持'),
+                    subtitle: const Text('使用指南、常见问题'),
+                    trailing: const Icon(Icons.arrow_forward_ios),
+                    onTap: () {
+                      Navigator.pushNamed(context, '/help');
+                    },
+                  ),
+                  
+                  const Divider(),
+                  
                   // 身高设置
                   ListTile(
                     title: const Text('Height'),
@@ -373,7 +399,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 }
               }
             },
-            child: const Text('Canfirm'),
+            child: const Text('Confirm'),
           ),
         ],
       ),
@@ -385,30 +411,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Data Storage Instruction'),
+        title: const Text('数据存储说明'),
         content: const Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Data Storage Method：'),
+            Text('数据存储方式：'),
             SizedBox(height: 8),
-            Text('• All data is stored locally on the device'),
-            Text('• Using JSON format for persistence'),
-            Text('• Will not be uploaded to any server'),
-            Text('• Ensuring user privacy and security'),
+            Text('• 所有数据安全存储在本地设备'),
+            Text('• 使用 SQLite 数据库确保数据完整性'),
+            Text('• 支持用户账户系统和数据隔离'),
+            Text('• 绝不上传到任何外部服务器'),
+            Text('• 保障用户隐私和数据安全'),
             SizedBox(height: 16),
-            Text('Supported data types：'),
+            Text('支持的数据类型：'),
             SizedBox(height: 8),
-            Text('• Weight Records'),
-            Text('• Training Plans'),
-            Text('• Nutrition Records'),
-            Text('• User Settings'),
+            Text('• 用户资料和认证信息'),
+            Text('• 体重记录和身体数据'),
+            Text('• 训练计划和运动记录'),
+            Text('• 营养摄入和饮食记录'),
+            Text('• 应用设置和个人偏好'),
+            Text('• 媒体文件和学习资源'),
+            SizedBox(height: 16),
+            Text('数据安全特性：'),
+            SizedBox(height: 8),
+            Text('• 本地加密存储'),
+            Text('• 支持数据导入导出'),
+            Text('• 自动备份机制'),
           ],
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Got it'),
+            child: const Text('了解了'),
           ),
         ],
       ),
