@@ -211,60 +211,99 @@ FitLog 采用分层架构设计，结合现代 Flutter 开发最佳实践，确�
 ## 5. 项目结构重点
 
 ```
+```
 FitLog_Project/
-├── DesignDoc/                  # 设计文档
-│   ├── ASGM2/                  # ASGM2 开发文档
-│   │   ├── ASGM2_todo.md       # 开发任务清单
-│   │   └── ASGM2具体开发参考.md # 具体开发指南
-│   └── Temp/                   # 开发过程文档
-│       ├── SQLite系统优化清单.md
-│       ├── 功能测试清单.md
-│       ├── 开发任务概览.md
-│       ├── 开发进度跟踪.md
-│       └── 界面导航确认清单.md
-├── assets/                     # 资源文件
-│   ├── articles/               # Markdown 文章
-│   ├── images/                 # 图片资源
-│   └── videos/                 # 视频资源 🆕
+├── assets/                             # Resource files
+│   ├── articles/                       # Markdown articles
+│   ├── images/                         # Image resources
+│   └── videos/                         # Video resources (AS2)
 │       ├── stretching.mp4
 │       ├── tutorial.mp4
 │       └── warmup.mp4
 ├── lib/
-│   ├── main.dart               # 应用入口，认证包装器
-│   ├── models/                 # 数据模型
-│   │   ├── user.dart           # 用户模型 🆕
-│   │   ├── weight_entry.dart   # 体重记录
-│   │   ├── workout_entry.dart  # 训练记录
-│   │   ├── nutrition_entry.dart # 营养记录
-│   │   └── article.dart        # 文章模型
-│   ├── screens/                # UI 界面
-│   │   ├── auth/               # 认证相关 🆕
+│   ├── main.dart                       # App entry point, authentication wrapper
+│   ├── models/                         # Data models
+│   │   ├── user.dart                   # User model (AS2)
+│   │   ├── weight_entry.dart           # Weight records
+│   │   ├── workout_entry.dart          # Workout records
+│   │   ├── nutrition_entry.dart        # Nutrition records
+│   │   └── article.dart                # Article model
+│   ├── screens/                        # UI screens
+│   │   ├── auth/                       # Authentication related (AS2)
+│   │   │   ├── login_screen.dart       # Login screen
+│   │   │   └── registration_screen.dart # Registration screen
+│   │   ├── main_screen.dart            # Main screen (bottom navigation)
+│   │   ├── dashboard_screen.dart       # Dashboard screen
+│   │   ├── body_screen.dart            # Body data screen
+│   │   ├── workout_screen.dart         # Workout screen
+│   │   ├── nutrition_screen.dart       # Nutrition screen
+│   │   ├── library_screen.dart         # Resource library screen
+│   │   ├── settings_screen.dart        # Settings screen
+│   │   ├── profile_screen.dart         # User profile screen (AS2)
+│   │   ├── help_screen.dart            # Help and support screen (AS2)
+│   │   └── video/                      # Video related (AS2)
+│   │       ├── video_library_screen.dart   # Video library screen
+│   │       └── video_player_screen.dart    # Video player screen
+│   ├── services/                       # Business logic services
+│   │   ├── data_manager.dart           # Core data management
+│   │   ├── database_service.dart       # SQLite service (AS2)
+│   │   ├── export_service.dart         # Import/export service
+│   │   └── article_service.dart        # Article service
+│   ├── widgets/                        # UI components
+│   │   ├── glass_card.dart             # Glass card component
+│   │   ├── weight_chart.dart           # Weight chart component
+│   │   └── video_player_widget.dart    # Video player component (AS2)
+│   └── utils/                          # Utility classes
+└── pubspec.yaml                        # Dependencies configuration
+```
+```
+
+```
+FitLog_Project/
+├── assets/                     # Resource files
+│   ├── articles/               # Markdown articles
+│   ├── images/                 # Image resources
+│   └── videos/                 # Video resources (AS2)
+│       ├── stretching.mp4
+│       ├── tutorial.mp4
+│       └── warmup.mp4
+├── lib/
+│   ├── main.dart               # App entry point, authentication wrapper
+│   ├── models/                 # Data models
+│   │   ├── user.dart           # User model (AS2)
+│   │   ├── weight_entry.dart   # Weight records
+│   │   ├── workout_entry.dart  # Workout records
+│   │   ├── nutrition_entry.dart # Nutrition records
+│   │   └── article.dart        # Article model
+│   ├── screens/                # UI screens
+│   │   ├── auth/               # Authentication related (AS2)
 │   │   │   ├── login_screen.dart
 │   │   │   └── registration_screen.dart
-│   │   ├── main_screen.dart    # 主界面 (底部导航)
+│   │   ├── main_screen.dart    # Main screen (bottom navigation)
 │   │   ├── dashboard_screen.dart
 │   │   ├── body_screen.dart
 │   │   ├── workout_screen.dart
 │   │   ├── nutrition_screen.dart
 │   │   ├── library_screen.dart
 │   │   ├── settings_screen.dart
-│   │   ├── profile_screen.dart 🆕
-│   │   ├── help_screen.dart    🆕
-│   │   └── video/              # 视频相关 🆕
+│   │   ├── profile_screen.dart # User profile (AS2)
+│   │   ├── help_screen.dart    # Help and support (AS2)
+│   │   └── video/              # Video related (AS2)
 │   │       ├── video_library_screen.dart
 │   │       └── video_player_screen.dart
-│   ├── services/               # 业务逻辑服务
-│   │   ├── data_manager.dart   # 核心数据管理
-│   │   ├── database_service.dart # SQLite 服务 🆕
-│   │   ├── export_service.dart # 导入导出
-│   │   └── article_service.dart # 文章服务
-│   ├── widgets/                # UI 组件
-│   │   ├── glass_card.dart     # 毛玻璃卡片
-│   │   ├── weight_chart.dart   # 体重图表
-│   │   └── video_player_widget.dart # 视频播放器 🆕
-│   └── utils/                  # 工具类
-└── pubspec.yaml                # 依赖配置
+│   ├── services/               # Business logic services
+│   │   ├── data_manager.dart   # Core data management
+│   │   ├── database_service.dart # SQLite service (AS2)
+│   │   ├── export_service.dart # Import/export
+│   │   └── article_service.dart # Article service
+│   ├── widgets/                # UI components
+│   │   ├── glass_card.dart     # Glass card
+│   │   ├── weight_chart.dart   # Weight chart
+│   │   └── video_player_widget.dart # Video player (AS2)
+│   └── utils/                  # Utility classes
+└── pubspec.yaml                # Dependencies configuration
 ```
+
 ## 6. 主要依赖项
 
 ### 核心依赖
